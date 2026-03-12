@@ -1,17 +1,34 @@
 import type { Preview } from '@storybook/sveltekit';
 import './storybook.css';
 
-// Inject design tokens globally into all stories
 const preview: Preview = {
-  parameters: {
-    backgrounds: {
-      default: 'dark',
-      values: [
-        { name: 'dark',    value: '#0D1117' },
-        { name: 'surface', value: '#111D27' },
-        { name: 'light',   value: '#FFFFFF' },
-      ],
+  globalTypes: {
+    theme: {
+      description: 'Color theme',
+      toolbar: {
+        title: 'Theme',
+        icon: 'circlehollow',
+        items: [
+          { value: 'dark',  icon: 'moon', title: 'Dark'  },
+          { value: 'light', icon: 'sun',  title: 'Light' },
+        ],
+        dynamicTitle: true,
+      },
     },
+  },
+  initialGlobals: {
+    theme: 'dark',
+  },
+  decorators: [
+    (story, context) => {
+      const theme = (context.globals.theme ?? 'dark') as string;
+      document.body.setAttribute('data-theme', theme);
+      document.body.style.background = theme === 'light' ? '#F5F7FA' : '#0D1117';
+      return { Component: story };
+    },
+  ],
+  parameters: {
+    backgrounds: { disable: true },
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -21,12 +38,6 @@ const preview: Preview = {
     a11y: { test: 'todo' },
     layout: 'padded',
   },
-  decorators: [
-    (story) => ({
-      Component: story,
-      props: {},
-    }),
-  ],
 };
 
 export default preview;

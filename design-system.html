@@ -981,8 +981,10 @@ footer {
     <a class="nav-tab" href="#mobile-ds">Mobile DS</a>
     <a class="nav-tab" href="#web-ds">Web DS</a>
     <a class="nav-tab" href="#accessibility">Acessibilidade</a>
+    <a class="nav-tab" href="#light-mode">Light Mode</a>
+    <a class="nav-tab" href="#icons">Ícones</a>
   </div>
-  <span class="nav-version">v1.2 · 2026</span>
+  <span class="nav-version">v1.4 · 2026</span>
 </nav>
 
 <!-- ══════════════════════════════════
@@ -3126,17 +3128,550 @@ footer {
   </div>
 </section>
 
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- LIGHT MODE                                                            -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<section id="light-mode">
+  <div class="wrap">
+
+    <div class="section-header">
+      <div class="section-tag">05</div>
+      <h2 class="section-title">Light Mode</h2>
+      <p class="section-desc">Token set completo para tema claro. Aplicado via <code style="font-family:var(--mono);background:var(--bg3);padding:2px 6px;border-radius:4px;">data-theme="light"</code> no elemento raiz. Todos os tokens de cor, borda e sombra são sobrescritos — brand (orange/teal), tipografia, espaçamento e radius permanecem inalterados.</p>
+    </div>
+
+    <!-- Como ativar -->
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-card);padding:24px;margin-bottom:48px;">
+      <h3 style="font-size:14px;font-weight:600;color:var(--t);margin:0 0 16px;">Como ativar</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;">
+        <div>
+          <div style="font-size:11px;font-weight:600;color:var(--t2);letter-spacing:.05em;text-transform:uppercase;margin-bottom:8px;">HTML</div>
+          <pre style="margin:0;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:14px;font-family:var(--mono);font-size:12px;color:var(--t2);overflow-x:auto;">&lt;body data-theme="light"&gt;
+  ...
+&lt;/body&gt;</pre>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:600;color:var(--t2);letter-spacing:.05em;text-transform:uppercase;margin-bottom:8px;">JavaScript</div>
+          <pre style="margin:0;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:14px;font-family:var(--mono);font-size:12px;color:var(--t2);overflow-x:auto;">document.body
+  .setAttribute('data-theme', 'light');</pre>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:600;color:var(--t2);letter-spacing:.05em;text-transform:uppercase;margin-bottom:8px;">CSS (override)</div>
+          <pre style="margin:0;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:14px;font-family:var(--mono);font-size:12px;color:var(--t2);overflow-x:auto;">[data-theme="light"] {
+  --color-bg-base: #F5F7FA;
+  /* ... demais tokens */
+}</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Preview lado a lado -->
+    <h3 style="font-size:16px;font-weight:600;color:var(--t);margin:0 0 20px;">Preview — Dark vs Light</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:48px;">
+
+      <!-- Dark card -->
+      <div>
+        <div style="font-size:11px;font-weight:600;color:var(--t2);letter-spacing:.05em;text-transform:uppercase;margin-bottom:12px;">🌙 Dark (padrão)</div>
+        <div style="background:#111D27;border:1px solid #1E2D3D;border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="font-family:var(--font, var(--font));font-size:14px;font-weight:600;color:#FFFFFF;">Saldo disponível</span>
+            <span style="background:rgba(52,211,153,0.10);color:#34D399;font-size:11px;font-weight:600;padding:3px 8px;border-radius:100px;border:1px solid rgba(52,211,153,0.22);">Ativo</span>
+          </div>
+          <div style="font-family:var(--mono);font-size:28px;font-weight:700;color:#FFFFFF;">R$ 3.450,00</div>
+          <div style="font-size:12px;color:#8A9BB0;">Atualizado há 2 minutos</div>
+          <div style="height:1px;background:#1E2D3D;"></div>
+          <div style="display:flex;gap:8px;">
+            <button style="flex:1;padding:8px;background:#FF5500;border:none;border-radius:10px;color:#fff;font-size:12px;font-weight:600;cursor:pointer;">Confirmar</button>
+            <button style="flex:1;padding:8px;background:rgba(255,85,0,0.08);border:1px solid rgba(255,85,0,0.22);border-radius:10px;color:#FF5500;font-size:12px;font-weight:600;cursor:pointer;">Cancelar</button>
+          </div>
+          <input style="width:100%;box-sizing:border-box;padding:9px 12px;background:#161F2A;border:1px solid #263545;border-radius:10px;color:#FFFFFF;font-size:13px;outline:none;" placeholder="Digite o valor (R$)" />
+          <div style="padding:10px 12px;background:rgba(192,58,43,0.08);border:1px solid rgba(192,58,43,0.22);border-radius:10px;font-size:12px;color:#E05040;">Saldo insuficiente para a operação.</div>
+        </div>
+      </div>
+
+      <!-- Light card -->
+      <div>
+        <div style="font-size:11px;font-weight:600;color:var(--t2);letter-spacing:.05em;text-transform:uppercase;margin-bottom:12px;">☀️ Light</div>
+        <div style="background:#FFFFFF;border:1px solid #D0DAE4;border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:12px;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="font-family:var(--font, var(--font));font-size:14px;font-weight:600;color:#0D1117;">Saldo disponível</span>
+            <span style="background:rgba(5,150,105,0.10);color:#059669;font-size:11px;font-weight:600;padding:3px 8px;border-radius:100px;border:1px solid rgba(5,150,105,0.22);">Ativo</span>
+          </div>
+          <div style="font-family:var(--mono);font-size:28px;font-weight:700;color:#0D1117;">R$ 3.450,00</div>
+          <div style="font-size:12px;color:#4A6070;">Atualizado há 2 minutos</div>
+          <div style="height:1px;background:#D0DAE4;"></div>
+          <div style="display:flex;gap:8px;">
+            <button style="flex:1;padding:8px;background:#FF5500;border:none;border-radius:10px;color:#fff;font-size:12px;font-weight:600;cursor:pointer;">Confirmar</button>
+            <button style="flex:1;padding:8px;background:rgba(255,85,0,0.08);border:1px solid rgba(255,85,0,0.22);border-radius:10px;color:#FF5500;font-size:12px;font-weight:600;cursor:pointer;">Cancelar</button>
+          </div>
+          <input style="width:100%;box-sizing:border-box;padding:9px 12px;background:#EEF2F7;border:1px solid #B8C7D4;border-radius:10px;color:#0D1117;font-size:13px;outline:none;" placeholder="Digite o valor (R$)" />
+          <div style="padding:10px 12px;background:rgba(220,38,38,0.08);border:1px solid rgba(220,38,38,0.22);border-radius:10px;font-size:12px;color:#DC2626;">Saldo insuficiente para a operação.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Tabela de tokens dark vs light -->
+    <h3 style="font-size:16px;font-weight:600;color:var(--t);margin:0 0 20px;">Mapeamento de tokens — Dark → Light</h3>
+    <div style="overflow-x:auto;margin-bottom:48px;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="border-bottom:1px solid var(--border2);">
+            <th style="text-align:left;padding:10px 14px;font-size:11px;font-weight:600;color:var(--t2);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;">Token</th>
+            <th style="text-align:left;padding:10px 14px;font-size:11px;font-weight:600;color:var(--t2);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;">Dark (padrão)</th>
+            <th style="text-align:left;padding:10px 14px;font-size:11px;font-weight:600;color:var(--t2);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;">Light</th>
+            <th style="text-align:left;padding:10px 14px;font-size:11px;font-weight:600;color:var(--t2);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;">Categoria</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Backgrounds -->
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 14px;color:var(--t);font-family:var(--mono);font-size:12px;">--color-bg-base</td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#0D1117;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#0D1117</span></span></td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#F5F7FA;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#F5F7FA</span></span></td>
+            <td style="padding:10px 14px;font-size:12px;color:var(--t2);">Background</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 14px;color:var(--t);font-family:var(--mono);font-size:12px;">--color-bg-surface</td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#111D27;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#111D27</span></span></td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#FFFFFF;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#FFFFFF</span></span></td>
+            <td style="padding:10px 14px;font-size:12px;color:var(--t2);">Background</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 14px;color:var(--t);font-family:var(--mono);font-size:12px;">--color-bg-elevated</td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#161F2A;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#161F2A</span></span></td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#EEF2F7;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#EEF2F7</span></span></td>
+            <td style="padding:10px 14px;font-size:12px;color:var(--t2);">Background</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 14px;color:var(--t);font-family:var(--mono);font-size:12px;">--color-bg-hover</td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#1C2733;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#1C2733</span></span></td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#E4EBF2;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#E4EBF2</span></span></td>
+            <td style="padding:10px 14px;font-size:12px;color:var(--t2);">Background</td>
+          </tr>
+          <!-- Borders -->
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 14px;color:var(--t);font-family:var(--mono);font-size:12px;">--color-border-default</td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#1E2D3D;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#1E2D3D</span></span></td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#D0DAE4;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#D0DAE4</span></span></td>
+            <td style="padding:10px 14px;font-size:12px;color:var(--t2);">Border</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 14px;color:var(--t);font-family:var(--mono);font-size:12px;">--color-border-strong</td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#263545;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#263545</span></span></td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#B8C7D4;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#B8C7D4</span></span></td>
+            <td style="padding:10px 14px;font-size:12px;color:var(--t2);">Border</td>
+          </tr>
+          <!-- Text -->
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 14px;color:var(--t);font-family:var(--mono);font-size:12px;">--color-text-primary</td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#FFFFFF;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#FFFFFF</span></span></td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#0D1117;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#0D1117</span></span></td>
+            <td style="padding:10px 14px;font-size:12px;color:var(--t2);">Texto</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 14px;color:var(--t);font-family:var(--mono);font-size:12px;">--color-text-secondary</td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#8A9BB0;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#8A9BB0</span></span></td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#4A6070;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#4A6070</span></span></td>
+            <td style="padding:10px 14px;font-size:12px;color:var(--t2);">Texto</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 14px;color:var(--t);font-family:var(--mono);font-size:12px;">--color-text-tertiary-accessible</td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#6B8FA8;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#6B8FA8 (5.51:1)</span></span></td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#3D5368;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#3D5368 (5.80:1)</span></span></td>
+            <td style="padding:10px 14px;font-size:12px;color:var(--t2);">Texto</td>
+          </tr>
+          <!-- Semantic -->
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 14px;color:var(--t);font-family:var(--mono);font-size:12px;">--color-semantic-success</td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#34D399;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#34D399</span></span></td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#059669;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#059669</span></span></td>
+            <td style="padding:10px 14px;font-size:12px;color:var(--t2);">Semântico</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 14px;color:var(--t);font-family:var(--mono);font-size:12px;">--color-semantic-danger</td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#C03A2B;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#C03A2B</span></span></td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#DC2626;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#DC2626</span></span></td>
+            <td style="padding:10px 14px;font-size:12px;color:var(--t2);">Semântico</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 14px;color:var(--t);font-family:var(--mono);font-size:12px;">--color-semantic-info</td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#60A5FA;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#60A5FA</span></span></td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#2563EB;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#2563EB</span></span></td>
+            <td style="padding:10px 14px;font-size:12px;color:var(--t2);">Semântico</td>
+          </tr>
+          <!-- Shadows -->
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 14px;color:var(--t);font-family:var(--mono);font-size:12px;">--shadow-lg</td>
+            <td style="padding:10px 14px;font-family:var(--mono);font-size:11px;color:var(--t2);">rgba(0,0,0,0.70)</td>
+            <td style="padding:10px 14px;font-family:var(--mono);font-size:11px;color:var(--t2);">rgba(0,0,0,0.12)</td>
+            <td style="padding:10px 14px;font-size:12px;color:var(--t2);">Sombra</td>
+          </tr>
+          <!-- Brand (inalterado) -->
+          <tr>
+            <td style="padding:10px 14px;color:var(--t);font-family:var(--mono);font-size:12px;">--color-brand-orange</td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#FF5500;flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#FF5500</span></span></td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#FF5500;flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#FF5500 <span style="color:#34D399;font-size:10px;">inalterado</span></span></span></td>
+            <td style="padding:10px 14px;font-size:12px;color:var(--t2);">Brand</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Regras light mode -->
+    <h3 style="font-size:16px;font-weight:600;color:var(--t);margin:0 0 20px;">Regras de uso no Light Mode</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-bottom:48px;">
+
+      <div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid #34D399;border-radius:var(--r-card);padding:16px;">
+        <div style="font-size:12px;font-weight:600;color:#34D399;margin-bottom:8px;">✓ Brand permanece laranja</div>
+        <p style="font-size:12px;color:var(--t2);margin:0;">Os tokens <code style="font-family:var(--mono);">--color-brand-orange</code> e <code style="font-family:var(--mono);">--color-brand-teal</code> são idênticos nos dois modos. Botões, badges e focus rings não mudam.</p>
+      </div>
+
+      <div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid #34D399;border-radius:var(--r-card);padding:16px;">
+        <div style="font-size:12px;font-weight:600;color:#34D399;margin-bottom:8px;">✓ Semântico mais saturado no light</div>
+        <p style="font-size:12px;color:var(--t2);margin:0;">Success (#059669) e Danger (#DC2626) são versões mais escuras que passam AA em fundo branco. Não usar os valores dark (#34D399, #C03A2B) sobre <code style="font-family:var(--mono);">#FFFFFF</code>.</p>
+      </div>
+
+      <div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid #34D399;border-radius:var(--r-card);padding:16px;">
+        <div style="font-size:12px;font-weight:600;color:#34D399;margin-bottom:8px;">✓ Sombras reduzidas</div>
+        <p style="font-size:12px;color:var(--t2);margin:0;">No light mode, sombras usam opacidade 0.06–0.16 (vs 0.40–0.80 no dark). Sobre fundo branco, sombras pesadas parecem artificiais — os novos valores ficam mais naturais.</p>
+      </div>
+
+      <div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid #FF9000;border-radius:var(--r-card);padding:16px;">
+        <div style="font-size:12px;font-weight:600;color:#FF9000;margin-bottom:8px;">⚠ Tipografia e radius não mudam</div>
+        <p style="font-size:12px;color:var(--t2);margin:0;">Space Grotesk, Space Mono, todos os valores de <code style="font-family:var(--mono);">--radius-*</code>, <code style="font-family:var(--mono);">--spacing-*</code> e <code style="font-family:var(--mono);">--motion-*</code> são idênticos nos dois modos. Não sobrescrever.</p>
+      </div>
+
+      <div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid #34D399;border-radius:var(--r-card);padding:16px;">
+        <div style="font-size:12px;font-weight:600;color:#34D399;margin-bottom:8px;">✓ Storybook com toolbar 🌙/☀️</div>
+        <p style="font-size:12px;color:var(--t2);margin:0;">O Storybook expõe um seletor de tema na toolbar. Ao trocar, aplica <code style="font-family:var(--mono);">data-theme="light"</code> no body e troca o fundo para <code style="font-family:var(--mono);">#F5F7FA</code> automaticamente.</p>
+      </div>
+
+      <div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid #34D399;border-radius:var(--r-card);padding:16px;">
+        <div style="font-size:12px;font-weight:600;color:#34D399;margin-bottom:8px;">✓ Preferência do sistema</div>
+        <p style="font-size:12px;color:var(--t2);margin:0;">Para respeitar <code style="font-family:var(--mono);">prefers-color-scheme</code>: detecte via <code style="font-family:var(--mono);">window.matchMedia</code> e aplique o atributo. O CSS já estará pronto para responder.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     SECTION: ÍCONES
+     ══════════════════════════════════ -->
+<section id="icons">
+  <div class="wrap" style="padding:64px 0 80px;">
+    <h2 class="doc-section-title">Ícones</h2>
+    <p style="color:var(--t2);font-size:14px;margin:0 0 48px;max-width:640px;">45 ícones stroke-based · 24×24px · <code style="font-family:var(--mono);">currentColor</code> · estilo Lucide. Pacote <code style="font-family:var(--mono);">@bipa/icons</code> com saídas para Svelte 5 e React Native.</p>
+
+    <!-- Como usar -->
+    <h3 style="font-size:16px;font-weight:600;color:var(--t);margin:0 0 20px;">Como usar</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:48px;">
+      <div>
+        <div style="font-size:11px;font-weight:600;color:var(--t2);letter-spacing:.05em;text-transform:uppercase;margin-bottom:8px;">Svelte 5</div>
+        <pre style="margin:0;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:14px;font-family:var(--mono);font-size:12px;color:var(--t2);overflow-x:auto;">&lt;script&gt;
+  import { Pix } from '@bipa/icons';
+&lt;/script&gt;
+
+&lt;Pix size={24} color="currentColor" /&gt;</pre>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:600;color:var(--t2);letter-spacing:.05em;text-transform:uppercase;margin-bottom:8px;">React Native</div>
+        <pre style="margin:0;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:14px;font-family:var(--mono);font-size:12px;color:var(--t2);overflow-x:auto;">import { Pix }
+  from '@bipa/icons/native';
+
+&lt;Pix size={24}
+  color={colors.primary} /&gt;</pre>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:600;color:var(--t2);letter-spacing:.05em;text-transform:uppercase;margin-bottom:8px;">SVG Sprite</div>
+        <pre style="margin:0;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:14px;font-family:var(--mono);font-size:12px;color:var(--t2);overflow-x:auto;">&lt;svg width="24" height="24"
+     fill="none"
+     stroke="currentColor"&gt;
+  &lt;use href="sprite.svg#pix"/&gt;
+&lt;/svg&gt;</pre>
+      </div>
+    </div>
+
+    <!-- Grid de ícones -->
+    <h3 style="font-size:16px;font-weight:600;color:var(--t);margin:0 0 20px;">Biblioteca — 45 ícones</h3>
+
+    <div style="margin-bottom:32px;">
+      <div style="font-size:11px;font-weight:600;color:var(--t2);letter-spacing:.05em;text-transform:uppercase;margin-bottom:12px;">Navegação & Interface</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:8px;">
+        <!-- home -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">home</span>
+        </div>
+        <!-- history -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 .49-4.95"/><path d="M12 6v6l4 2"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">history</span>
+        </div>
+        <!-- settings -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">settings</span>
+        </div>
+        <!-- bell -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">bell</span>
+        </div>
+        <!-- search -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">search</span>
+        </div>
+        <!-- filter -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">filter</span>
+        </div>
+        <!-- menu -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">menu</span>
+        </div>
+        <!-- close -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">close</span>
+        </div>
+        <!-- arrow-right -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">arrow-right</span>
+        </div>
+        <!-- arrow-left -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">arrow-left</span>
+        </div>
+        <!-- chevron-down -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">chevron-down</span>
+        </div>
+        <!-- chevron-up -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">chevron-up</span>
+        </div>
+        <!-- agents -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M8 8V5a4 4 0 0 1 8 0v3"/><path d="M9 14h.01M15 14h.01M9 18h6"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">agents</span>
+        </div>
+        <!-- user -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">user</span>
+        </div>
+        <!-- users -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">users</span>
+        </div>
+        <!-- logout -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">logout</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:32px;">
+      <div style="font-size:11px;font-weight:600;color:var(--t2);letter-spacing:.05em;text-transform:uppercase;margin-bottom:12px;">Finanças & Pagamentos</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:8px;">
+        <!-- pix -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.1645 17.5908C15.5492 17.9753 15.9966 18.277 16.4829 18.4863L13.6557 21.3145C12.741 22.2287 11.2587 22.2287 10.3442 21.3145L7.60005 18.5703C8.0924 18.385 8.54984 18.1096 8.94771 17.749L9.10005 17.6035L12.1381 14.5645L15.1645 17.5908Z"/><path d="M10.3432 2.68555C11.2578 1.77089 12.7409 1.77173 13.6557 2.68652L16.4829 5.51367C16.0595 5.69595 15.6655 5.94768 15.3168 6.26367L15.1645 6.40918L12.1372 9.43555L9.10005 6.39746V6.39648C8.66795 5.96462 8.15668 5.63815 7.60005 5.42871L10.3432 2.68652V2.68555Z"/><path d="M6.10742 8.12891C6.43754 8.12891 6.76608 8.26498 6.99902 8.49805V8.49902L10.3115 11.8105C10.3799 11.8789 10.4525 11.9419 10.5264 12.001C10.5193 12.0066 10.5119 12.0119 10.5049 12.0176L10.3115 12.1914L6.99902 15.5029C6.76604 15.7361 6.43763 15.8721 6.10742 15.8721H4.90137L2.68652 13.6572C1.7718 12.7425 1.7718 11.2595 2.68652 10.3447L4.90137 8.12891H6.10742ZM18.1572 8.14062H19.1104L21.3145 10.3447C22.2288 11.2594 22.2289 12.7426 21.3145 13.6572L19.1113 15.8604H18.1572C17.8272 15.8604 17.4987 15.7244 17.2656 15.4912L13.9658 12.1914C13.8973 12.1228 13.8247 12.06 13.75 12.001C13.8242 11.9417 13.8971 11.8792 13.9658 11.8105L17.2656 8.51074C17.4987 8.27751 17.8271 8.14062 18.1572 8.14062Z"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">pix</span>
+        </div>
+        <!-- wallet -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 3H8L4 7h16l-4-4z"/><circle cx="16.5" cy="13.5" r=".5" fill="currentColor"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">wallet</span>
+        </div>
+        <!-- send -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">send</span>
+        </div>
+        <!-- receive -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v14M5 14l7 7 7-7M5 3h14"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">receive</span>
+        </div>
+        <!-- transfer -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 1l4 4-4 4M3 11V9a4 4 0 0 1 4-4h14M7 23l-4-4 4-4M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">transfer</span>
+        </div>
+        <!-- qr-code -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="17" width="3" height="3"/><path d="M17 14h.01M20 14h.01M20 20h.01M20 17h.01"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">qr-code</span>
+        </div>
+        <!-- bank -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M3 10h18M5 10v11M19 10v11M9 10v11M15 10v11M3 10L12 3l9 7"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">bank</span>
+        </div>
+        <!-- card -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">card</span>
+        </div>
+        <!-- clock -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">clock</span>
+        </div>
+        <!-- pending -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">pending</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:48px;">
+      <div style="font-size:11px;font-weight:600;color:var(--t2);letter-spacing:.05em;text-transform:uppercase;margin-bottom:12px;">Status & Segurança</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:8px;">
+        <!-- check -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17 4 12"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">check</span>
+        </div>
+        <!-- check-circle -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">check-circle</span>
+        </div>
+        <!-- alert-circle -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">alert-circle</span>
+        </div>
+        <!-- info -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">info</span>
+        </div>
+        <!-- shield-check -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">shield-check</span>
+        </div>
+        <!-- shield-x -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M14.5 9.5l-5 5M9.5 9.5l5 5"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">shield-x</span>
+        </div>
+        <!-- lock -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">lock</span>
+        </div>
+        <!-- unlock -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">unlock</span>
+        </div>
+        <!-- eye -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">eye</span>
+        </div>
+        <!-- eye-off -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19M1 1l22 22"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">eye-off</span>
+        </div>
+        <!-- refresh -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">refresh</span>
+        </div>
+        <!-- plus -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">plus</span>
+        </div>
+        <!-- minus -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">minus</span>
+        </div>
+        <!-- copy -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">copy</span>
+        </div>
+        <!-- download -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">download</span>
+        </div>
+        <!-- external-link -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">external-link</span>
+        </div>
+        <!-- trash -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">trash</span>
+        </div>
+        <!-- chevron-left -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">chevron-left</span>
+        </div>
+        <!-- chevron-right -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--t)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          <span style="font-size:9px;color:var(--t2);font-family:var(--mono);">chevron-right</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Especificações técnicas -->
+    <h3 style="font-size:16px;font-weight:600;color:var(--t);margin:0 0 20px;">Especificações técnicas</h3>
+    <table class="token-table" style="margin-bottom:0;">
+      <thead><tr><th>Atributo</th><th>Valor</th></tr></thead>
+      <tbody>
+        <tr><td>Viewbox</td><td><code style="font-family:var(--mono);">0 0 24 24</code></td></tr>
+        <tr><td>Estilo</td><td>stroke-based (sem fill)</td></tr>
+        <tr><td>stroke-width</td><td>2</td></tr>
+        <tr><td>stroke-linecap</td><td>round</td></tr>
+        <tr><td>stroke-linejoin</td><td>round</td></tr>
+        <tr><td>Cor</td><td><code style="font-family:var(--mono);">currentColor</code> (herda do CSS)</td></tr>
+        <tr><td>Tamanhos recomendados</td><td>16 · 20 · 24 · 32 · 40px</td></tr>
+        <tr><td>Saídas</td><td>Svelte 5 · React Native SVG · SVG Sprite · meta.json</td></tr>
+      </tbody>
+    </table>
+
+  </div>
+</section>
+
 <!-- Footer -->
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <img src="./assets/logo/logo-dark-orange.png" alt="AgentisPay" style="height:22px;width:auto;opacity:.5;">
-      <div class="footer-copy">Design System v1.2 · AgentisPay · Março 2026 · Confidencial</div>
+      <div class="footer-copy">Design System v1.4 · AgentisPay · Março 2026 · Confidencial</div>
       <div class="footer-links">
         <a href="#brand">Brand</a>
         <a href="#mobile-ds">Mobile</a>
         <a href="#web-ds">Web</a>
         <a href="#accessibility">Acessibilidade</a>
+        <a href="#light-mode">Light Mode</a>
+        <a href="#icons">Ícones</a>
       </div>
     </div>
   </div>
@@ -3148,7 +3683,9 @@ const sections = [
   { id: 'brand', tab: 0 },
   { id: 'mobile-ds', tab: 1 },
   { id: 'web-ds', tab: 2 },
-  { id: 'accessibility', tab: 3 }
+  { id: 'accessibility', tab: 3 },
+  { id: 'light-mode', tab: 4 },
+  { id: 'icons', tab: 5 }
 ];
 const tabs = document.querySelectorAll('.nav-tab');
 
