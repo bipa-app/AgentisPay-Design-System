@@ -19,3 +19,6 @@ packages/*/node_modules/
 # Generated — rebuild from source with pnpm build:tokens
 packages/tokens/dist/
 .pnpmfile.cjs
+
+*storybook.log
+storybook-static
