@@ -981,8 +981,9 @@ footer {
     <a class="nav-tab" href="#mobile-ds">Mobile DS</a>
     <a class="nav-tab" href="#web-ds">Web DS</a>
     <a class="nav-tab" href="#accessibility">Acessibilidade</a>
+    <a class="nav-tab" href="#light-mode">Light Mode</a>
   </div>
-  <span class="nav-version">v1.2 · 2026</span>
+  <span class="nav-version">v1.3 · 2026</span>
 </nav>
 
 <!-- ══════════════════════════════════
@@ -3126,12 +3127,241 @@ footer {
   </div>
 </section>
 
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- LIGHT MODE                                                            -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<section id="light-mode">
+  <div class="wrap">
+
+    <div class="section-header">
+      <div class="section-tag">05</div>
+      <h2 class="section-title">Light Mode</h2>
+      <p class="section-desc">Token set completo para tema claro. Aplicado via <code style="font-family:var(--mono);background:var(--bg3);padding:2px 6px;border-radius:4px;">data-theme="light"</code> no elemento raiz. Todos os tokens de cor, borda e sombra são sobrescritos — brand (orange/teal), tipografia, espaçamento e radius permanecem inalterados.</p>
+    </div>
+
+    <!-- Como ativar -->
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-card);padding:24px;margin-bottom:48px;">
+      <h3 style="font-size:14px;font-weight:600;color:var(--t);margin:0 0 16px;">Como ativar</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;">
+        <div>
+          <div style="font-size:11px;font-weight:600;color:var(--t2);letter-spacing:.05em;text-transform:uppercase;margin-bottom:8px;">HTML</div>
+          <pre style="margin:0;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:14px;font-family:var(--mono);font-size:12px;color:var(--t2);overflow-x:auto;">&lt;body data-theme="light"&gt;
+  ...
+&lt;/body&gt;</pre>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:600;color:var(--t2);letter-spacing:.05em;text-transform:uppercase;margin-bottom:8px;">JavaScript</div>
+          <pre style="margin:0;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:14px;font-family:var(--mono);font-size:12px;color:var(--t2);overflow-x:auto;">document.body
+  .setAttribute('data-theme', 'light');</pre>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:600;color:var(--t2);letter-spacing:.05em;text-transform:uppercase;margin-bottom:8px;">CSS (override)</div>
+          <pre style="margin:0;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:14px;font-family:var(--mono);font-size:12px;color:var(--t2);overflow-x:auto;">[data-theme="light"] {
+  --color-bg-base: #F5F7FA;
+  /* ... demais tokens */
+}</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Preview lado a lado -->
+    <h3 style="font-size:16px;font-weight:600;color:var(--t);margin:0 0 20px;">Preview — Dark vs Light</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:48px;">
+
+      <!-- Dark card -->
+      <div>
+        <div style="font-size:11px;font-weight:600;color:var(--t2);letter-spacing:.05em;text-transform:uppercase;margin-bottom:12px;">🌙 Dark (padrão)</div>
+        <div style="background:#111D27;border:1px solid #1E2D3D;border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="font-family:var(--font, var(--font));font-size:14px;font-weight:600;color:#FFFFFF;">Saldo disponível</span>
+            <span style="background:rgba(52,211,153,0.10);color:#34D399;font-size:11px;font-weight:600;padding:3px 8px;border-radius:100px;border:1px solid rgba(52,211,153,0.22);">Ativo</span>
+          </div>
+          <div style="font-family:var(--mono);font-size:28px;font-weight:700;color:#FFFFFF;">R$ 3.450,00</div>
+          <div style="font-size:12px;color:#8A9BB0;">Atualizado há 2 minutos</div>
+          <div style="height:1px;background:#1E2D3D;"></div>
+          <div style="display:flex;gap:8px;">
+            <button style="flex:1;padding:8px;background:#FF5500;border:none;border-radius:10px;color:#fff;font-size:12px;font-weight:600;cursor:pointer;">Confirmar</button>
+            <button style="flex:1;padding:8px;background:rgba(255,85,0,0.08);border:1px solid rgba(255,85,0,0.22);border-radius:10px;color:#FF5500;font-size:12px;font-weight:600;cursor:pointer;">Cancelar</button>
+          </div>
+          <input style="width:100%;box-sizing:border-box;padding:9px 12px;background:#161F2A;border:1px solid #263545;border-radius:10px;color:#FFFFFF;font-size:13px;outline:none;" placeholder="Digite o valor (R$)" />
+          <div style="padding:10px 12px;background:rgba(192,58,43,0.08);border:1px solid rgba(192,58,43,0.22);border-radius:10px;font-size:12px;color:#E05040;">Saldo insuficiente para a operação.</div>
+        </div>
+      </div>
+
+      <!-- Light card -->
+      <div>
+        <div style="font-size:11px;font-weight:600;color:var(--t2);letter-spacing:.05em;text-transform:uppercase;margin-bottom:12px;">☀️ Light</div>
+        <div style="background:#FFFFFF;border:1px solid #D0DAE4;border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:12px;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="font-family:var(--font, var(--font));font-size:14px;font-weight:600;color:#0D1117;">Saldo disponível</span>
+            <span style="background:rgba(5,150,105,0.10);color:#059669;font-size:11px;font-weight:600;padding:3px 8px;border-radius:100px;border:1px solid rgba(5,150,105,0.22);">Ativo</span>
+          </div>
+          <div style="font-family:var(--mono);font-size:28px;font-weight:700;color:#0D1117;">R$ 3.450,00</div>
+          <div style="font-size:12px;color:#4A6070;">Atualizado há 2 minutos</div>
+          <div style="height:1px;background:#D0DAE4;"></div>
+          <div style="display:flex;gap:8px;">
+            <button style="flex:1;padding:8px;background:#FF5500;border:none;border-radius:10px;color:#fff;font-size:12px;font-weight:600;cursor:pointer;">Confirmar</button>
+            <button style="flex:1;padding:8px;background:rgba(255,85,0,0.08);border:1px solid rgba(255,85,0,0.22);border-radius:10px;color:#FF5500;font-size:12px;font-weight:600;cursor:pointer;">Cancelar</button>
+          </div>
+          <input style="width:100%;box-sizing:border-box;padding:9px 12px;background:#EEF2F7;border:1px solid #B8C7D4;border-radius:10px;color:#0D1117;font-size:13px;outline:none;" placeholder="Digite o valor (R$)" />
+          <div style="padding:10px 12px;background:rgba(220,38,38,0.08);border:1px solid rgba(220,38,38,0.22);border-radius:10px;font-size:12px;color:#DC2626;">Saldo insuficiente para a operação.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Tabela de tokens dark vs light -->
+    <h3 style="font-size:16px;font-weight:600;color:var(--t);margin:0 0 20px;">Mapeamento de tokens — Dark → Light</h3>
+    <div style="overflow-x:auto;margin-bottom:48px;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="border-bottom:1px solid var(--border2);">
+            <th style="text-align:left;padding:10px 14px;font-size:11px;font-weight:600;color:var(--t2);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;">Token</th>
+            <th style="text-align:left;padding:10px 14px;font-size:11px;font-weight:600;color:var(--t2);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;">Dark (padrão)</th>
+            <th style="text-align:left;padding:10px 14px;font-size:11px;font-weight:600;color:var(--t2);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;">Light</th>
+            <th style="text-align:left;padding:10px 14px;font-size:11px;font-weight:600;color:var(--t2);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;">Categoria</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Backgrounds -->
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 14px;color:var(--t);font-family:var(--mono);font-size:12px;">--color-bg-base</td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#0D1117;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#0D1117</span></span></td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#F5F7FA;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#F5F7FA</span></span></td>
+            <td style="padding:10px 14px;font-size:12px;color:var(--t2);">Background</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 14px;color:var(--t);font-family:var(--mono);font-size:12px;">--color-bg-surface</td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#111D27;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#111D27</span></span></td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#FFFFFF;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#FFFFFF</span></span></td>
+            <td style="padding:10px 14px;font-size:12px;color:var(--t2);">Background</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 14px;color:var(--t);font-family:var(--mono);font-size:12px;">--color-bg-elevated</td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#161F2A;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#161F2A</span></span></td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#EEF2F7;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#EEF2F7</span></span></td>
+            <td style="padding:10px 14px;font-size:12px;color:var(--t2);">Background</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 14px;color:var(--t);font-family:var(--mono);font-size:12px;">--color-bg-hover</td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#1C2733;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#1C2733</span></span></td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#E4EBF2;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#E4EBF2</span></span></td>
+            <td style="padding:10px 14px;font-size:12px;color:var(--t2);">Background</td>
+          </tr>
+          <!-- Borders -->
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 14px;color:var(--t);font-family:var(--mono);font-size:12px;">--color-border-default</td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#1E2D3D;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#1E2D3D</span></span></td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#D0DAE4;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#D0DAE4</span></span></td>
+            <td style="padding:10px 14px;font-size:12px;color:var(--t2);">Border</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 14px;color:var(--t);font-family:var(--mono);font-size:12px;">--color-border-strong</td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#263545;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#263545</span></span></td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#B8C7D4;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#B8C7D4</span></span></td>
+            <td style="padding:10px 14px;font-size:12px;color:var(--t2);">Border</td>
+          </tr>
+          <!-- Text -->
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 14px;color:var(--t);font-family:var(--mono);font-size:12px;">--color-text-primary</td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#FFFFFF;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#FFFFFF</span></span></td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#0D1117;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#0D1117</span></span></td>
+            <td style="padding:10px 14px;font-size:12px;color:var(--t2);">Texto</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 14px;color:var(--t);font-family:var(--mono);font-size:12px;">--color-text-secondary</td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#8A9BB0;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#8A9BB0</span></span></td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#4A6070;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#4A6070</span></span></td>
+            <td style="padding:10px 14px;font-size:12px;color:var(--t2);">Texto</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 14px;color:var(--t);font-family:var(--mono);font-size:12px;">--color-text-tertiary-accessible</td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#6B8FA8;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#6B8FA8 (5.51:1)</span></span></td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#3D5368;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#3D5368 (5.80:1)</span></span></td>
+            <td style="padding:10px 14px;font-size:12px;color:var(--t2);">Texto</td>
+          </tr>
+          <!-- Semantic -->
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 14px;color:var(--t);font-family:var(--mono);font-size:12px;">--color-semantic-success</td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#34D399;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#34D399</span></span></td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#059669;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#059669</span></span></td>
+            <td style="padding:10px 14px;font-size:12px;color:var(--t2);">Semântico</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 14px;color:var(--t);font-family:var(--mono);font-size:12px;">--color-semantic-danger</td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#C03A2B;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#C03A2B</span></span></td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#DC2626;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#DC2626</span></span></td>
+            <td style="padding:10px 14px;font-size:12px;color:var(--t2);">Semântico</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 14px;color:var(--t);font-family:var(--mono);font-size:12px;">--color-semantic-info</td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#60A5FA;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#60A5FA</span></span></td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#2563EB;border:1px solid var(--border2);flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#2563EB</span></span></td>
+            <td style="padding:10px 14px;font-size:12px;color:var(--t2);">Semântico</td>
+          </tr>
+          <!-- Shadows -->
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 14px;color:var(--t);font-family:var(--mono);font-size:12px;">--shadow-lg</td>
+            <td style="padding:10px 14px;font-family:var(--mono);font-size:11px;color:var(--t2);">rgba(0,0,0,0.70)</td>
+            <td style="padding:10px 14px;font-family:var(--mono);font-size:11px;color:var(--t2);">rgba(0,0,0,0.12)</td>
+            <td style="padding:10px 14px;font-size:12px;color:var(--t2);">Sombra</td>
+          </tr>
+          <!-- Brand (inalterado) -->
+          <tr>
+            <td style="padding:10px 14px;color:var(--t);font-family:var(--mono);font-size:12px;">--color-brand-orange</td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#FF5500;flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#FF5500</span></span></td>
+            <td style="padding:10px 14px;"><span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border-radius:4px;background:#FF5500;flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:12px;color:var(--t2);">#FF5500 <span style="color:#34D399;font-size:10px;">inalterado</span></span></span></td>
+            <td style="padding:10px 14px;font-size:12px;color:var(--t2);">Brand</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Regras light mode -->
+    <h3 style="font-size:16px;font-weight:600;color:var(--t);margin:0 0 20px;">Regras de uso no Light Mode</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-bottom:48px;">
+
+      <div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid #34D399;border-radius:var(--r-card);padding:16px;">
+        <div style="font-size:12px;font-weight:600;color:#34D399;margin-bottom:8px;">✓ Brand permanece laranja</div>
+        <p style="font-size:12px;color:var(--t2);margin:0;">Os tokens <code style="font-family:var(--mono);">--color-brand-orange</code> e <code style="font-family:var(--mono);">--color-brand-teal</code> são idênticos nos dois modos. Botões, badges e focus rings não mudam.</p>
+      </div>
+
+      <div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid #34D399;border-radius:var(--r-card);padding:16px;">
+        <div style="font-size:12px;font-weight:600;color:#34D399;margin-bottom:8px;">✓ Semântico mais saturado no light</div>
+        <p style="font-size:12px;color:var(--t2);margin:0;">Success (#059669) e Danger (#DC2626) são versões mais escuras que passam AA em fundo branco. Não usar os valores dark (#34D399, #C03A2B) sobre <code style="font-family:var(--mono);">#FFFFFF</code>.</p>
+      </div>
+
+      <div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid #34D399;border-radius:var(--r-card);padding:16px;">
+        <div style="font-size:12px;font-weight:600;color:#34D399;margin-bottom:8px;">✓ Sombras reduzidas</div>
+        <p style="font-size:12px;color:var(--t2);margin:0;">No light mode, sombras usam opacidade 0.06–0.16 (vs 0.40–0.80 no dark). Sobre fundo branco, sombras pesadas parecem artificiais — os novos valores ficam mais naturais.</p>
+      </div>
+
+      <div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid #FF9000;border-radius:var(--r-card);padding:16px;">
+        <div style="font-size:12px;font-weight:600;color:#FF9000;margin-bottom:8px;">⚠ Tipografia e radius não mudam</div>
+        <p style="font-size:12px;color:var(--t2);margin:0;">Space Grotesk, Space Mono, todos os valores de <code style="font-family:var(--mono);">--radius-*</code>, <code style="font-family:var(--mono);">--spacing-*</code> e <code style="font-family:var(--mono);">--motion-*</code> são idênticos nos dois modos. Não sobrescrever.</p>
+      </div>
+
+      <div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid #34D399;border-radius:var(--r-card);padding:16px;">
+        <div style="font-size:12px;font-weight:600;color:#34D399;margin-bottom:8px;">✓ Storybook com toolbar 🌙/☀️</div>
+        <p style="font-size:12px;color:var(--t2);margin:0;">O Storybook expõe um seletor de tema na toolbar. Ao trocar, aplica <code style="font-family:var(--mono);">data-theme="light"</code> no body e troca o fundo para <code style="font-family:var(--mono);">#F5F7FA</code> automaticamente.</p>
+      </div>
+
+      <div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid #34D399;border-radius:var(--r-card);padding:16px;">
+        <div style="font-size:12px;font-weight:600;color:#34D399;margin-bottom:8px;">✓ Preferência do sistema</div>
+        <p style="font-size:12px;color:var(--t2);margin:0;">Para respeitar <code style="font-family:var(--mono);">prefers-color-scheme</code>: detecte via <code style="font-family:var(--mono);">window.matchMedia</code> e aplique o atributo. O CSS já estará pronto para responder.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
 <!-- Footer -->
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <img src="./assets/logo/logo-dark-orange.png" alt="AgentisPay" style="height:22px;width:auto;opacity:.5;">
-      <div class="footer-copy">Design System v1.2 · AgentisPay · Março 2026 · Confidencial</div>
+      <div class="footer-copy">Design System v1.3 · AgentisPay · Março 2026 · Confidencial</div>
       <div class="footer-links">
         <a href="#brand">Brand</a>
         <a href="#mobile-ds">Mobile</a>
@@ -3148,7 +3378,8 @@ const sections = [
   { id: 'brand', tab: 0 },
   { id: 'mobile-ds', tab: 1 },
   { id: 'web-ds', tab: 2 },
-  { id: 'accessibility', tab: 3 }
+  { id: 'accessibility', tab: 3 },
+  { id: 'light-mode', tab: 4 }
 ];
 const tabs = document.querySelectorAll('.nav-tab');
 
