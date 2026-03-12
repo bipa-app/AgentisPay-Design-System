@@ -1,0 +1,13 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Netlify local state
+.netlify/
+
+# Editor
+.vscode/
+.idea/
+
+# Assets not for distribution
+assets/_archive/

@@ -1,0 +1,152 @@
+/**
+ * AgentisPay — Design Tokens
+ * Single source of truth for all CSS custom properties.
+ *
+ * Usage:
+ *   @import 'tokens/tokens.css';
+ *
+ * Or link directly:
+ *   <link rel="stylesheet" href="tokens/tokens.css">
+ */
+
+:root {
+
+  /* ─────────────────────────────────────────
+     Brand Colors
+  ───────────────────────────────────────── */
+  --orange:        #FF5500;
+  --orange-dark:   #CC4400;
+  --orange-light:  #FF9000;
+  --orange-bg:     rgba(255, 85, 0, 0.08);
+  --orange-border: rgba(255, 85, 0, 0.22);
+
+  --teal:          #1A7A8A;
+  --teal-dark:     #0E6070;
+  --teal-bg:       rgba(26, 122, 138, 0.08);
+  --teal-border:   rgba(26, 122, 138, 0.22);
+
+  /* ─────────────────────────────────────────
+     Backgrounds — dark mode
+  ───────────────────────────────────────── */
+  --bg:  #0D1117;   /* page */
+  --bg2: #111D27;   /* card surface */
+  --bg3: #161F2A;   /* elevated / input */
+  --bg4: #1C2733;   /* secondary button / hover */
+
+  /* ─────────────────────────────────────────
+     Borders
+  ───────────────────────────────────────── */
+  --border:  #1E2D3D;
+  --border2: #263545;
+
+  /* ─────────────────────────────────────────
+     Text
+  ───────────────────────────────────────── */
+  --t:  #FFFFFF;   /* primary */
+  --t2: #8A9BB0;   /* secondary */
+  --t3: #4A6070;   /* tertiary / muted */
+
+  /* ─────────────────────────────────────────
+     Semantic
+  ───────────────────────────────────────── */
+  --success:        #34D399;
+  --success-bg:     rgba(52, 211, 153, 0.08);
+  --success-border: rgba(52, 211, 153, 0.20);
+
+  --danger:         #C03A2B;
+  --danger-fg:      #E05040;   /* readable text on danger-bg */
+  --danger-bg:      rgba(192, 58, 43, 0.08);
+  --danger-border:  rgba(192, 58, 43, 0.22);
+
+  /* ─────────────────────────────────────────
+     Neutral (light-bg contexts)
+  ───────────────────────────────────────── */
+  --neutral-light: #EDE8DF;
+  --neutral-cool:  #DCE6EA;
+
+  /* ─────────────────────────────────────────
+     Typography
+  ───────────────────────────────────────── */
+  --font-sans:  'Space Grotesk', system-ui, sans-serif;
+  --font-serif: 'Philosopher', Georgia, serif;
+  --font-mono:  'Space Mono', monospace;
+
+  /* ─────────────────────────────────────────
+     Radius scale
+  ───────────────────────────────────────── */
+  --r-screen:  40px;   /* full-screen card / sheet */
+  --r-card-lg: 20px;   /* large card */
+  --r-card:    14px;   /* standard card */
+  --r-btn:     12px;   /* button */
+  --r-inner:   8px;    /* inner element / badge */
+  --r-pill:    100px;  /* pill / tag */
+
+  /* ─────────────────────────────────────────
+     Spacing — 4px base grid
+  ───────────────────────────────────────── */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* ─────────────────────────────────────────
+     Layout
+  ───────────────────────────────────────── */
+  --max-w: 1160px;
+
+  /* ─────────────────────────────────────────
+     Shadcn-compatible semantic aliases
+     (--background, --card, --primary, etc.)
+  ───────────────────────────────────────── */
+  --background:          var(--bg);
+  --foreground:          var(--t);
+  --card:                var(--bg2);
+  --card-foreground:     var(--t);
+  --popover:             var(--bg3);
+  --popover-foreground:  var(--t);
+  --primary:             var(--orange);
+  --primary-foreground:  #ffffff;
+  --secondary:           var(--bg4);
+  --secondary-foreground:var(--t);
+  --muted:               var(--bg3);
+  --muted-foreground:    var(--t2);
+  --accent:              var(--teal);
+  --accent-foreground:   #ffffff;
+  --destructive:         var(--danger);
+  --destructive-fg:      var(--danger-fg);
+  --border-color:        var(--border);
+  --input-border:        var(--border2);
+  --ring:                var(--orange-border);
+  --radius:              var(--r-card);
+
+  /* ─────────────────────────────────────────
+     Mobile component aliases  (--c-*)
+  ───────────────────────────────────────── */
+  --c-base:         var(--bg);
+  --c-card:         var(--bg2);
+  --c-inner:        var(--bg);
+  --c-elevated:     var(--bg3);
+  --c-input:        var(--bg3);
+  --c-border:       var(--border);
+  --c-border-sub:   rgba(30, 45, 61, 0.6);
+  --c-border-input: var(--border2);
+  --c-t1:           var(--t);
+  --c-t2:           var(--t2);
+  --c-t3:           var(--t3);
+  --c-t4:           var(--t3);
+  --c-t5:           #2A3D4F;
+  --c-t6:           var(--border);
+  --c-orange:       var(--orange);
+  --c-orange-bg:    var(--orange-bg);
+  --c-orange-brd:   var(--orange-border);
+  --c-success:      var(--success);
+  --c-success-bg:   var(--success-bg);
+  --c-danger:       var(--danger);
+  --c-danger-bg:    var(--danger-bg);
+  --c-danger-brd:   var(--danger-border);
+  --c-ghost-brd:    var(--border2);
+}

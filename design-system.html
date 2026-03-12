@@ -1,0 +1,2938 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgentisPay — Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* ── Brand Colors ─────────────────────── */
+  --orange:        #FF5500;
+  --orange-dark:   #CC4400;
+  --orange-light:  #FF9000;
+  --orange-bg:     rgba(255,85,0,0.08);
+  --orange-border: rgba(255,85,0,0.22);
+
+  --teal:          #1A7A8A;
+  --teal-dark:     #0E6070;
+  --teal-bg:       rgba(26,122,138,0.08);
+  --teal-border:   rgba(26,122,138,0.22);
+
+  /* ── Backgrounds (dark mode) ─────────── */
+  --bg:   #0D1117;
+  --bg2:  #111D27;
+  --bg3:  #161F2A;
+  --bg4:  #1C2733;
+
+  /* ── Borders ─────────────────────────── */
+  --border:  #1E2D3D;
+  --border2: #263545;
+
+  /* ── Text ────────────────────────────── */
+  --t:  #FFFFFF;
+  --t2: #8A9BB0;
+  --t3: #4A6070;
+
+  /* ── Semantic ────────────────────────── */
+  --success:     #34D399;
+  --success-bg:  rgba(52,211,153,0.08);
+  --danger:      #C03A2B;
+  --danger-bg:   rgba(192,58,43,0.08);
+  --danger-border: rgba(192,58,43,0.22);
+
+  /* ── Neutral light (for light-bg contexts) */
+  --neutral-light: #EDE8DF;
+  --neutral-cool:  #DCE6EA;
+
+  /* ── Type ────────────────────────────── */
+  --font: 'Space Grotesk', system-ui, sans-serif;
+  --serif: 'Philosopher', Georgia, serif;
+  --mono: 'Space Mono', monospace;
+  --max-w: 1160px;
+
+  /* ── Mobile component aliases ─────────── */
+  --c-base:         var(--bg);
+  --c-card:         var(--bg2);
+  --c-inner:        var(--bg);
+  --c-elevated:     var(--bg3);
+  --c-input:        var(--bg3);
+  --c-border:       var(--border);
+  --c-border-sub:   rgba(30,45,61,0.6);
+  --c-border-input: var(--border2);
+  --c-t1: var(--t);
+  --c-t2: var(--t2);
+  --c-t3: var(--t3);
+  --c-t4: var(--t3);
+  --c-t5: #2A3D4F;
+  --c-t6: var(--border);
+  --c-orange:     var(--orange);
+  --c-orange-bg:  var(--orange-bg);
+  --c-orange-brd: var(--orange-border);
+  --c-success:    var(--success);
+  --c-success-bg: var(--success-bg);
+  --c-danger:     var(--danger);
+  --c-danger-bg:  var(--danger-bg);
+  --c-danger-brd: var(--danger-border);
+  --c-ghost-brd:  var(--border2);
+
+  /* ── Radius scale ──────────────────────── */
+  --r-screen:  40px;
+  --r-card-lg: 20px;
+  --r-card:    14px;
+  --r-btn:     12px;
+  --r-inner:   8px;
+  --r-pill:    100px;
+
+  /* ── Doc aliases ───────────────────────── */
+  --doc-border: var(--border);
+  --doc-card:   var(--bg3);
+  --page-bg:    var(--bg);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--t);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: var(--orange-bg); color: var(--orange); }
+
+/* ── Animations ──────────────────────── */
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.85);} }
+@keyframes timer { from{width:78%;}to{width:6%;} }
+@keyframes spin  { to{transform:rotate(360deg);} }
+
+/* ── Layout ──────────────────────────── */
+.wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 48px; }
+section { padding: 100px 0; border-top: 1px solid var(--border); }
+section:first-of-type { border-top: none; }
+
+.sec-label {
+  font-family: var(--mono);
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--t3); margin-bottom: 12px;
+}
+.sec-label-orange { color: var(--orange); }
+.sec-label-teal   { color: var(--teal); }
+
+.sec-title {
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 700; letter-spacing: -.03em;
+  line-height: 1.1; margin-bottom: 16px;
+}
+.sec-sub {
+  font-size: 18px; color: var(--t2);
+  max-width: 600px; line-height: 1.65;
+  margin-bottom: 64px;
+}
+
+hr { border: none; border-top: 1px solid var(--border); margin: 56px 0; }
+
+/* ── Sticky Nav ──────────────────────── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(13,17,23,.9);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 60px;
+}
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-logo-text {
+  font-size: 15px; font-weight: 700;
+  letter-spacing: -.02em; color: var(--t);
+}
+.nav-logo-text em { font-style: normal; color: var(--orange); }
+.nav-tabs { display: flex; gap: 4px; }
+.nav-tab {
+  font-size: 13px; font-weight: 500;
+  color: var(--t3); text-decoration: none;
+  padding: 6px 16px; border-radius: 8px;
+  transition: color .15s, background .15s;
+  cursor: pointer; border: none; background: none;
+  font-family: var(--font);
+}
+.nav-tab:hover { color: var(--t); background: var(--bg3); }
+.nav-tab.active { color: var(--t); background: var(--bg3); }
+.nav-version {
+  font-family: var(--mono); font-size: 11px;
+  font-weight: 700; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--t3);
+}
+
+/* ── Utilities ───────────────────────── */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+.flex-center { display: flex; align-items: center; gap: 16px; }
+.mt-8  { margin-top: 8px; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+.mt-32 { margin-top: 32px; }
+.mt-48 { margin-top: 48px; }
+.mt-64 { margin-top: 64px; }
+.mb-8  { margin-bottom: 8px; }
+.mb-16 { margin-bottom: 16px; }
+.mb-24 { margin-bottom: 24px; }
+.mb-32 { margin-bottom: 32px; }
+.t2 { color: var(--t2); }
+.t3 { color: var(--t3); }
+.orange { color: var(--orange); }
+.mono { font-family: var(--mono); }
+
+/* ═══════════════════════════════════════
+   BRAND GUIDELINES
+═══════════════════════════════════════ */
+
+/* Hero */
+.brand-hero { padding: 120px 0 80px; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--orange-bg); border: 1px solid var(--orange-border);
+  border-radius: 100px; padding: 5px 16px; margin-bottom: 40px;
+  font-size: 11px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--orange);
+}
+.hero-dot {
+  width: 6px; height: 6px; background: var(--orange);
+  border-radius: 50%; animation: pulse 2s ease-in-out infinite;
+}
+.brand-hero h1 {
+  font-size: clamp(48px,6vw,88px); font-weight: 700;
+  letter-spacing: -.04em; line-height: 1.0; margin-bottom: 28px;
+  max-width: 860px;
+}
+.brand-hero h1 em { font-style: normal; color: var(--orange); }
+.brand-hero .hero-sub {
+  font-size: 20px; color: var(--t2); max-width: 560px;
+  line-height: 1.65; margin-bottom: 48px;
+}
+.hero-meta {
+  display: flex; align-items: center; gap: 24px;
+  font-family: var(--mono); font-size: 12px; color: var(--t3);
+}
+.hero-meta-sep { width: 1px; height: 14px; background: var(--border2); }
+
+/* Logo section */
+.logo-grid {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 1px; background: var(--border);
+  border-radius: 20px; overflow: hidden; margin: 40px 0;
+}
+.logo-cell {
+  padding: 48px 32px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 16px;
+}
+.logo-cell img { width: 100%; max-width: 260px; height: auto; }
+.logo-cell .cell-label {
+  font-size: 11px; font-weight: 600; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--t3); text-align: center;
+}
+.lc-dark  { background: var(--bg2); }
+.lc-navy  { background: #111D27; }
+.lc-light { background: #DCE6EA; }
+.lc-light .cell-label { color: #6A8090; }
+.lc-orange { background: #FF5500; }
+.lc-orange .cell-label { color: rgba(0,0,0,.4); }
+.lc-teal  { background: #0E6070; }
+.lc-teal .cell-label { color: rgba(255,255,255,.4); }
+
+/* Mascot grid */
+.mascot-grid {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 16px; margin: 40px 0;
+}
+.mascot-cell {
+  border-radius: 16px; overflow: hidden;
+  border: 1px solid var(--border);
+}
+.mascot-cell img { width: 100%; height: auto; display: block; }
+.mascot-cell .cell-label {
+  padding: 12px 16px;
+  font-size: 11px; font-weight: 600; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--t3);
+  background: var(--bg3); text-align: center;
+}
+
+/* Don'ts */
+.donts-grid {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 16px; margin: 40px 0;
+}
+.dont-card {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 14px; padding: 32px 20px;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 16px; text-align: center;
+}
+.dont-tag {
+  font-size: 10px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--danger);
+}
+.dont-desc { font-size: 13px; color: var(--t3); line-height: 1.5; }
+.dont-preview {
+  width: 100%; border-radius: 10px; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  height: 80px;
+}
+
+/* Color section */
+.color-hero {
+  background: var(--orange); border-radius: 20px;
+  padding: 56px 48px; margin: 40px 0 24px;
+  display: flex; justify-content: space-between; align-items: flex-end;
+}
+.color-hero-name  { font-size: 28px; font-weight: 700; color: #000; letter-spacing: -.02em; }
+.color-hero-hex   { font-family: var(--mono); font-size: 18px; font-weight: 700; color: rgba(0,0,0,.55); }
+.color-hero-note  { font-size: 13px; color: rgba(0,0,0,.45); margin-top: 4px; }
+
+.swatch-row { display: grid; grid-template-columns: repeat(5,1fr); gap: 12px; margin-bottom: 12px; }
+.swatch {
+  border-radius: 12px; overflow: hidden;
+  border: 1px solid var(--border);
+}
+.swatch-fill { height: 64px; }
+.swatch-info { padding: 12px 14px; background: var(--bg3); }
+.swatch-name { font-size: 12px; font-weight: 600; margin-bottom: 2px; }
+.swatch-hex  { font-family: var(--mono); font-size: 10px; color: var(--t3); }
+.swatch-use  { font-size: 11px; color: var(--t3); margin-top: 4px; }
+
+.semantic-grid {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 16px; margin: 24px 0;
+}
+.sem-card {
+  border-radius: 12px; overflow: hidden;
+  border: 1px solid var(--border);
+}
+.sem-fill { height: 48px; }
+.sem-info { padding: 12px 14px; background: var(--bg3); }
+.sem-name { font-size: 12px; font-weight: 600; }
+.sem-hex  { font-family: var(--mono); font-size: 10px; color: var(--t3); }
+
+/* Token table */
+.token-table {
+  width: 100%; border-collapse: collapse;
+  margin: 32px 0;
+}
+.token-table th {
+  text-align: left; padding: 10px 16px;
+  font-size: 10px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--t3);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--mono);
+}
+.token-table td {
+  padding: 12px 16px; font-size: 13px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+.token-table tr:last-child td { border-bottom: none; }
+.token-table tr:hover td { background: var(--bg3); }
+.token-name { font-family: var(--mono); font-size: 12px; color: var(--orange); }
+.token-dot  { width: 24px; height: 24px; border-radius: 50%; display: inline-block; border: 1px solid rgba(255,255,255,.1); }
+.token-hex  { font-family: var(--mono); font-size: 12px; color: var(--t2); }
+
+/* Typography */
+.type-specimen {
+  padding: 48px 0;
+  border-bottom: 1px solid var(--border);
+}
+.type-specimen:last-child { border-bottom: none; }
+.type-meta { width: 200px; flex-shrink: 0; }
+.type-meta-name { font-size: 13px; font-weight: 600; }
+.type-meta-spec {
+  font-family: var(--mono); font-size: 10px;
+  color: var(--t3); line-height: 1.9; margin-top: 4px;
+}
+.type-preview { flex: 1; }
+
+/* Scale table */
+.scale-table { width: 100%; border-collapse: collapse; }
+.scale-table th {
+  text-align: left; padding: 10px 16px;
+  font-size: 10px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--t3);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--mono);
+}
+.scale-table td {
+  padding: 16px 16px; font-size: 13px;
+  border-bottom: 1px solid var(--border);
+}
+.scale-table tr:last-child td { border-bottom: none; }
+.scale-table tr:hover td { background: var(--bg3); }
+.scale-preview { font-family: var(--font); }
+
+/* Voice */
+.personality-grid {
+  display: grid; grid-template-columns: repeat(5,1fr);
+  gap: 16px; margin: 40px 0;
+}
+.p-card {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 14px; padding: 24px 20px;
+}
+.p-num  { font-family: var(--mono); font-size: 10px; color: var(--t3); margin-bottom: 12px; }
+.p-word { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+.p-desc { font-size: 13px; color: var(--t2); line-height: 1.5; }
+
+.voice-pairs { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 40px 0; }
+.voice-box {
+  border-radius: 14px; padding: 24px; border: 1px solid var(--border);
+  background: var(--bg3);
+}
+.vb-tag { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 10px; }
+.vb-text { font-size: 15px; line-height: 1.6; }
+.voice-box.good { border-color: rgba(52,211,153,.2); }
+.voice-box.bad  { border-color: rgba(192,58,43,.2); }
+.good .vb-tag { color: var(--success); }
+.bad  .vb-tag { color: var(--danger); }
+.bad  .vb-text { color: var(--t3); text-decoration: line-through; }
+
+.taglines { display: flex; flex-direction: column; gap: 10px; margin: 40px 0; }
+.tl-item {
+  display: flex; align-items: center; gap: 20px;
+  padding: 20px 24px; background: var(--bg3);
+  border: 1px solid var(--border); border-radius: 12px;
+}
+.tl-item.featured { border-color: var(--orange-border); background: var(--orange-bg); }
+.tl-num { font-family: var(--mono); font-size: 11px; color: var(--t3); width: 20px; flex-shrink: 0; }
+.tl-item.featured .tl-num { color: var(--orange); }
+.tl-text { font-size: 17px; font-weight: 600; letter-spacing: -.01em; }
+.tl-badge { margin-left: auto; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--orange); background: var(--orange-bg); border: 1px solid var(--orange-border); border-radius: 6px; padding: 3px 10px; flex-shrink: 0; }
+
+/* ═══════════════════════════════════════
+   MOBILE DESIGN SYSTEM
+═══════════════════════════════════════ */
+
+/* Component showcase rows */
+.comp-row   { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+.comp-row-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-bottom: 24px; }
+.comp-row-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 24px; }
+
+.comp-card {
+  background: var(--doc-card); border: 1px solid var(--doc-border);
+  border-radius: 16px; overflow: hidden;
+}
+.comp-preview {
+  padding: 32px 24px; background: var(--c-base);
+  display: flex; align-items: center; justify-content: center;
+  min-height: 100px;
+}
+.comp-meta { padding: 14px 18px; border-top: 1px solid var(--doc-border); }
+.comp-name  { font-size: 12px; font-weight: 700; margin-bottom: 3px; }
+.comp-token { font-family: var(--mono); font-size: 10px; color: var(--t3); line-height: 1.7; }
+.comp-token span { color: var(--orange); }
+
+.full-comp-card    { background: var(--doc-card); border: 1px solid var(--doc-border); border-radius: 20px; overflow: hidden; }
+.full-comp-preview { background: var(--bg); padding: 40px 24px; display: flex; justify-content: center; }
+.full-comp-meta    { padding: 20px 24px; border-top: 1px solid var(--doc-border); }
+.full-comp-name    { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+.full-comp-desc    { font-size: 12px; color: var(--t3); line-height: 1.6; }
+
+/* Doc section headings (inside mobile sub-sections) */
+.doc-section-label {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--t3); margin-bottom: 8px;
+}
+.doc-section-title { font-size: 28px; font-weight: 700; letter-spacing: -.02em; margin-bottom: 8px; }
+.doc-section-sub   { font-size: 14px; color: var(--t3); line-height: 1.6; margin-bottom: 48px; max-width: 560px; }
+
+/* Mobile sub-sections layout */
+.m-sub-section { padding: 72px 0; border-top: 1px solid var(--border); }
+
+/* Sticky mobile sub-nav */
+.m-subnav-wrapper {
+  position: sticky; top: 60px; z-index: 90;
+  background: rgba(13,17,23,.95); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.m-subnav {
+  max-width: var(--max-w); margin: 0 auto; padding: 0 48px;
+  height: 44px; display: flex; align-items: center; gap: 2px;
+  overflow-x: auto; scrollbar-width: none;
+}
+.m-subnav::-webkit-scrollbar { display: none; }
+.m-subnav-tab {
+  font-size: 12px; font-weight: 500; color: var(--t3);
+  text-decoration: none; padding: 5px 12px; border-radius: 6px;
+  white-space: nowrap; transition: color .15s, background .15s;
+}
+.m-subnav-tab:hover, .m-subnav-tab.active { color: var(--t); background: var(--bg3); }
+
+/* Phone frame */
+.phone-frame {
+  width: 390px; background: var(--bg);
+  border-radius: 40px; border: 1.5px solid var(--border);
+  box-shadow: 0 0 0 1px var(--bg2), 0 32px 80px rgba(0,0,0,.9);
+  overflow: hidden; margin: 0 auto;
+}
+
+/* ── Status Bar ─────────────────────── */
+.m-statusbar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 15px 28px 0; height: 50px;
+  font-size: 15px; font-weight: 600; color: #fff;
+}
+.m-statusbar-icons { display: flex; gap: 6px; align-items: center; font-size: 11px; opacity: .75; }
+
+/* ── Top Nav / Header ───────────────── */
+.m-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; height: 48px; }
+.m-header-back { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+.m-header-back-icon  { font-size: 17px; line-height: 1; color: var(--c-t1); }
+.m-header-back-label { font-size: 17px; font-weight: 500; color: var(--c-t1); letter-spacing: -.01em; }
+.m-header-title { font-size: 17px; font-weight: 700; color: var(--c-t1); letter-spacing: -.018em; flex: 1; text-align: center; }
+.m-header-ghost { width: 70px; }
+
+/* ── Amount Hero ────────────────────── */
+.m-amount-hero { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 12px 24px; }
+.m-amount-label    { font-size: 12px; color: var(--c-t5); }
+/* Phantom spacer trick: R$ tem largura fixa; ::after espelha essa largura à direita
+   → número fica opticamente centrado dentro do container */
+.m-amount-row      { display: flex; align-items: flex-end; gap: 0; line-height: 1; }
+.m-amount-row::after { content: ''; display: block; width: 36px; flex-shrink: 0; }
+.m-amount-currency { font-size: 20px; color: var(--c-t5); width: 36px; text-align: right; padding-bottom: 10px; padding-right: 6px; flex-shrink: 0; }
+.m-amount-int      { font-size: 52px; font-weight: 700; color: var(--c-t1); letter-spacing: -.048em; line-height: .9; }
+.m-amount-dec      { font-size: 26px; color: var(--c-t1); letter-spacing: -.02em; line-height: 1.35; }
+.m-amount-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: rgba(255,255,255,0.03); border-radius: 10px;
+  padding: 4px 10px; font-size: 11px; font-weight: 700; color: var(--c-t2);
+}
+.m-amount-badge-dot {
+  width: 10px; height: 10px; flex-shrink: 0;
+  background: var(--c-orange); border-radius: 2px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 7px; color: #fff; font-weight: 900;
+}
+
+/* ── Recipient Card ─────────────────── */
+.m-recipient-card {
+  background: var(--c-card); border: 1px solid var(--c-border);
+  border-radius: var(--r-card-lg); padding: 16px; margin: 0 16px;
+}
+.m-recipient-section-label {
+  font-size: 10px; font-weight: 700; letter-spacing: .06em;
+  text-transform: uppercase; color: var(--c-t5); margin-bottom: 13px;
+}
+.m-recipient-row  { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.m-avatar {
+  width: 44px; height: 44px; border-radius: 22px; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--bg3) 0%, var(--bg4) 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 17px; font-weight: 700; color: var(--t);
+}
+.m-avatar-sm { width: 32px; height: 32px; border-radius: 16px; font-size: 13px; }
+.m-recipient-info  { flex: 1; }
+.m-recipient-name  { font-size: 15px; font-weight: 700; color: var(--c-t1); margin-bottom: 2px; }
+.m-recipient-email { font-size: 13px; color: var(--c-t5); }
+.m-valid-badge {
+  background: rgba(255,255,255,0.06); border-radius: var(--r-pill);
+  padding: 3px 9px; font-size: 11px; font-weight: 700; color: var(--c-t1);
+  white-space: nowrap; flex-shrink: 0;
+}
+.m-data-rows { background: var(--c-inner); border-radius: var(--r-inner); overflow: hidden; }
+.m-data-row  { padding: 9px 11px 10px; border-bottom: 1px solid rgba(255,255,255,0.03); }
+.m-data-row:last-child { border-bottom: none; }
+.m-data-row-label { font-size: 10px; color: var(--c-t6); letter-spacing: .04em; text-transform: uppercase; margin-bottom: 3px; }
+.m-data-row-value { font-size: 12px; color: var(--c-t2); }
+.m-data-row-value.mono { font-family: var(--mono); color: var(--c-t4); }
+
+/* ── Info Cards ─────────────────────── */
+.m-info-card {
+  background: var(--c-card); border: 1px solid var(--c-border-sub);
+  border-radius: var(--r-card); padding: 13px 17px; margin: 0 16px;
+  display: flex; align-items: center; gap: 10px;
+}
+.m-info-icon-inner {
+  width: 40px; height: 40px; flex-shrink: 0;
+  background: rgba(255,255,255,0.04); border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+}
+.m-info-body   { flex: 1; }
+.m-info-label  { font-size: 10px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--c-t2); margin-bottom: 4px; }
+.m-info-text   { font-size: 13px; color: var(--c-t4); margin-bottom: 2px; }
+.m-info-source { font-size: 11px; color: var(--c-t6); }
+
+/* ── Buttons ────────────────────────── */
+.m-btn {
+  display: flex; align-items: center; justify-content: center;
+  height: 48px; border-radius: var(--r-btn);
+  font-size: 17px; font-weight: 600; font-family: var(--font);
+  cursor: pointer; border: none; width: 100%;
+  letter-spacing: -.015em; transition: opacity .12s;
+}
+.m-btn:active    { opacity: .75; }
+.m-btn-primary   { background: var(--c-orange); color: #fff; }
+.m-btn-ghost     { background: transparent; color: var(--c-t1); border: 1px solid var(--c-ghost-brd); }
+.m-btn-danger    { background: var(--c-danger-bg); color: var(--c-danger); border: 1px solid var(--c-danger-brd); }
+.m-btn-success   { background: var(--c-success-bg); color: var(--c-success); border: 1px solid rgba(52,211,153,.2); }
+.m-btn-disabled  { background: var(--bg2); color: var(--border2); cursor: not-allowed; }
+
+.m-button-dock { background: var(--c-base); padding: 20px 16px 0; display: flex; flex-direction: column; gap: 12px; }
+.m-home-indicator { height: 34px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 8px; }
+.m-home-indicator-bar { width: 134px; height: 5px; background: rgba(255,255,255,.18); border-radius: 100px; }
+
+/* ── Badges ─────────────────────────── */
+.m-badge { display: inline-flex; align-items: center; gap: 6px; border-radius: var(--r-pill); padding: 4px 12px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+.m-badge-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.m-badge-pending { background: var(--c-orange-bg); border: 1px solid var(--c-orange-brd); color: var(--c-orange); }
+.m-badge-pending .m-badge-dot { background: var(--c-orange); animation: pulse 2s infinite; }
+.m-badge-success { background: var(--c-success-bg); border: 1px solid rgba(52,211,153,.2); color: var(--c-success); }
+.m-badge-success .m-badge-dot { background: var(--c-success); }
+.m-badge-danger  { background: var(--c-danger-bg); border: 1px solid var(--c-danger-brd); color: var(--c-danger); }
+.m-badge-danger  .m-badge-dot { background: var(--c-danger); }
+.m-badge-valid   { background: rgba(255,255,255,.06); color: var(--c-t1); }
+
+/* ── Bottom Nav ─────────────────────── */
+.m-bottom-nav { display: flex; align-items: center; padding: 0 8px; border-top: 1px solid var(--border); background: var(--c-base); height: 82px; flex-shrink: 0; }
+.m-nav-item   { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
+.m-nav-label  { font-size: 10px; font-weight: 600; color: var(--t3); }
+.m-nav-label.active { color: var(--t2); }
+.m-nav-center { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; }
+.bot-bubble {
+  width: 56px; height: 56px; border-radius: 50%; margin-top: -16px; flex-shrink: 0;
+  background: radial-gradient(circle at 32% 28%, rgba(255,255,255,.85) 0%, transparent 38%),
+    conic-gradient(from 200deg, #FFB3D9 0%,#FFD4A3 18%,#FFF4A3 32%,#B3F0D4 48%,#A3D4FF 62%,#C8A3FF 78%,#FFB3D9 100%);
+  box-shadow: 0 -3px 16px rgba(180,120,255,.2), 0 6px 20px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.08);
+}
+.bot-bubble-lbl { font-size: 10px; font-weight: 600; color: var(--t3); margin-top: 3px; }
+
+/* ── Toggle ─────────────────────────── */
+.m-toggle { width: 44px; height: 26px; border-radius: 13px; background: var(--bg4); position: relative; cursor: pointer; transition: background .2s; border: none; flex-shrink: 0; }
+.m-toggle.on { background: var(--t); }
+.m-toggle::after { content: ''; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: var(--t3); transition: transform .2s, background .2s; }
+.m-toggle.on::after { transform: translateX(18px); background: var(--bg); }
+
+/* ── Inputs ─────────────────────────── */
+.m-input-group  { display: flex; flex-direction: column; gap: 6px; }
+.m-input-label  { font-size: 13px; font-weight: 600; color: var(--c-t3); }
+.m-input {
+  background: var(--c-input); border: 1.5px solid var(--c-border-input);
+  border-radius: 14px; padding: 14px 16px;
+  color: var(--c-t1); font-size: 16px; font-family: var(--font);
+  outline: none; width: 100%;
+}
+.m-input::placeholder { color: var(--t3); }
+.m-input:focus { border-color: var(--c-orange-brd); }
+.m-input-amount {
+  background: var(--c-input); border: 1.5px solid var(--c-border-input);
+  border-radius: 14px; padding: 14px 16px 14px 52px;
+  color: var(--c-t1); font-family: var(--mono); font-size: 22px; font-weight: 700;
+  outline: none; width: 100%;
+}
+.m-input-amount:focus { border-color: var(--c-orange-brd); }
+.m-input-prefix {
+  position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+  font-family: var(--mono); font-size: 18px; font-weight: 700; color: var(--c-t5);
+  pointer-events: none;
+}
+
+/* ── Transaction Item ───────────────── */
+.m-tx-item  { display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--c-border); }
+.m-tx-item:last-child { border-bottom: none; }
+.m-tx-icon  { width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.m-tx-icon-success { background: var(--c-success-bg); }
+.m-tx-icon-orange  { background: var(--c-orange-bg); }
+.m-tx-icon-danger  { background: var(--c-danger-bg); }
+.m-tx-icon-neutral { background: var(--bg3); }
+.m-tx-info   { flex: 1; }
+.m-tx-name   { font-size: 13px; font-weight: 600; color: var(--c-t1); }
+.m-tx-meta   { font-size: 11px; color: var(--c-t4); margin-top: 2px; }
+.m-tx-amount { font-family: var(--mono); font-size: 13px; font-weight: 700; flex-shrink: 0; }
+.m-tx-amount.credit  { color: var(--c-success); }
+.m-tx-amount.debit   { color: var(--c-t1); }
+.m-tx-amount.blocked { color: var(--c-t5); }
+.m-list-section-label { font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--c-t5); padding: 12px 16px 8px; }
+
+/* ── Approval Card ──────────────────── */
+.m-approval-card {
+  background: var(--c-card); border: 1px solid var(--c-border);
+  border-radius: var(--r-card-lg); padding: 20px 16px;
+  display: flex; flex-direction: column; gap: 16px; margin: 0 16px;
+}
+.m-timer-row { display: flex; flex-direction: column; gap: 6px; }
+.m-timer-top { display: flex; justify-content: space-between; font-size: 12px; color: var(--c-t4); }
+.m-timer-track { height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
+.m-timer-fill  { height: 100%; background: var(--c-orange); border-radius: 2px; width: 65%; animation: timer 25s linear forwards; }
+
+/* ── Home blocks ────────────────────── */
+.m-home-greeting { color: var(--c-t3); font-size: 13px; }
+.m-home-name     { font-size: 20px; font-weight: 700; margin-top: 2px; }
+.m-balance-label { font-size: 11px; color: var(--c-t4); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 4px; }
+.m-balance-value { font-family: var(--mono); font-size: 36px; font-weight: 700; letter-spacing: -.02em; color: var(--c-t1); }
+.m-pending-banner {
+  background: var(--c-orange-bg); border: 1px solid var(--c-orange-brd);
+  border-radius: var(--r-btn); padding: 12px 14px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.m-pending-banner-left { display: flex; align-items: center; gap: 8px; }
+.m-pending-dot   { width: 8px; height: 8px; background: var(--c-orange); border-radius: 50%; animation: pulse 2s infinite; }
+.m-pending-text  { font-size: 13px; font-weight: 600; color: var(--c-orange); }
+.m-pending-count { font-size: 13px; font-weight: 700; color: var(--c-orange); }
+
+/* ── Spacing & radius (Fundação) ────── */
+.spacing-row  { display: flex; flex-direction: column; gap: 8px; }
+.spacing-item { display: flex; align-items: center; gap: 12px; }
+.spacing-bar  { background: var(--orange); border-radius: 2px; height: 8px; }
+.spacing-label { font-family: var(--mono); font-size: 11px; color: var(--t3); white-space: nowrap; }
+.radius-row   { display: flex; flex-wrap: wrap; gap: 12px; }
+.radius-item  { background: var(--bg4); border: 1px solid var(--border2); display: flex; align-items: center; justify-content: center; width: 64px; height: 64px; font-family: var(--mono); font-size: 10px; color: var(--t3); }
+
+/* ── Token table (mobile variant) ───── */
+.t-name { font-family: var(--mono); font-size: 11px; color: var(--orange); }
+.t-dot  { width: 20px; height: 20px; border-radius: 4px; display: inline-block; border: 1px solid rgba(255,255,255,.07); }
+.t-hex  { font-family: var(--mono); font-size: 11px; color: var(--t3); }
+.t-desc { color: var(--t3); font-size: 12px; }
+
+/* Component showcase grid (web section) */
+.comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin: 40px 0; }
+.comp-block { background: var(--bg3); border: 1px solid var(--border); border-radius: 16px; padding: 32px; }
+.comp-block-title { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--t3); margin-bottom: 24px; font-family: var(--mono); }
+
+/* ═══════════════════════════════════════
+   WEB DESIGN SYSTEM
+═══════════════════════════════════════ */
+
+/* ── Web sub-nav ────────────────────── */
+.w-subnav-wrapper {
+  position: sticky; top: 60px; z-index: 90;
+  background: rgba(13,17,23,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.w-subnav {
+  display: flex; gap: 0; overflow-x: auto; scrollbar-width: none;
+  padding: 0 0 0 2px;
+}
+.w-subnav::-webkit-scrollbar { display: none; }
+.w-subnav-tab {
+  padding: 12px 18px; font-size: 13px; font-weight: 500;
+  color: var(--t3); text-decoration: none; white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: color .15s, border-color .15s;
+}
+.w-subnav-tab:hover { color: var(--t2); }
+.w-subnav-tab.active { color: var(--orange); border-bottom-color: var(--orange); }
+.w-sub-section { padding-top: 72px; }
+
+/* ── Web buttons ────────────────────── */
+.w-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 11px 22px; border-radius: 10px;
+  font-family: var(--font); font-size: 14px; font-weight: 600;
+  cursor: pointer; border: none; text-decoration: none;
+  white-space: nowrap; transition: opacity .15s, transform .1s, box-shadow .15s;
+}
+.w-btn:hover { opacity: .88; transform: translateY(-1px); }
+.w-btn:active { transform: translateY(0); }
+.w-btn-primary   { background: var(--orange); color: #fff; box-shadow: 0 2px 16px rgba(255,85,0,.25); }
+.w-btn-primary:hover { box-shadow: 0 4px 24px rgba(255,85,0,.35); }
+.w-btn-secondary { background: var(--bg4); color: var(--t); border: 1px solid var(--border2); }
+.w-btn-ghost     { background: transparent; color: var(--t2); border: 1px solid var(--border); }
+.w-btn-outline   { background: transparent; color: var(--orange); border: 1px solid var(--orange-border); }
+.w-btn-teal      { background: var(--teal); color: #fff; }
+.w-btn-danger    { background: var(--danger-bg); color: #E05040; border: 1px solid var(--danger-border); }
+.w-btn-success   { background: var(--success-bg); color: var(--success); border: 1px solid rgba(52,211,153,.2); }
+.w-btn-muted     { background: var(--bg3); color: var(--t3); border: 1px solid var(--border); }
+.w-btn-sm { padding: 7px 14px; font-size: 12px; border-radius: 8px; }
+.w-btn-lg { padding: 15px 32px; font-size: 16px; border-radius: 12px; }
+.w-btn-icon { padding: 10px; border-radius: 10px; aspect-ratio: 1; }
+.w-btn-icon.w-btn-sm { padding: 7px; border-radius: 8px; }
+
+/* ── Web inputs ─────────────────────── */
+.w-form-group { display: flex; flex-direction: column; gap: 6px; }
+.w-label { font-size: 13px; font-weight: 600; color: var(--t2); }
+.w-label-hint { font-size: 12px; font-weight: 400; color: var(--t3); margin-left: 6px; }
+.w-input {
+  background: var(--bg3); border: 1.5px solid var(--border2);
+  border-radius: 10px; padding: 12px 16px;
+  color: var(--t); font-size: 14px; font-family: var(--font);
+  outline: none; width: 100%;
+  transition: border-color .15s, box-shadow .15s;
+  appearance: none; -webkit-appearance: none;
+}
+.w-input:focus { border-color: var(--orange-border); box-shadow: 0 0 0 3px rgba(255,85,0,.08); }
+.w-input::placeholder { color: var(--t3); }
+.w-input.error { border-color: var(--danger-border); }
+.w-input.error:focus { box-shadow: 0 0 0 3px rgba(192,58,43,.08); }
+.w-input.success { border-color: rgba(52,211,153,.4); }
+.w-input:disabled { opacity: .4; cursor: not-allowed; }
+.w-select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234A6070' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 40px; cursor: pointer; }
+.w-textarea { resize: vertical; min-height: 100px; }
+.w-input-wrap { position: relative; }
+.w-input-prefix { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-family: var(--mono); font-size: 14px; font-weight: 700; color: var(--t3); pointer-events: none; }
+.w-input-suffix { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; }
+.w-input.has-prefix { padding-left: 44px; }
+.w-input.has-suffix { padding-right: 44px; }
+.w-helper { font-size: 12px; color: var(--t3); }
+.w-helper.error { color: #E05040; }
+.w-helper.success { color: var(--success); }
+
+/* ── Web card ───────────────────────── */
+.w-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 16px; padding: 32px;
+}
+.w-card-sm { padding: 20px; border-radius: 14px; }
+.w-card-orange { border-color: var(--orange-border); background: linear-gradient(135deg, rgba(255,85,0,.04) 0%, var(--bg2) 60%); }
+.w-card-teal   { border-color: var(--teal-border); background: linear-gradient(135deg, rgba(26,122,138,.05) 0%, var(--bg2) 60%); }
+.w-card-elevated { background: var(--bg3); border-color: var(--border2); box-shadow: 0 8px 32px rgba(0,0,0,.3); }
+
+/* Metric / stat card */
+.w-stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+.w-stat-card {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 14px;
+  padding: 20px 22px;
+}
+.w-stat-label { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--t3); margin-bottom: 10px; }
+.w-stat-value { font-family: var(--mono); font-size: 28px; font-weight: 700; color: var(--t); letter-spacing: -.02em; line-height: 1; }
+.w-stat-sub { font-size: 12px; color: var(--t3); margin-top: 6px; }
+.w-stat-delta { display: inline-flex; align-items: center; gap: 3px; font-size: 11px; font-weight: 700; margin-top: 6px; padding: 2px 7px; border-radius: 100px; }
+.w-stat-delta.up { background: rgba(52,211,153,.1); color: var(--success); }
+.w-stat-delta.down { background: var(--danger-bg); color: #E05040; }
+
+/* Bento grid */
+.w-bento { display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: auto; gap: 16px; margin-bottom: 24px; }
+.w-bento-wide { grid-column: span 2; }
+.w-bento-tall { grid-row: span 2; }
+
+/* ── Table ──────────────────────────── */
+.w-table { width: 100%; border-collapse: collapse; }
+.w-table th {
+  text-align: left; padding: 12px 16px;
+  font-size: 11px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--t3);
+  background: var(--bg2); border-bottom: 1px solid var(--border);
+  font-family: var(--mono);
+}
+.w-table th:first-child { border-radius: 10px 0 0 0; }
+.w-table th:last-child  { border-radius: 0 10px 0 0; }
+.w-table td {
+  padding: 14px 16px; font-size: 13px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+.w-table tr:last-child td { border-bottom: none; }
+.w-table tr:hover td { background: rgba(255,255,255,.02); }
+.w-table-wrap { background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+.w-table-toolbar { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--border); gap: 12px; }
+.w-table-title { font-size: 14px; font-weight: 700; }
+.w-table-search { display: flex; align-items: center; gap: 8px; background: var(--bg3); border: 1px solid var(--border2); border-radius: 8px; padding: 8px 12px; flex: 1; max-width: 280px; }
+.w-table-search input { background: none; border: none; outline: none; color: var(--t); font-size: 13px; font-family: var(--font); width: 100%; }
+.w-table-search input::placeholder { color: var(--t3); }
+
+/* ── Alert ──────────────────────────── */
+.w-alert {
+  display: flex; align-items: center; gap: 14px;
+  border-radius: 12px; padding: 16px 20px;
+  border: 1px solid;
+}
+.w-alert-orange { background: var(--orange-bg); border-color: var(--orange-border); color: var(--orange); }
+.w-alert-success { background: var(--success-bg); border-color: rgba(52,211,153,.2); color: var(--success); }
+.w-alert-danger  { background: var(--danger-bg); border-color: var(--danger-border); color: #E05040; }
+.w-alert-muted   { background: var(--bg3); border-color: var(--border); color: var(--t2); }
+.w-alert-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.w-alert-body { flex: 1; min-width: 0; }
+.w-alert-title { font-size: 14px; font-weight: 600; color: var(--t); }
+.w-alert-sub { font-size: 12px; opacity: .75; margin-top: 2px; }
+
+/* Toast */
+.w-toast {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: var(--bg3); border: 1px solid var(--border2);
+  border-radius: 12px; padding: 14px 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,.4);
+  max-width: 360px;
+}
+.w-toast-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+.w-toast-body { flex: 1; }
+.w-toast-title { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+.w-toast-sub { font-size: 12px; color: var(--t3); }
+
+/* ── Navigation ─────────────────────── */
+.w-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 24px; }
+.w-tab-item {
+  padding: 10px 20px; font-size: 14px; font-weight: 500; color: var(--t3);
+  text-decoration: none; border-bottom: 2px solid transparent;
+  transition: color .15s, border-color .15s; cursor: pointer;
+}
+.w-tab-item:hover { color: var(--t2); }
+.w-tab-item.active { color: var(--t); border-bottom-color: var(--orange); }
+
+.w-breadcrumb { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--t3); margin-bottom: 24px; }
+.w-breadcrumb a { color: var(--t3); text-decoration: none; }
+.w-breadcrumb a:hover { color: var(--t2); }
+.w-breadcrumb .sep { color: var(--t3); opacity: .5; }
+.w-breadcrumb .current { color: var(--t); }
+
+.w-sidebar { background: var(--bg2); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; width: 220px; }
+.w-sidebar-header { padding: 20px 16px 12px; border-bottom: 1px solid var(--border); }
+.w-sidebar-title { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--t3); }
+.w-sidebar-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 16px; font-size: 13px; font-weight: 500;
+  color: var(--t2); text-decoration: none; cursor: pointer;
+  transition: background .12s, color .12s;
+}
+.w-sidebar-item:hover { background: var(--bg3); color: var(--t); }
+.w-sidebar-item.active { background: var(--orange-bg); color: var(--orange); border-right: 2px solid var(--orange); }
+.w-sidebar-item svg { flex-shrink: 0; opacity: .7; }
+.w-sidebar-item.active svg { opacity: 1; }
+.w-sidebar-badge { margin-left: auto; background: var(--orange); color: #fff; font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 100px; }
+
+.w-pagination { display: flex; align-items: center; gap: 4px; }
+.w-page-btn {
+  width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 500; color: var(--t2); background: transparent;
+  border: 1px solid transparent; cursor: pointer; transition: all .12s;
+}
+.w-page-btn:hover { background: var(--bg3); border-color: var(--border); color: var(--t); }
+.w-page-btn.active { background: var(--orange); color: #fff; border-color: var(--orange); }
+.w-page-btn.disabled { opacity: .3; cursor: not-allowed; }
+
+/* ── Misc ───────────────────────────── */
+.w-kbd {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--bg3); border: 1px solid var(--border2); border-bottom-width: 2px;
+  border-radius: 5px; padding: 2px 6px; font-family: var(--mono); font-size: 11px;
+  color: var(--t2); white-space: nowrap;
+}
+.w-chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 5px 12px; border-radius: 100px; font-size: 12px; font-weight: 500;
+  border: 1px solid; cursor: pointer; transition: all .12s;
+}
+.w-chip-default { background: var(--bg3); border-color: var(--border2); color: var(--t2); }
+.w-chip-active  { background: var(--orange-bg); border-color: var(--orange-border); color: var(--orange); }
+.w-chip-success { background: var(--success-bg); border-color: rgba(52,211,153,.25); color: var(--success); }
+.w-chip-danger  { background: var(--danger-bg); border-color: var(--danger-border); color: #E05040; }
+
+/* Token table in web DS */
+.w-token-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.w-token-table th { text-align: left; padding: 10px 14px; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--t3); border-bottom: 1px solid var(--border); }
+.w-token-table td { padding: 11px 14px; border-bottom: 1px solid rgba(30,45,61,.5); vertical-align: middle; }
+.w-token-table tr:last-child td { border-bottom: none; }
+.w-token-name  { font-family: var(--mono); font-size: 12px; color: var(--orange); }
+.w-token-value { font-family: var(--mono); font-size: 12px; color: var(--t2); }
+.w-token-swatch { width: 20px; height: 20px; border-radius: 5px; display: inline-block; border: 1px solid rgba(255,255,255,.08); vertical-align: middle; margin-right: 8px; }
+.w-section-header { margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
+.w-section-header h3 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+.w-section-header p { font-size: 14px; color: var(--t2); line-height: 1.6; }
+.w-section-num { font-family: var(--mono); font-size: 11px; color: var(--t3); letter-spacing: .1em; margin-bottom: 10px; }
+
+/* Footer */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 56px 0;
+}
+.footer-inner {
+  display: flex; justify-content: space-between; align-items: center;
+}
+.footer-copy { font-family: var(--mono); font-size: 11px; color: var(--t3); }
+.footer-links { display: flex; gap: 28px; }
+.footer-links a { font-size: 13px; color: var(--t3); text-decoration: none; }
+.footer-links a:hover { color: var(--t); }
+
+/* ── Illustration showcase ──────────── */
+.illus-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin: 40px 0; }
+.illus-cell { border-radius: 16px; overflow: hidden; border: 1px solid var(--border); background: #000; }
+.illus-cell img { width: 100%; display: block; }
+.illus-cell .cell-label { padding: 12px 16px; font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--t3); background: var(--bg3); text-align: center; }
+
+
+/* Responsive */
+@media (max-width: 900px) {
+  nav { padding: 0 24px; }
+  .wrap { padding: 0 24px; }
+  .grid-4, .logo-grid { grid-template-columns: repeat(2,1fr); }
+  .donts-grid, .mascot-grid { grid-template-columns: repeat(2,1fr); }
+  .swatch-row { grid-template-columns: repeat(3,1fr); }
+  .personality-grid { grid-template-columns: repeat(3,1fr); }
+  .voice-pairs { grid-template-columns: 1fr; }
+  .comp-grid { grid-template-columns: 1fr; }
+  .footer-inner { flex-direction: column; gap: 20px; text-align: center; }
+  .nav-tabs { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     NAV
+══════════════════════════════════ -->
+<nav id="main-nav">
+  <a class="nav-logo" href="#brand">
+    <img src="./assets/logo/logo-dark-orange.png" alt="AgentisPay" style="height:28px;width:auto;">
+  </a>
+  <div class="nav-tabs">
+    <a class="nav-tab active" href="#brand">Brand Guidelines</a>
+    <a class="nav-tab" href="#mobile-ds">Mobile DS</a>
+    <a class="nav-tab" href="#web-ds">Web DS</a>
+  </div>
+  <span class="nav-version">v1.0 · 2026</span>
+</nav>
+
+<!-- ══════════════════════════════════
+     01. BRAND GUIDELINES
+══════════════════════════════════ -->
+<section id="brand" style="border-top:none;">
+<div class="wrap">
+
+  <!-- Hero -->
+  <div class="brand-hero">
+    <div class="hero-eyebrow"><span class="hero-dot"></span>Brand Guidelines</div>
+    <h1 style="font-family:var(--serif);">O Intelecto <em>Propõe.</em><br>O Humano Dispõe.</h1>
+    <p class="hero-sub">Agentis Pay é a infraestrutura de pagamentos para a era dos agentes de IA. Máquinas redigem intenção. Humanos autorizam com biometria. O dinheiro só sai com sua assinatura.</p>
+    <div class="hero-meta">
+      <span>Versão 1.0</span>
+      <span class="hero-meta-sep"></span>
+      <span>Março 2026</span>
+      <span class="hero-meta-sep"></span>
+      <span>Confidencial</span>
+    </div>
+  </div>
+
+  <!-- 1.1 Logo -->
+  <div class="sec-label sec-label-orange mt-64">01 — Sistema de Logo</div>
+  <h2 class="sec-title">Agentis<em style="font-style:normal;color:var(--orange)">Pay</em></h2>
+  <p class="t2" style="max-width:640px;font-size:16px;line-height:1.7;margin-bottom:40px;">
+    O mascote é <strong style="color:var(--t)">Hermes</strong> — deus grego do comércio, das trocas e da velocidade. Guardião de fronteiras entre mundos. O chapéu alado representa a agilidade dos agentes autônomos. O wordmark combina serif clássico em "Agentis" com sans moderno em "PAY" — tradição que liquida em milissegundos.
+  </p>
+
+  <!-- Logo hero display -->
+  <div style="border-radius:20px;overflow:hidden;border:1px solid var(--border);margin-bottom:16px;">
+    <img src="./assets/logo/logo-dark-orange-full.png" alt="Agentispay logo principal" style="width:100%;display:block;">
+  </div>
+  <p class="sec-label mb-32 mt-32">Versões do logo — fundos escuros</p>
+  <div class="logo-grid">
+    <div class="logo-cell lc-dark">
+      <img src="./assets/logo/logo-dark-orange.png" alt="Logo dark orange">
+      <span class="cell-label">Escuro · Orange PAY</span>
+    </div>
+    <div class="logo-cell lc-navy">
+      <img src="./assets/logo/logo-dark-teal.png" alt="Logo dark teal">
+      <span class="cell-label">Escuro · Teal PAY</span>
+    </div>
+    <div class="logo-cell lc-dark" style="background:#0D1117;">
+      <img src="./assets/logo/logo-inverted.png" alt="Logo inverted">
+      <span class="cell-label">Escuro · Orange Agentis</span>
+    </div>
+    <div class="logo-cell lc-navy" style="background:#0D1117;">
+      <img src="./assets/logo/wordmark-dark.png" alt="Logo wordmark only">
+      <span class="cell-label">Só wordmark</span>
+    </div>
+  </div>
+
+  <p class="sec-label mb-32 mt-40">Versões — fundo laranja e teal</p>
+  <div class="logo-grid">
+    <div class="logo-cell lc-orange">
+      <img src="./assets/logo/logo-orange-bg.png" alt="Logo orange bg">
+      <span class="cell-label" style="color:rgba(0,0,0,.4);">Fundo laranja</span>
+    </div>
+    <div class="logo-cell" style="background:#FF5500;padding:48px 32px;">
+      <img src="./assets/logo/wordmark-orange-bg.png" alt="Logo orange wordmark only">
+      <span class="cell-label" style="color:rgba(0,0,0,.4);">Fundo laranja · Só wordmark</span>
+    </div>
+    <div class="logo-cell lc-teal">
+      <img src="./assets/logo/logo-teal-bg.png" alt="Logo teal bg">
+      <span class="cell-label">Fundo teal</span>
+    </div>
+    <div class="logo-cell" style="background:#1A7A8A;padding:48px 32px;">
+      <img src="./assets/logo/wordmark-teal-bg.png" alt="Logo teal wordmark only">
+      <span class="cell-label">Fundo teal · Só wordmark</span>
+    </div>
+  </div>
+
+  <p class="sec-label mb-32 mt-40">Versões — fundo claro</p>
+  <div class="logo-grid" style="grid-template-columns:1fr 1fr;">
+    <div class="logo-cell" style="background:#DCE6EA;padding:56px 48px;">
+      <img src="./assets/logo/logo-light-orange.png" alt="Logo light bg orange">
+      <span class="cell-label" style="color:#6A8090;">Fundo claro · Orange PAY</span>
+    </div>
+    <div class="logo-cell" style="background:#DCE6EA;padding:56px 48px;">
+      <img src="./assets/logo/logo-light-teal.png" alt="Logo light bg teal">
+      <span class="cell-label" style="color:#6A8090;">Fundo claro · Teal PAY</span>
+    </div>
+  </div>
+
+  <p class="sec-label mb-32 mt-40">Ícone — mascote isolado</p>
+  <div class="mascot-grid">
+    <div class="mascot-cell"><img src="./assets/mascot/hermes-orange-bg.png" alt="Mascot orange bg"><div class="cell-label">Laranja</div></div>
+    <div class="mascot-cell"><img src="./assets/mascot/hermes-dark-white.png" alt="Mascot dark bg white"><div class="cell-label">Escuro · Branco</div></div>
+    <div class="mascot-cell"><img src="./assets/mascot/hermes-dark-orange.png" alt="Mascot dark bg orange"><div class="cell-label">Escuro · Laranja</div></div>
+    <div class="mascot-cell"><img src="./assets/mascot/hermes-teal.png" alt="Mascot teal"><div class="cell-label">Teal</div></div>
+  </div>
+
+  <p class="sec-label mb-32 mt-40">Versões sem fundo — uso em qualquer contexto</p>
+  <div class="logo-grid" style="grid-template-columns:1fr 1fr;">
+    <div class="logo-cell" style="background:#0D1117;">
+      <img src="./assets/logo/logo-transparent-dark.svg" alt="Logo completo transparente dark">
+      <span class="cell-label">Transparente · Completo · Escuro</span>
+    </div>
+    <div class="logo-cell" style="background:#0D1117;">
+      <img src="./assets/logo/wordmark-transparent-dark.svg" alt="Wordmark transparente dark">
+      <span class="cell-label">Transparente · Wordmark · Escuro</span>
+    </div>
+    <div class="logo-cell" style="background:#DCE6EA;padding:48px 32px;">
+      <img src="./assets/logo/logo-transparent-light.svg" alt="Logo completo transparente claro">
+      <span class="cell-label" style="color:#6A8090;">Transparente · Completo · Claro</span>
+    </div>
+    <div class="logo-cell" style="background:#DCE6EA;padding:48px 32px;">
+      <img src="./assets/logo/wordmark-transparent-light.svg" alt="Wordmark transparente claro">
+      <span class="cell-label" style="color:#6A8090;">Transparente · Wordmark · Claro</span>
+    </div>
+  </div>
+
+  <hr>
+  <p class="sec-label mb-32">Não faça isso</p>
+  <div class="donts-grid">
+    <div class="dont-card">
+      <div class="dont-preview"><img src="./assets/logo/logo-dark-orange-full.png" style="width:100%;transform:scaleX(1.5);filter:saturate(0);" alt=""></div>
+      <span class="dont-tag">Não distorça</span>
+      <span class="dont-desc">Nunca estique ou comprima o logo horizontalmente ou verticalmente.</span>
+    </div>
+    <div class="dont-card">
+      <div class="dont-preview" style="background:#3B82F6;border-radius:8px;width:100%;"><img src="./assets/logo/logo-dark-orange.png" style="width:100%;opacity:.5;" alt=""></div>
+      <span class="dont-tag">Não troque a cor</span>
+      <span class="dont-desc">Use apenas as combinações de cor aprovadas. Nunca aplique o logo em azul, verde ou outras cores.</span>
+    </div>
+    <div class="dont-card">
+      <div class="dont-preview" style="background:linear-gradient(135deg,#3B82F6,#8B5CF6);border-radius:8px;width:100%;"><img src="./assets/logo/logo-dark-orange.png" style="width:100%;" alt=""></div>
+      <span class="dont-tag">Não use em gradientes</span>
+      <span class="dont-desc">Nunca aplique o logo sobre fundos gradientes ou fotográficos complexos.</span>
+    </div>
+    <div class="dont-card">
+      <div class="dont-preview"><img src="./assets/logo/wordmark-dark.png" style="width:80%;opacity:.3;" alt=""></div>
+      <span class="dont-tag">Não use com baixo contraste</span>
+      <span class="dont-desc">Garanta sempre contraste mínimo para legibilidade do wordmark.</span>
+    </div>
+  </div>
+
+  <!-- 1.2 Cores -->
+  <hr>
+  <div class="sec-label sec-label-orange mt-64">02 — Sistema de Cores</div>
+  <h2 class="sec-title">Paleta oficial</h2>
+
+  <div class="color-hero">
+    <div>
+      <div class="color-hero-name">Agentis Orange</div>
+      <div style="font-size:14px;color:rgba(0,0,0,.5);margin-top:4px;">Cor primária de ação e destaque</div>
+    </div>
+    <div style="text-align:right;">
+      <div class="color-hero-hex">#FF5500</div>
+      <div class="color-hero-note">RGB 255 · 85 · 0</div>
+    </div>
+  </div>
+
+  <p class="sec-label mb-16">Família laranja</p>
+  <div class="swatch-row" style="grid-template-columns:repeat(3,1fr);">
+    <div class="swatch"><div class="swatch-fill" style="background:#FF5500;"></div><div class="swatch-info"><div class="swatch-name">Orange</div><div class="swatch-hex">#FF5500</div><div class="swatch-use">CTAs, links, destaque primário</div></div></div>
+    <div class="swatch"><div class="swatch-fill" style="background:#CC4400;"></div><div class="swatch-info"><div class="swatch-name">Orange Dark</div><div class="swatch-hex">#CC4400</div><div class="swatch-use">Hover states, pressed</div></div></div>
+    <div class="swatch"><div class="swatch-fill" style="background:#FF9000;"></div><div class="swatch-info"><div class="swatch-name">Orange Light</div><div class="swatch-hex">#FF9000</div><div class="swatch-use">Alertas, avisos leves</div></div></div>
+  </div>
+
+  <p class="sec-label mb-16 mt-32">Família teal (secundária)</p>
+  <div class="swatch-row" style="grid-template-columns:repeat(2,1fr);">
+    <div class="swatch"><div class="swatch-fill" style="background:#1A7A8A;"></div><div class="swatch-info"><div class="swatch-name">Teal</div><div class="swatch-hex">#1A7A8A</div><div class="swatch-use">Variante secundária do logo</div></div></div>
+    <div class="swatch"><div class="swatch-fill" style="background:#0E6070;"></div><div class="swatch-info"><div class="swatch-name">Teal Dark</div><div class="swatch-hex">#0E6070</div><div class="swatch-use">Hover teal, fundo teal</div></div></div>
+  </div>
+
+  <p class="sec-label mb-16 mt-32">Backgrounds — modo escuro</p>
+  <div class="swatch-row">
+    <div class="swatch"><div class="swatch-fill" style="background:#0D1117;"></div><div class="swatch-info"><div class="swatch-name">BG 01</div><div class="swatch-hex">#0D1117</div><div class="swatch-use">Fundo base do app</div></div></div>
+    <div class="swatch"><div class="swatch-fill" style="background:#111D27;"></div><div class="swatch-info"><div class="swatch-name">BG 02</div><div class="swatch-hex">#111D27</div><div class="swatch-use">Cards, painéis</div></div></div>
+    <div class="swatch"><div class="swatch-fill" style="background:#161F2A;"></div><div class="swatch-info"><div class="swatch-name">BG 03</div><div class="swatch-hex">#161F2A</div><div class="swatch-use">Cards elevados</div></div></div>
+    <div class="swatch"><div class="swatch-fill" style="background:#1C2733;"></div><div class="swatch-info"><div class="swatch-name">BG 04</div><div class="swatch-hex">#1C2733</div><div class="swatch-use">Hover, active states</div></div></div>
+    <div class="swatch"><div class="swatch-fill" style="background:#1E2D3D;"></div><div class="swatch-info"><div class="swatch-name">Border</div><div class="swatch-hex">#1E2D3D</div><div class="swatch-use">Bordas, separadores</div></div></div>
+  </div>
+
+  <p class="sec-label mb-16 mt-32">Backgrounds — modo claro</p>
+  <div class="swatch-row" style="grid-template-columns:repeat(3,1fr);">
+    <div class="swatch"><div class="swatch-fill" style="background:#EDE8DF;border-bottom:1px solid #ddd;"></div><div class="swatch-info"><div class="swatch-name">Cream</div><div class="swatch-hex">#EDE8DF</div><div class="swatch-use">Fundo modo claro, quente</div></div></div>
+    <div class="swatch"><div class="swatch-fill" style="background:#DCE6EA;border-bottom:1px solid #ccc;"></div><div class="swatch-info"><div class="swatch-name">Cool Gray</div><div class="swatch-hex">#DCE6EA</div><div class="swatch-use">Fundo modo claro, frio</div></div></div>
+    <div class="swatch"><div class="swatch-fill" style="background:#FFFFFF;border-bottom:1px solid #ddd;"></div><div class="swatch-info"><div class="swatch-name">White</div><div class="swatch-hex">#FFFFFF</div><div class="swatch-use">Textos e ícones sobre escuro</div></div></div>
+  </div>
+
+  <p class="sec-label mb-16 mt-32">Cores semânticas</p>
+  <div class="semantic-grid">
+    <div class="sem-card"><div class="sem-fill" style="background:#34D399;"></div><div class="sem-info"><div class="sem-name">Success</div><div class="sem-hex">#34D399</div></div></div>
+    <div class="sem-card"><div class="sem-fill" style="background:#C03A2B;"></div><div class="sem-info"><div class="sem-name">Danger</div><div class="sem-hex">#C03A2B</div></div></div>
+    <div class="sem-card"><div class="sem-fill" style="background:#FF9000;"></div><div class="sem-info"><div class="sem-name">Warning</div><div class="sem-hex">#FF9000</div></div></div>
+    <div class="sem-card"><div class="sem-fill" style="background:#60A5FA;"></div><div class="sem-info"><div class="sem-name">Info</div><div class="sem-hex">#60A5FA</div></div></div>
+  </div>
+
+  <p class="sec-label mb-16 mt-32">Tokens CSS</p>
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:14px;overflow:hidden;">
+    <table class="token-table">
+      <thead><tr><th>Token</th><th>Cor</th><th>Hex</th><th>Uso</th></tr></thead>
+      <tbody>
+        <tr><td class="token-name">--orange</td><td><span class="token-dot" style="background:#FF5500;"></span></td><td class="token-hex">#FF5500</td><td class="t3">CTAs, links, destaque primário</td></tr>
+        <tr><td class="token-name">--orange-dark</td><td><span class="token-dot" style="background:#CC4400;"></span></td><td class="token-hex">#CC4400</td><td class="t3">Hover e pressed states</td></tr>
+        <tr><td class="token-name">--teal</td><td><span class="token-dot" style="background:#1A7A8A;"></span></td><td class="token-hex">#1A7A8A</td><td class="t3">Cor secundária do logo</td></tr>
+        <tr><td class="token-name">--bg</td><td><span class="token-dot" style="background:#0D1117;"></span></td><td class="token-hex">#0D1117</td><td class="t3">Fundo base</td></tr>
+        <tr><td class="token-name">--bg2</td><td><span class="token-dot" style="background:#111D27;"></span></td><td class="token-hex">#111D27</td><td class="t3">Cards e painéis</td></tr>
+        <tr><td class="token-name">--serif</td><td><span style="font-family:'Philosopher',serif;font-size:13px;font-weight:700;">Philosopher</span></td><td class="token-hex">Google Fonts</td><td class="t3">H1 de marca, hero, splash, manifesto</td></tr>
+        <tr><td class="token-name">--t</td><td><span class="token-dot" style="background:#FFFFFF;"></span></td><td class="token-hex">#FFFFFF</td><td class="t3">Texto primário</td></tr>
+        <tr><td class="token-name">--t2</td><td><span class="token-dot" style="background:#8A9BB0;"></span></td><td class="token-hex">#8A9BB0</td><td class="t3">Texto secundário</td></tr>
+        <tr><td class="token-name">--success</td><td><span class="token-dot" style="background:#34D399;"></span></td><td class="token-hex">#34D399</td><td class="t3">Confirmado, aprovado</td></tr>
+        <tr><td class="token-name">--danger</td><td><span class="token-dot" style="background:#C03A2B;"></span></td><td class="token-hex">#C03A2B</td><td class="t3">Erro, recusado, destrutivo</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 1.3 Tipografia -->
+  <hr>
+  <div class="sec-label sec-label-orange mt-64">03 — Tipografia</div>
+  <h2 class="sec-title">Três famílias tipográficas</h2>
+  <p class="t2" style="font-size:16px;line-height:1.7;max-width:640px;margin-bottom:48px;">
+    Cada família tem um papel preciso. Philosopher carrega a personalidade da marca. Space Grotesk sustenta a interface. Space Mono ancora os dados.
+  </p>
+
+  <!-- Philosopher -->
+  <div style="background:var(--bg2);border:1px solid var(--orange-border);border-radius:16px;padding:48px;margin-bottom:16px;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:24px;right:28px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);background:var(--orange-bg);border:1px solid var(--orange-border);border-radius:6px;padding:3px 10px;">Personalidade</div>
+    <div class="sec-label sec-label-orange mb-16">Philosopher — logo, H1 de destaque, momentos de marca</div>
+    <div style="font-family:var(--serif);font-size:clamp(36px,5vw,64px);font-weight:700;line-height:1.1;margin-bottom:16px;">
+      O Intelecto <span style="color:var(--orange);font-style:italic;">Propõe.</span><br>O Humano Dispõe.
+    </div>
+    <div style="font-family:var(--serif);font-size:clamp(18px,2.5vw,28px);color:var(--t2);line-height:1.4;margin-bottom:32px;">
+      A autoridade de gasto não pode ser delegada a uma credencial estática.
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:32px;padding-top:24px;border-top:1px solid var(--border);">
+      <div><span style="font-family:var(--serif);font-size:22px;font-weight:400;">Regular 400</span><div style="font-size:11px;color:var(--t3);margin-top:4px;font-family:var(--mono);">Corpo display, títulos longos</div></div>
+      <div><span style="font-family:var(--serif);font-size:22px;font-weight:700;">Bold 700</span><div style="font-size:11px;color:var(--t3);margin-top:4px;font-family:var(--mono);">Headlines, logo, destaque</div></div>
+      <div><span style="font-family:var(--serif);font-size:22px;font-style:italic;">Itálico</span><div style="font-size:11px;color:var(--t3);margin-top:4px;font-family:var(--mono);">Ênfase, taglines, citações</div></div>
+      <div><span style="font-family:var(--serif);font-size:22px;font-weight:700;font-style:italic;">Bold Itálico</span><div style="font-size:11px;color:var(--t3);margin-top:4px;font-family:var(--mono);">Máxima ênfase</div></div>
+    </div>
+  </div>
+  <div style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:18px 24px;margin-bottom:32px;display:flex;gap:14px;align-items:flex-start;">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" style="flex-shrink:0;margin-top:2px;"><circle cx="9" cy="9" r="7" stroke="var(--orange)" stroke-width="1.4"/><path d="M9 5.5v4M9 12v.5" stroke="var(--orange)" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <div style="font-size:13px;color:var(--t2);line-height:1.6;">
+      Use Philosopher em <strong style="color:var(--t);">hero H1</strong>, <strong style="color:var(--t);">onboarding</strong>, <strong style="color:var(--t);">splashes</strong>, <strong style="color:var(--t);">confirmação de pagamento</strong> e <strong style="color:var(--t);">seções de manifesto</strong>. Nunca em labels, botões, inputs ou textos funcionais — esses são sempre Space Grotesk.
+    </div>
+  </div>
+
+  <!-- Space Grotesk -->
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:48px;margin-bottom:16px;position:relative;">
+    <div style="position:absolute;top:24px;right:28px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);background:var(--bg4);border:1px solid var(--border2);border-radius:6px;padding:3px 10px;">Interface</div>
+    <div class="sec-label mb-16">Space Grotesk — interface, botões, corpo, subtítulos</div>
+    <div style="font-size:clamp(36px,5vw,60px);font-weight:700;letter-spacing:-.04em;line-height:1.1;margin-bottom:16px;">
+      Sua IA paga.<br><span style="color:var(--orange);">Você aprova.</span>
+    </div>
+    <div style="font-size:18px;color:var(--t2);line-height:1.65;margin-bottom:32px;max-width:520px;">
+      Dê poder de compra ao seu agente. O controle final permanece no enclave seguro do seu smartphone.
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:24px;padding-top:24px;border-top:1px solid var(--border);">
+      <span style="font-weight:300;font-size:18px;color:var(--t3)">Light 300</span>
+      <span style="font-weight:400;font-size:18px;color:var(--t2)">Regular 400</span>
+      <span style="font-weight:500;font-size:18px;color:var(--t2)">Medium 500</span>
+      <span style="font-weight:600;font-size:18px;">SemiBold 600</span>
+      <span style="font-weight:700;font-size:18px;">Bold 700</span>
+    </div>
+  </div>
+
+  <!-- Space Mono -->
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:40px;margin-bottom:40px;position:relative;">
+    <div style="position:absolute;top:24px;right:28px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);background:var(--bg4);border:1px solid var(--border2);border-radius:6px;padding:3px 10px;">Dados</div>
+    <div class="sec-label mb-16">Space Mono — valores, saldos, tokens, timestamps, código</div>
+    <div style="font-family:var(--mono);font-size:clamp(28px,4vw,48px);font-weight:700;letter-spacing:-.02em;color:var(--orange);">R$ 1.450,00</div>
+    <div style="font-family:var(--mono);font-size:15px;color:var(--t3);margin-top:12px;line-height:1.9;">
+      0123456789 · PIX · 2026-03-11T14:23:05Z<br>agentispay_pay · req_01JAGENTIS8Z · claude-opus-4
+    </div>
+  </div>
+
+  <p class="sec-label mb-16">Escala tipográfica completa</p>
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:14px;overflow:hidden;">
+    <table class="scale-table">
+      <thead><tr><th>Nome</th><th>Família</th><th>Tamanho</th><th>Peso</th><th>Uso</th><th>Preview</th></tr></thead>
+      <tbody>
+        <tr><td class="token-name">Display</td><td style="font-size:11px;color:var(--orange);">Philosopher</td><td class="token-hex">72–88px</td><td>700</td><td class="t3">Hero de marca, splash</td><td><span style="font-family:var(--serif);font-size:28px;font-weight:700;">Propõe.</span></td></tr>
+        <tr><td class="token-name">H1 Serif</td><td style="font-size:11px;color:var(--orange);">Philosopher</td><td class="token-hex">48–64px</td><td>700</td><td class="t3">Onboarding, confirmação, manifesto</td><td><span style="font-family:var(--serif);font-size:22px;font-weight:700;">O Humano Dispõe.</span></td></tr>
+        <tr><td class="token-name">H1</td><td style="font-size:11px;color:var(--t3);">Space Grotesk</td><td class="token-hex">52px</td><td>700</td><td class="t3">Títulos de página</td><td><span style="font-size:22px;font-weight:700;letter-spacing:-.03em;">Agentis Pay</span></td></tr>
+        <tr><td class="token-name">H2</td><td style="font-size:11px;color:var(--t3);">Space Grotesk</td><td class="token-hex">36px</td><td>700</td><td class="t3">Títulos de seção</td><td><span style="font-size:20px;font-weight:700;letter-spacing:-.02em;">Componentes</span></td></tr>
+        <tr><td class="token-name">H3</td><td style="font-size:11px;color:var(--t3);">Space Grotesk</td><td class="token-hex">24px</td><td>700</td><td class="t3">Títulos de card</td><td><span style="font-size:17px;font-weight:700;">Card title</span></td></tr>
+        <tr><td class="token-name">Body L</td><td style="font-size:11px;color:var(--t3);">Space Grotesk</td><td class="token-hex">18px</td><td>400</td><td class="t3">Texto longo, marketing</td><td><span style="font-size:15px;">Texto principal</span></td></tr>
+        <tr><td class="token-name">Body</td><td style="font-size:11px;color:var(--t3);">Space Grotesk</td><td class="token-hex">16px</td><td>400</td><td class="t3">Interface padrão</td><td><span style="font-size:13px;">Texto padrão</span></td></tr>
+        <tr><td class="token-name">Body S</td><td style="font-size:11px;color:var(--t3);">Space Grotesk</td><td class="token-hex">14px</td><td>400</td><td class="t3">Secundário, metadados</td><td><span style="font-size:12px;color:var(--t2);">Texto menor</span></td></tr>
+        <tr><td class="token-name">Caption</td><td style="font-size:11px;color:var(--t3);">Space Grotesk</td><td class="token-hex">12px</td><td>500</td><td class="t3">Labels, helper text</td><td><span style="font-size:11px;font-weight:500;color:var(--t3);">Caption text</span></td></tr>
+        <tr><td class="token-name">Micro</td><td style="font-size:11px;color:var(--t3);">Space Grotesk</td><td class="token-hex">11px</td><td>700</td><td class="t3">Section labels, badges</td><td><span style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);">LABEL</span></td></tr>
+        <tr><td class="token-name">Mono L</td><td style="font-size:11px;color:var(--t3);">Space Mono</td><td class="token-hex">24px+</td><td>700</td><td class="t3">Valores, saldos</td><td><span style="font-family:var(--mono);font-size:18px;font-weight:700;color:var(--orange);">R$200</span></td></tr>
+        <tr><td class="token-name">Mono</td><td style="font-size:11px;color:var(--t3);">Space Mono</td><td class="token-hex">13px</td><td>400</td><td class="t3">Tokens, timestamps, código</td><td><span style="font-family:var(--mono);font-size:12px;color:var(--t3);">--token</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 1.4 Voz -->
+  <hr>
+  <div class="sec-label sec-label-orange mt-64">04 — Voz & Tom</div>
+  <h2 class="sec-title">Como a Agentis Pay fala</h2>
+  <p class="t2" style="font-size:16px;line-height:1.7;max-width:640px;margin-bottom:48px;">
+    A voz é filosófica, declarativa e precisa. Mescla referências clássicas com linguagem técnica sem jamais ser casual ou excessiva. Cada frase carrega peso. Sem exclamações. Sem rodeios. Sem amigabilidade forçada.
+  </p>
+
+  <div class="personality-grid">
+    <div class="p-card"><div class="p-num">01</div><div class="p-word">Filosófico</div><div class="p-desc">Eleva o discurso. Usa conceitos como "soberano", "consentimento", "vontade". Não é um app de pagamento — é infraestrutura para a era da IA.</div></div>
+    <div class="p-card"><div class="p-num">02</div><div class="p-word">Declarativo</div><div class="p-desc">Frases curtas e definitivas. "O dinheiro só sai com sua biometria." Sem condicionais desnecessários. A marca sabe o que é.</div></div>
+    <div class="p-card"><div class="p-num">03</div><div class="p-word">Técnico</div><div class="p-desc">Usa terminologia real: "trilho de liquidação", "consentimento biométrico", "ledger", "proposta". Respeita a inteligência de quem integra.</div></div>
+    <div class="p-card"><div class="p-num">04</div><div class="p-word">Clássico</div><div class="p-desc">Referências à Ágora grega, a Hermes, ao soberano. Posiciona tecnologia de ponta em linguagem duradoura.</div></div>
+    <div class="p-card"><div class="p-num">05</div><div class="p-word">Binário</div><div class="p-desc">Contraste como estrutura: máquina propõe / humano dispõe. O jeito antigo / o jeito Ágora. Sempre dois lados, sempre claro.</div></div>
+  </div>
+
+  <!-- Vocabulary -->
+  <p class="sec-label mb-16 mt-48">Vocabulário da marca</p>
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:40px;">
+    <table class="token-table">
+      <thead><tr><th>Use</th><th>Evite</th><th>Por quê</th></tr></thead>
+      <tbody>
+        <tr><td style="color:var(--success);font-weight:600;">Proposta</td><td style="color:var(--t3);text-decoration:line-through;">Solicitação / pedido</td><td class="t3">O agente <em>propõe</em> — o humano decide. Hierarquia clara.</td></tr>
+        <tr><td style="color:var(--success);font-weight:600;">O soberano dispõe</td><td style="color:var(--t3);text-decoration:line-through;">O usuário aprova</td><td class="t3">Reforça a autoridade humana como princípio, não feature.</td></tr>
+        <tr><td style="color:var(--success);font-weight:600;">Consentimento biométrico</td><td style="color:var(--t3);text-decoration:line-through;">Confirmação / autenticação</td><td class="t3">Biometria é prova criptográfica de vontade humana.</td></tr>
+        <tr><td style="color:var(--success);font-weight:600;">Trilho de liquidação</td><td style="color:var(--t3);text-decoration:line-through;">Método de pagamento</td><td class="t3">PIX é um trilho — a linguagem técnica é intencional.</td></tr>
+        <tr><td style="color:var(--success);font-weight:600;">A Ágora</td><td style="color:var(--t3);text-decoration:line-through;">A plataforma / o produto</td><td class="t3">A Ágora é o jardim de infraestrutura, não um SaaS qualquer.</td></tr>
+        <tr><td style="color:var(--success);font-weight:600;">Bipa</td><td style="color:var(--t3);text-decoration:line-through;">App / aplicativo</td><td class="t3">Bipa é o nome próprio do app de aprovação biométrica.</td></tr>
+        <tr><td style="color:var(--success);font-weight:600;">Loop agêntico</td><td style="color:var(--t3);text-decoration:line-through;">Automação / bot</td><td class="t3">Precisão técnica. Agentes têm loops, não são bots.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="sec-label mb-24">Exemplos de tom</p>
+  <div class="voice-pairs">
+    <div class="voice-box good"><div class="vb-tag">Aprovação — Use</div><div class="vb-text">"Proposta liquidada. R$ 200,00 para João Silva."</div></div>
+    <div class="voice-box bad"><div class="vb-tag">Aprovação — Evite</div><div class="vb-text">"Seu pagamento foi processado com sucesso pelo sistema!"</div></div>
+    <div class="voice-box good"><div class="vb-tag">Erro — Use</div><div class="vb-text">"Limite da política excedido. Ajuste em Configurações → Políticas."</div></div>
+    <div class="voice-box bad"><div class="vb-tag">Erro — Evite</div><div class="vb-text">"Ops! Ocorreu um erro inesperado. Tente novamente mais tarde."</div></div>
+    <div class="voice-box good"><div class="vb-tag">Agente — Use</div><div class="vb-text">"claude-opus-4 propôs R$ 200,00 para João Silva. Aguardando biometria."</div></div>
+    <div class="voice-box bad"><div class="vb-tag">Agente — Evite</div><div class="vb-text">"O seu agente de inteligência artificial deseja efetuar uma transferência..."</div></div>
+    <div class="voice-box good"><div class="vb-tag">Estado vazio — Use</div><div class="vb-text">"Nenhuma proposta pendente."</div></div>
+    <div class="voice-box bad"><div class="vb-tag">Estado vazio — Evite</div><div class="vb-text">"Você não possui nenhum pagamento aguardando aprovação no momento."</div></div>
+    <div class="voice-box good"><div class="vb-tag">Marketing — Use</div><div class="vb-text">"O dinheiro só sai com sua biometria."</div></div>
+    <div class="voice-box bad"><div class="vb-tag">Marketing — Evite</div><div class="vb-text">"Controle total sobre os pagamentos do seu agente de IA!"</div></div>
+  </div>
+
+  <p class="sec-label mb-24 mt-48">Taglines</p>
+  <div class="taglines">
+    <div class="tl-item featured"><span class="tl-num">01</span><span class="tl-text">O Intelecto Propõe. O Humano Dispõe.</span><span class="tl-badge">Principal</span></div>
+    <div class="tl-item featured" style="border-color:var(--teal-border);background:var(--teal-bg);"><span class="tl-num" style="color:var(--teal);">02</span><span class="tl-text">Sua IA paga. Você aprova.</span><span class="tl-badge" style="color:var(--teal);background:var(--teal-bg);border-color:var(--teal-border);">Secundária</span></div>
+    <div class="tl-item"><span class="tl-num">03</span><span class="tl-text">O dinheiro só sai com sua biometria.</span></div>
+    <div class="tl-item"><span class="tl-num">04</span><span class="tl-text">Sem sua aprovação, nada acontece.</span></div>
+    <div class="tl-item"><span class="tl-num">05</span><span class="tl-text">A autoridade de gasto não pode ser delegada a uma credencial.</span></div>
+  </div>
+
+  <!-- 1.5 Ilustrações -->
+  <hr>
+  <div class="sec-label sec-label-orange mt-64">05 — Ilustrações</div>
+  <h2 class="sec-title">Estilo dot-matrix</h2>
+  <p class="t2" style="font-size:16px;line-height:1.7;max-width:640px;margin-bottom:48px;">
+    As ilustrações da Agentis Pay são renderizadas em <strong style="color:var(--t)">dot-matrix</strong> — formas construídas com matrizes densas de pontos e vírgulas, criando volume e textura sem linhas sólidas. O resultado é técnico, orgânico e inconfundível. Fundo sempre preto. Variações em laranja <code style="font-family:var(--mono);font-size:13px;color:var(--orange);">--orange</code> e branco.
+  </p>
+
+  <p class="sec-label mb-16">Símbolo abstrato — Agentis</p>
+  <p class="t3" style="font-size:13px;margin-bottom:24px;">Losango de quatro pétalas. Remete ao símbolo PIX e à interseção entre agente e humano.</p>
+  <div class="illus-grid" style="grid-template-columns:1fr 1fr;">
+    <div class="illus-cell">
+      <img src="./assets/illustrations/symbol-orange.png" alt="Símbolo Agentis laranja">
+      <div class="cell-label">Laranja · #FF5500</div>
+    </div>
+    <div class="illus-cell">
+      <img src="./assets/illustrations/symbol-white.png" alt="Símbolo Agentis branco">
+      <div class="cell-label">Branco · #FFFFFF</div>
+    </div>
+  </div>
+
+  <p class="sec-label mb-16 mt-48">Moeda — ícone de pagamento</p>
+  <p class="t3" style="font-size:13px;margin-bottom:24px;">Representação abstrata de valor e liquidação. Usado em contextos de confirmação de pagamento e marketing.</p>
+  <div class="illus-grid" style="grid-template-columns:1fr 1fr;">
+    <div class="illus-cell">
+      <img src="./assets/illustrations/coin-orange.png" alt="Moeda laranja">
+      <div class="cell-label">Laranja · #FF5500</div>
+    </div>
+    <div class="illus-cell">
+      <img src="./assets/illustrations/coin-white.png" alt="Moeda branco">
+      <div class="cell-label">Branco · #FFFFFF</div>
+    </div>
+  </div>
+
+  <div style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:18px 24px;margin:32px 0;display:flex;gap:14px;align-items:flex-start;">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" style="flex-shrink:0;margin-top:2px;"><circle cx="9" cy="9" r="7" stroke="var(--orange)" stroke-width="1.4"/><path d="M9 5.5v4M9 12v.5" stroke="var(--orange)" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <div style="font-size:13px;color:var(--t2);line-height:1.6;">
+      Fundo sempre <strong style="color:var(--t)">preto puro (#000)</strong> — nunca aplique em fundos coloridos, gradientes ou claros. As ilustrações são assets de <strong style="color:var(--t)">destaque</strong>, não decoração de fundo. Use em seções hero, cartas de confirmação e materiais de marketing.
+    </div>
+  </div>
+
+
+</div>
+</section>
+
+<!-- ══════════════════════════════════
+     02. MOBILE DESIGN SYSTEM
+══════════════════════════════════ -->
+<section id="mobile-ds" style="padding:0;">
+
+  <!-- Sub-nav sticky -->
+  <div class="m-subnav-wrapper">
+    <div class="m-subnav">
+      <a href="#m-fundacao" class="m-subnav-tab">Fundação</a>
+      <a href="#m-nav" class="m-subnav-tab">Navegação</a>
+      <a href="#m-amount" class="m-subnav-tab">Amount Hero</a>
+      <a href="#m-cards" class="m-subnav-tab">Cards</a>
+      <a href="#m-buttons" class="m-subnav-tab">Botões</a>
+      <a href="#m-badges" class="m-subnav-tab">Badges</a>
+      <a href="#m-inputs" class="m-subnav-tab">Inputs</a>
+      <a href="#m-transactions" class="m-subnav-tab">Transações</a>
+      <a href="#m-screen" class="m-subnav-tab">Tela Referência</a>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <!-- Section header -->
+    <div style="padding:80px 0 48px;">
+      <div class="sec-label sec-label-teal">Mobile Design System</div>
+      <h2 class="sec-title">iOS & Android</h2>
+      <p class="sec-sub">390 × 844px · iPhone 15 · Space Grotesk · Dark mode</p>
+    </div>
+
+    <!-- ── 01 Fundação ──────────────────── -->
+    <div id="m-fundacao" class="m-sub-section" style="scroll-margin-top:120px;border-top:none;padding-top:0;">
+      <div class="doc-section-label">01</div>
+      <h2 class="doc-section-title">Design Tokens Mobile</h2>
+      <p class="doc-section-sub">Tokens extraídos diretamente do Figma. Usados como CSS custom properties em todos os componentes.</p>
+
+      <div class="comp-row">
+        <div>
+          <div class="doc-section-label" style="margin-bottom:12px;">Surfaces & Borders</div>
+          <div style="background:var(--doc-card);border:1px solid var(--doc-border);border-radius:14px;overflow:hidden;">
+            <table class="token-table">
+              <thead><tr><th>Token</th><th>Cor</th><th>Hex</th><th>Uso</th></tr></thead>
+              <tbody>
+                <tr><td class="t-name">--c-base → --bg</td><td><span class="t-dot" style="background:#0D1117;"></span></td><td class="t-hex">#0D1117</td><td class="t-desc">Fundo do app</td></tr>
+                <tr><td class="t-name">--c-card → --bg2</td><td><span class="t-dot" style="background:#111D27;"></span></td><td class="t-hex">#111D27</td><td class="t-desc">Cards principais</td></tr>
+                <tr><td class="t-name">--c-inner → --bg</td><td><span class="t-dot" style="background:#0D1117;"></span></td><td class="t-hex">#0D1117</td><td class="t-desc">Rows de dados internos</td></tr>
+                <tr><td class="t-name">--c-elevated → --bg3</td><td><span class="t-dot" style="background:#161F2A;"></span></td><td class="t-hex">#161F2A</td><td class="t-desc">Elevated, hover</td></tr>
+                <tr><td class="t-name">--c-input → --bg3</td><td><span class="t-dot" style="background:#161F2A;"></span></td><td class="t-hex">#161F2A</td><td class="t-desc">Campos de input</td></tr>
+                <tr><td class="t-name">--c-border → --border</td><td><span class="t-dot" style="background:#1E2D3D;"></span></td><td class="t-hex">#1E2D3D</td><td class="t-desc">Borda card destinatário</td></tr>
+                <tr><td class="t-name">--c-border-sub</td><td><span class="t-dot" style="background:rgba(30,45,61,0.6);border:1px solid #1E2D3D;"></span></td><td class="t-hex">rgba(30,45,61,.6)</td><td class="t-desc">Borda cards secundários</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div>
+          <div class="doc-section-label" style="margin-bottom:12px;">Typography & Brand</div>
+          <div style="background:var(--doc-card);border:1px solid var(--doc-border);border-radius:14px;overflow:hidden;">
+            <table class="token-table">
+              <thead><tr><th>Token</th><th>Cor</th><th>Hex</th><th>Uso</th></tr></thead>
+              <tbody>
+                <tr><td class="t-name">--c-t1 → --t</td><td><span class="t-dot" style="background:#fff;"></span></td><td class="t-hex">#FFFFFF</td><td class="t-desc">Texto primário</td></tr>
+                <tr><td class="t-name">--c-t2 → --t2</td><td><span class="t-dot" style="background:#8A9BB0;"></span></td><td class="t-hex">#8A9BB0</td><td class="t-desc">Texto secundário</td></tr>
+                <tr><td class="t-name">--c-t3 → --t3</td><td><span class="t-dot" style="background:#4A6070;"></span></td><td class="t-hex">#4A6070</td><td class="t-desc">Labels, subtexto</td></tr>
+                <tr><td class="t-name">--c-t4 → --t3</td><td><span class="t-dot" style="background:#4A6070;"></span></td><td class="t-hex">#4A6070</td><td class="t-desc">Texto dimmed, info</td></tr>
+                <tr><td class="t-name">--c-t5</td><td><span class="t-dot" style="background:#2A3D4F;"></span></td><td class="t-hex">#2A3D4F</td><td class="t-desc">Placeholder, muted</td></tr>
+                <tr><td class="t-name">--c-t6 → --border</td><td><span class="t-dot" style="background:#1E2D3D;"></span></td><td class="t-hex">#1E2D3D</td><td class="t-desc">Subtle, source labels</td></tr>
+                <tr><td class="t-name">--c-orange → --orange</td><td><span class="t-dot" style="background:#FF5500;"></span></td><td class="t-hex">#FF5500</td><td class="t-desc">CTA primário, brand</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Border Radius -->
+      <div class="doc-section-label mt-32" style="margin-bottom:12px;">Border Radius</div>
+      <div class="comp-row-4">
+        <div class="comp-card">
+          <div class="comp-preview" style="height:80px;"><div style="width:60px;height:60px;border-radius:8px;background:var(--bg2);border:1px solid var(--border);"></div></div>
+          <div class="comp-meta"><div class="comp-name">8px — Inner rows</div><div class="comp-token"><span>--r-inner</span></div></div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-preview" style="height:80px;"><div style="width:60px;height:60px;border-radius:12px;background:var(--bg2);border:1px solid var(--border);"></div></div>
+          <div class="comp-meta"><div class="comp-name">12px — Botões</div><div class="comp-token"><span>--r-btn</span></div></div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-preview" style="height:80px;"><div style="width:60px;height:60px;border-radius:14px;background:var(--bg2);border:1px solid var(--border);"></div></div>
+          <div class="comp-meta"><div class="comp-name">14px — Cards info</div><div class="comp-token"><span>--r-card</span></div></div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-preview" style="height:80px;"><div style="width:60px;height:60px;border-radius:20px;background:var(--bg2);border:1px solid var(--border);"></div></div>
+          <div class="comp-meta"><div class="comp-name">20px — Card principal</div><div class="comp-token"><span>--r-card-lg</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 02 Navegação ─────────────────── -->
+    <div id="m-nav" class="m-sub-section" style="scroll-margin-top:120px;">
+      <div class="doc-section-label">02</div>
+      <h2 class="doc-section-title">Navegação</h2>
+      <p class="doc-section-sub">Barra de status, cabeçalho de tela e navegação inferior.</p>
+
+      <!-- Status Bar -->
+      <div class="doc-section-label mt-24" style="margin-bottom:12px;">Status Bar</div>
+      <div class="comp-row">
+        <div class="comp-card">
+          <div class="comp-preview" style="padding:0;background:#000;">
+            <div style="width:100%;">
+              <div class="m-statusbar" style="background:#000;">
+                <span>9:41</span>
+                <div style="width:80px;height:10px;background:var(--bg3);border-radius:5px;"></div>
+                <div class="m-statusbar-icons">
+                  <svg width="17" height="12" viewBox="0 0 17 12" fill="white"><rect x="0" y="3" width="3" height="9" rx="1"/><rect x="4.5" y="2" width="3" height="10" rx="1"/><rect x="9" y="1" width="3" height="11" rx="1"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg>
+                  <svg width="16" height="12" viewBox="0 0 16 12" fill="white"><path d="M8 2.4C5.8 2.4 3.8 3.3 2.4 4.8L0 2.4C2 .9 4.9 0 8 0s6 .9 8 2.4L13.6 4.8C12.2 3.3 10.2 2.4 8 2.4z"/><path d="M8 6.4c-1.3 0-2.5.5-3.4 1.3L2.2 5.3C3.8 3.9 5.8 3 8 3s4.2.9 5.8 2.3l-2.4 2.4A4.8 4.8 0 0 0 8 6.4z"/><circle cx="8" cy="11" r="1.5"/></svg>
+                  <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0" y="1" width="21" height="10" rx="3" stroke="white" stroke-width="1" opacity=".35"/><rect x="1.5" y="2.5" width="16" height="7" rx="2" fill="white"/><path d="M22 4v4a2 2 0 000-4z" fill="white" opacity=".4"/></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="comp-meta"><div class="comp-name">Status Bar — Dark</div><div class="comp-token">height: 50px · padding: 15px 28px</div></div>
+        </div>
+        <div style="background:var(--doc-card);border:1px solid var(--doc-border);border-radius:16px;overflow:hidden;">
+          <div class="comp-meta" style="border-top:none;padding:20px 24px;">
+            <div class="comp-name" style="font-size:13px;margin-bottom:12px;">Especificações</div>
+            <table class="token-table" style="font-size:11px;">
+              <tbody>
+                <tr><td class="t-desc">Altura</td><td class="t-hex">50px</td></tr>
+                <tr><td class="t-desc">Padding horizontal</td><td class="t-hex">28px</td></tr>
+                <tr><td class="t-desc">Hora — fonte</td><td class="t-hex">SF Pro Semibold 17px</td></tr>
+                <tr><td class="t-desc">Dynamic Island spacer</td><td class="t-hex">124px × 10px</td></tr>
+                <tr><td class="t-desc">Cor do texto</td><td class="t-hex">#FFFFFF</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Top Header -->
+      <div class="doc-section-label mt-32" style="margin-bottom:12px;">Top Navigation Bar</div>
+      <div class="comp-row">
+        <div class="comp-card">
+          <div class="comp-preview" style="padding:0;background:#000;">
+            <div style="width:100%;">
+              <div class="m-header">
+                <div class="m-header-back"><span class="m-header-back-icon">‹</span><span class="m-header-back-label">Voltar</span></div>
+                <div class="m-header-title">Confirmar Pix</div>
+                <div class="m-header-ghost"></div>
+              </div>
+            </div>
+          </div>
+          <div class="comp-meta"><div class="comp-name">Header — Com voltar + título</div><div class="comp-token">height: 48px · padding: 12px 16px</div></div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-preview" style="padding:0;background:#000;">
+            <div style="width:100%;">
+              <div class="m-header">
+                <div style="font-size:20px;font-weight:700;color:#fff;letter-spacing:-.02em;">Aprovações</div>
+                <div style="display:flex;align-items:center;gap:12px;">
+                  <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--bg3),var(--bg4));display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--t);">T</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="comp-meta"><div class="comp-name">Header — Título esquerda + avatar</div><div class="comp-token">height: 48px · font-size: 20px bold</div></div>
+        </div>
+      </div>
+
+      <!-- Bottom Nav -->
+      <div class="doc-section-label mt-32" style="margin-bottom:12px;">Bottom Navigation</div>
+      <div class="full-comp-card">
+        <div class="full-comp-preview" style="padding:0;">
+          <div style="width:390px;background:#000;">
+            <div class="m-bottom-nav">
+              <div class="m-nav-item">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 9l8-6 8 6v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9z" stroke="#555" stroke-width="1.4"/><path d="M8 19v-8h5v8" stroke="#555" stroke-width="1.4"/></svg>
+                <span class="m-nav-label">Home</span>
+              </div>
+              <div class="m-nav-item">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="7.5" stroke="#999" stroke-width="1.4"/><path d="M7.5 11l3 3 4-5" stroke="#999" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span class="m-nav-label active">Aprovações</span>
+              </div>
+              <div class="m-nav-center">
+                <div class="bot-bubble"></div>
+                <span class="bot-bubble-lbl">Agente</span>
+              </div>
+              <div class="m-nav-item">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="7.5" stroke="#555" stroke-width="1.4"/><path d="M11 7v4l2.5 2" stroke="#555" stroke-width="1.4" stroke-linecap="round"/></svg>
+                <span class="m-nav-label">Histórico</span>
+              </div>
+              <div class="m-nav-item">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="3" stroke="#555" stroke-width="1.4"/><path d="M11 3v2M11 17v2M3 11h2M17 11h2" stroke="#555" stroke-width="1.4" stroke-linecap="round"/></svg>
+                <span class="m-nav-label">Config</span>
+              </div>
+            </div>
+            <div class="m-home-indicator"><div class="m-home-indicator-bar"></div></div>
+          </div>
+        </div>
+        <div class="full-comp-meta">
+          <div class="full-comp-name">Bottom Navigation Bar</div>
+          <div class="full-comp-desc">height: 82px · 5 itens · item central elevado com bot bubble rainbow · home indicator: 134×5px rounded</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 03 Amount Hero ───────────────── -->
+    <div id="m-amount" class="m-sub-section" style="scroll-margin-top:120px;">
+      <div class="doc-section-label">03</div>
+      <h2 class="doc-section-title">Amount Hero</h2>
+      <p class="doc-section-sub">Display principal de valor monetário. Hierarquia tipográfica precisa extraída do Figma.</p>
+
+      <div class="comp-row">
+        <div class="comp-card">
+          <div class="comp-preview" style="background:#000;padding:40px 24px;">
+            <div class="m-amount-hero" style="width:100%;">
+              <div class="m-amount-label">Você aprovará</div>
+              <div class="m-amount-row">
+                <span class="m-amount-currency">R$</span>
+                <div><span class="m-amount-int">200</span><span class="m-amount-dec">,00</span></div>
+              </div>
+              <div class="m-amount-badge">
+                <div class="m-amount-badge-dot">⚡</div>
+                Pix instantâneo
+              </div>
+            </div>
+          </div>
+          <div class="comp-meta">
+            <div class="comp-name">Amount Hero — Aprovação pendente</div>
+            <div class="comp-token">
+              Label: 12px · <span>--c-t5</span><br>
+              Inteiro: 52px bold · <span>--c-t1</span><br>
+              Decimal: 26px regular · <span>--c-t1</span><br>
+              Símbolo: 24px regular · <span>--c-t5</span>
+            </div>
+          </div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-preview" style="background:#000;padding:40px 24px;">
+            <div class="m-amount-hero" style="width:100%;">
+              <div class="m-amount-label">Saldo disponível</div>
+              <div class="m-amount-row">
+                <span class="m-amount-currency">R$</span>
+                <div><span class="m-amount-int">3.450</span><span class="m-amount-dec">,00</span></div>
+              </div>
+              <div style="display:flex;gap:8px;margin-top:4px;">
+                <span class="m-badge m-badge-success"><span class="m-badge-dot"></span>Ativo</span>
+              </div>
+            </div>
+          </div>
+          <div class="comp-meta">
+            <div class="comp-name">Amount Hero — Saldo</div>
+            <div class="comp-token">Mesma hierarquia · badge de status abaixo</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="comp-card mt-16">
+        <div class="comp-preview" style="background:#000;padding:40px 24px;">
+          <div class="m-amount-hero" style="width:100%;">
+            <div class="m-amount-label" style="color:var(--c-success);">Proposta liquidada</div>
+            <div class="m-amount-row">
+              <span class="m-amount-currency" style="color:var(--c-success);opacity:.5;">R$</span>
+              <div>
+                <span class="m-amount-int" style="color:var(--c-success);">200</span><span class="m-amount-dec" style="color:var(--c-success);opacity:.7;">,00</span>
+              </div>
+            </div>
+            <div class="m-amount-badge" style="background:var(--c-success-bg);color:var(--c-success);">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 2.5" stroke="#34D399" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              PIX confirmado · 14:23
+            </div>
+          </div>
+        </div>
+        <div class="comp-meta">
+          <div class="comp-name">Amount Hero — Confirmado</div>
+          <div class="comp-token">Cor muda para <span>--c-success</span> em toda a hierarquia</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 04 Cards ─────────────────────── -->
+    <div id="m-cards" class="m-sub-section" style="scroll-margin-top:120px;">
+      <div class="doc-section-label">04</div>
+      <h2 class="doc-section-title">Cards</h2>
+      <p class="doc-section-sub">Recipient Card, Info Cards e Approval Card — extraídos diretamente do Figma node 128:6247.</p>
+
+      <!-- Recipient Card -->
+      <div class="doc-section-label mt-24" style="margin-bottom:12px;">Recipient Card</div>
+      <div class="full-comp-card">
+        <div class="full-comp-preview">
+          <div style="width:361px;">
+            <div class="m-recipient-card" style="margin:0;">
+              <div class="m-recipient-section-label">DESTINATÁRIO</div>
+              <div class="m-recipient-row">
+                <div class="m-avatar">J</div>
+                <div class="m-recipient-info">
+                  <div class="m-recipient-name">João Silva</div>
+                  <div class="m-recipient-email">joao@pix.com</div>
+                </div>
+                <div class="m-valid-badge">✓ Válido</div>
+              </div>
+              <div class="m-data-rows">
+                <div class="m-data-row"><div class="m-data-row-label">Chave PIX</div><div class="m-data-row-value">joao@pix.com</div></div>
+                <div class="m-data-row"><div class="m-data-row-label">CPF</div><div class="m-data-row-value mono">•••.456.•••-78</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="full-comp-meta">
+          <div class="full-comp-name">Recipient Card</div>
+          <div class="full-comp-desc">
+            bg: <code style="color:var(--orange)">--c-card (--bg2)</code> · border: <code style="color:var(--orange)">--c-border (--border)</code> · radius: <code style="color:var(--orange)">--r-card-lg (20px)</code><br>
+            Avatar: 44px · gradient --bg3→--bg4 · Inner rows: <code style="color:var(--orange)">--c-inner (--bg)</code> radius 8px
+          </div>
+        </div>
+      </div>
+
+      <!-- Info Cards -->
+      <div class="doc-section-label mt-32" style="margin-bottom:12px;">Info Cards — Agent Command & Expiry</div>
+      <div class="comp-row">
+        <div class="comp-card">
+          <div class="comp-preview" style="background:#000;padding:16px;">
+            <div style="width:100%;">
+              <div class="m-info-card" style="margin:0;">
+                <div class="m-info-icon-inner">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="12" height="9" rx="2" stroke="#909090" stroke-width="1.3"/><path d="M14 7l4 3-4 3V7z" stroke="#909090" stroke-width="1.3" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="m-info-body">
+                  <div class="m-info-label">Comando do Agente</div>
+                  <div class="m-info-text">"paga o João pelo almoço de hoje"</div>
+                  <div class="m-info-source">Claude Desktop</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="comp-meta">
+            <div class="comp-name">Agent Command Card</div>
+            <div class="comp-token">radius: 14px · border: rgba(255,255,255,.06)<br>Label: 10px bold <span>--c-t2</span> · Text: 13px <span>--c-t4</span></div>
+          </div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-preview" style="background:#000;padding:16px;">
+            <div style="width:100%;">
+              <div class="m-info-card" style="margin:0;">
+                <div class="m-info-icon-inner">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="#909090" stroke-width="1.3"/><path d="M10 6v4.5l3 1.5" stroke="#909090" stroke-width="1.3" stroke-linecap="round"/></svg>
+                </div>
+                <div class="m-info-body">
+                  <div class="m-info-label" style="color:var(--c-t4);">Janela de aprovação</div>
+                  <div style="font-size:13px;color:var(--c-t4);">Expira em <strong style="color:var(--c-t3);">4:32</strong> — após isso, cancelado automaticamente.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="comp-meta">
+            <div class="comp-name">Expiry Card</div>
+            <div class="comp-token">Timer bold: <span>--c-t3</span> · Text: <span>--c-t4</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Approval Card -->
+      <div class="doc-section-label mt-32" style="margin-bottom:12px;">Approval Card — Completo</div>
+      <div class="full-comp-card">
+        <div class="full-comp-preview">
+          <div style="width:361px;">
+            <div class="m-approval-card" style="margin:0;">
+              <div style="display:flex;justify-content:center;">
+                <span class="m-badge m-badge-pending"><span class="m-badge-dot"></span>Proposta pendente</span>
+              </div>
+              <div class="m-amount-hero" style="padding:0;gap:6px;">
+                <div class="m-amount-label">Você aprovará</div>
+                <div class="m-amount-row">
+                  <span class="m-amount-currency">R$</span>
+                  <div><span class="m-amount-int">200</span><span class="m-amount-dec">,00</span></div>
+                </div>
+              </div>
+              <div class="m-data-rows">
+                <div class="m-data-row"><div class="m-data-row-label">Destinatário</div><div class="m-data-row-value" style="font-weight:600;">João Silva</div></div>
+                <div class="m-data-row"><div class="m-data-row-label">Trilho</div><div class="m-data-row-value">PIX · joao@pix.com</div></div>
+                <div class="m-data-row"><div class="m-data-row-label">Agente</div><div class="m-data-row-value" style="color:var(--c-orange);">claude-opus-4</div></div>
+                <div class="m-data-row"><div class="m-data-row-label">Motivo</div><div class="m-data-row-value">Créditos de computação</div></div>
+              </div>
+              <div class="m-timer-row">
+                <div class="m-timer-top"><span>Janela de aprovação</span><span>4:32</span></div>
+                <div class="m-timer-track"><div class="m-timer-fill"></div></div>
+              </div>
+              <div style="display:flex;gap:10px;">
+                <button class="m-btn m-btn-danger" style="flex:1;">Recusar</button>
+                <button class="m-btn m-btn-primary" style="flex:2;">Aprovar com Face ID</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="full-comp-meta">
+          <div class="full-comp-name">Approval Card — Completo</div>
+          <div class="full-comp-desc">bg: --bg2 · border: --border · radius: 20px · Timer: --orange fill animado · Botões: 48px height · radius 12px</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 05 Botões ─────────────────────── -->
+    <div id="m-buttons" class="m-sub-section" style="scroll-margin-top:120px;">
+      <div class="doc-section-label">05</div>
+      <h2 class="doc-section-title">Botões</h2>
+      <p class="doc-section-sub">height: 48px · border-radius: 12px · font: Space Grotesk 17px 600 · tracking -0.015em</p>
+
+      <div class="comp-row-4">
+        <div class="comp-card">
+          <div class="comp-preview" style="background:#000;padding:24px 16px;">
+            <button class="m-btn m-btn-primary" style="max-width:200px;">Aprovar Pix</button>
+          </div>
+          <div class="comp-meta"><div class="comp-name">Primary</div><div class="comp-token">bg: <span>--orange</span> · color: white</div></div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-preview" style="background:#000;padding:24px 16px;">
+            <button class="m-btn m-btn-ghost" style="max-width:200px;">Recusar</button>
+          </div>
+          <div class="comp-meta"><div class="comp-name">Ghost</div><div class="comp-token">border: <span>--border2</span></div></div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-preview" style="background:#000;padding:24px 16px;">
+            <button class="m-btn m-btn-danger" style="max-width:200px;">Cancelar</button>
+          </div>
+          <div class="comp-meta"><div class="comp-name">Danger</div><div class="comp-token">bg: <span>--c-danger-bg</span> · border-danger</div></div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-preview" style="background:#000;padding:24px 16px;">
+            <button class="m-btn m-btn-disabled" style="max-width:200px;" disabled>Aguardando...</button>
+          </div>
+          <div class="comp-meta"><div class="comp-name">Disabled</div><div class="comp-token">bg: <span>--bg2</span> · color: <span>--border2</span></div></div>
+        </div>
+      </div>
+
+      <div class="doc-section-label mt-32" style="margin-bottom:12px;">Button Dock — Padrão de tela</div>
+      <div class="full-comp-card">
+        <div class="full-comp-preview">
+          <div style="width:390px;background:#000;">
+            <div class="m-button-dock">
+              <button class="m-btn m-btn-ghost">Recusar</button>
+              <button class="m-btn m-btn-primary">Aprovar Pix</button>
+            </div>
+            <div class="m-home-indicator"><div class="m-home-indicator-bar"></div></div>
+          </div>
+        </div>
+        <div class="full-comp-meta">
+          <div class="full-comp-name">Button Dock</div>
+          <div class="full-comp-desc">Sempre ao fundo. pt: 20px · gap entre botões: 12px · Home indicator: 134×5px rounded · bg: --bg</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 06 Badges & Status ────────────── -->
+    <div id="m-badges" class="m-sub-section" style="scroll-margin-top:120px;">
+      <div class="doc-section-label">06</div>
+      <h2 class="doc-section-title">Badges & Status</h2>
+      <p class="doc-section-sub">Pills de estado, badges de validação e tags de contexto.</p>
+
+      <div class="comp-row-4">
+        <div class="comp-card">
+          <div class="comp-preview" style="background:#000;"><span class="m-badge m-badge-pending"><span class="m-badge-dot"></span>Pendente</span></div>
+          <div class="comp-meta"><div class="comp-name">Pending</div><div class="comp-token">bg: <span>--c-orange-bg</span> · dot animado</div></div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-preview" style="background:#000;"><span class="m-badge m-badge-success"><span class="m-badge-dot"></span>Aprovado</span></div>
+          <div class="comp-meta"><div class="comp-name">Success</div><div class="comp-token">bg: <span>--c-success-bg</span></div></div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-preview" style="background:#000;"><span class="m-badge m-badge-danger"><span class="m-badge-dot"></span>Recusado</span></div>
+          <div class="comp-meta"><div class="comp-name">Danger</div><div class="comp-token">bg: <span>--c-danger-bg</span></div></div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-preview" style="background:#000;"><span class="m-badge m-badge-valid">✓ Válido</span></div>
+          <div class="comp-meta"><div class="comp-name">Valid</div><div class="comp-token">bg: rgba(255,255,255,.06)</div></div>
+        </div>
+      </div>
+
+      <!-- Avatars -->
+      <div class="doc-section-label mt-32" style="margin-bottom:12px;">Avatares de iniciais</div>
+      <div class="comp-card">
+        <div class="comp-preview" style="background:#000;gap:16px;flex-wrap:wrap;">
+          <div class="m-avatar">J</div>
+          <div class="m-avatar">M</div>
+          <div class="m-avatar">A</div>
+          <div class="m-avatar m-avatar-sm">T</div>
+          <div class="m-avatar" style="width:28px;height:28px;font-size:11px;border-radius:14px;">B</div>
+        </div>
+        <div class="comp-meta">
+          <div class="comp-name">Avatar — Iniciais</div>
+          <div class="comp-token">gradient: 135° <span>--bg3→--bg4</span> · sizes: 44px / 32px / 28px · border-radius 50%</div>
+        </div>
+      </div>
+
+      <!-- Toggle -->
+      <div class="doc-section-label mt-32" style="margin-bottom:12px;">Toggle</div>
+      <div class="comp-row">
+        <div class="comp-card">
+          <div class="comp-preview" style="background:#000;gap:24px;">
+            <div style="display:flex;flex-direction:column;gap:16px;width:100%;max-width:280px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <span style="font-size:14px;color:var(--c-t1);">Notificações push</span>
+                <button class="m-toggle on"></button>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <span style="font-size:14px;color:var(--c-t4);">Aprovação biométrica</span>
+                <button class="m-toggle"></button>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <span style="font-size:14px;color:var(--c-t1);">Agente ativo</span>
+                <button class="m-toggle on"></button>
+              </div>
+            </div>
+          </div>
+          <div class="comp-meta">
+            <div class="comp-name">Toggle</div>
+            <div class="comp-token">44×26px · OFF: bg <span>--bg4</span>, knob <span>--t3</span> · ON: bg <span>--t</span>, knob <span>--bg</span></div>
+          </div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-preview" style="background:#000;">
+            <div style="display:flex;flex-direction:column;gap:12px;width:100%;max-width:300px;">
+              <div class="m-pending-banner">
+                <div class="m-pending-banner-left">
+                  <div class="m-pending-dot"></div>
+                  <span class="m-pending-text">3 propostas aguardando</span>
+                </div>
+                <span class="m-pending-count">Ver</span>
+              </div>
+            </div>
+          </div>
+          <div class="comp-meta">
+            <div class="comp-name">Pending Banner</div>
+            <div class="comp-token">bg: <span>--c-orange-bg</span> · border: <span>--c-orange-brd</span> · dot animado</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 07 Inputs ─────────────────────── -->
+    <div id="m-inputs" class="m-sub-section" style="scroll-margin-top:120px;">
+      <div class="doc-section-label">07</div>
+      <h2 class="doc-section-title">Inputs & Formulários</h2>
+      <p class="doc-section-sub">Campos de texto, valor monetário e estados de validação.</p>
+
+      <div class="comp-row">
+        <div class="comp-card">
+          <div class="comp-preview" style="background:#000;padding:32px 20px;flex-direction:column;gap:16px;align-items:stretch;">
+            <div class="m-input-group">
+              <label class="m-input-label">Nome do destinatário</label>
+              <input class="m-input" type="text" placeholder="João Silva" style="pointer-events:none;">
+            </div>
+            <div class="m-input-group">
+              <label class="m-input-label">Chave PIX</label>
+              <input class="m-input" type="text" placeholder="email@exemplo.com" style="pointer-events:none;">
+            </div>
+          </div>
+          <div class="comp-meta">
+            <div class="comp-name">Input padrão</div>
+            <div class="comp-token">bg: <span>--c-input (--bg3)</span> · border: <span>--c-border-input (--border2)</span><br>radius: 14px · padding: 14px 16px · font: 16px</div>
+          </div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-preview" style="background:#000;padding:32px 20px;flex-direction:column;gap:16px;align-items:stretch;">
+            <div class="m-input-group">
+              <label class="m-input-label">Valor</label>
+              <div style="position:relative;">
+                <span class="m-input-prefix">R$</span>
+                <input class="m-input-amount" type="text" placeholder="0,00" style="pointer-events:none;">
+              </div>
+            </div>
+            <div class="m-input-group">
+              <label class="m-input-label" style="color:var(--c-danger);">Chave inválida</label>
+              <input class="m-input" type="text" value="chave-errada" style="border-color:var(--c-danger-brd);pointer-events:none;">
+              <span style="font-size:11px;color:var(--c-danger);">Formato de chave PIX inválido</span>
+            </div>
+          </div>
+          <div class="comp-meta">
+            <div class="comp-name">Input de valor + estado de erro</div>
+            <div class="comp-token">Amount: Mono 22px bold · prefix: Mono 18px <span>--c-t5</span><br>Error: border <span>--c-danger-brd</span> · helper text <span>--c-danger</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 08 Transações ────────────────── -->
+    <div id="m-transactions" class="m-sub-section" style="scroll-margin-top:120px;">
+      <div class="doc-section-label">08</div>
+      <h2 class="doc-section-title">Lista de Transações</h2>
+      <p class="doc-section-sub">Item de histórico com ícone contextual, descrição e valor formatado.</p>
+
+      <div class="full-comp-card">
+        <div class="full-comp-preview">
+          <div style="width:390px;background:#000;padding:0 16px;">
+            <div class="m-list-section-label">Hoje · 11 mar</div>
+            <div class="m-tx-item">
+              <div class="m-tx-icon m-tx-icon-success"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-8" stroke="#34D399" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <div class="m-tx-info"><div class="m-tx-name">João Silva</div><div class="m-tx-meta">claude-opus-4 · PIX · 14:23</div></div>
+              <div class="m-tx-amount credit">+R$150,00</div>
+            </div>
+            <div class="m-tx-item">
+              <div class="m-tx-icon m-tx-icon-orange"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="#FF5906" stroke-width="1.4"/><path d="M8 5v3M8 10v.5" stroke="#FF5906" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+              <div class="m-tx-info"><div class="m-tx-name">Fornecedor XYZ</div><div class="m-tx-meta">gpt-4o · PIX · 11:05 · aguardando</div></div>
+              <div class="m-tx-amount" style="color:var(--c-orange);">R$420,00</div>
+            </div>
+            <div class="m-tx-item">
+              <div class="m-tx-icon m-tx-icon-danger"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4L4 12" stroke="#E05040" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+              <div class="m-tx-info"><div class="m-tx-name">Proposta bloqueada</div><div class="m-tx-meta">Limite excedido · 09:30</div></div>
+              <div class="m-tx-amount blocked">R$3.000,00</div>
+            </div>
+            <div class="m-list-section-label" style="padding-top:16px;">Ontem · 10 mar</div>
+            <div class="m-tx-item">
+              <div class="m-tx-icon m-tx-icon-neutral"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="#555" stroke-width="1.3"/><path d="M8 5.5v3l1.5 1.5" stroke="#555" stroke-width="1.3" stroke-linecap="round"/></svg></div>
+              <div class="m-tx-info"><div class="m-tx-name" style="color:var(--c-t4);">Proposta expirada</div><div class="m-tx-meta">Coworking Beta · sem resposta</div></div>
+              <div class="m-tx-amount blocked">R$800,00</div>
+            </div>
+          </div>
+        </div>
+        <div class="full-comp-meta">
+          <div class="full-comp-name">Transaction List Item</div>
+          <div class="full-comp-desc">
+            height: auto · padding: 14px 0 · border-bottom: 1px <span style="color:var(--orange);">--c-border</span> · icon: 40×40px radius 12px<br>
+            Name: 13px 600 · Meta: 11px <span style="color:var(--orange);">--c-t4</span> · Amount: Space Mono 13px 700
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 09 Tela Referência ────────────── -->
+    <div id="m-screen" class="m-sub-section" style="scroll-margin-top:120px;">
+      <div class="doc-section-label">09</div>
+      <h2 class="doc-section-title">Tela Referência — Confirmar Pix</h2>
+      <p class="doc-section-sub">Composição completa do Figma node 128:6247. Todos os componentes em contexto real.</p>
+
+      <div style="display:flex;justify-content:center;margin-top:40px;padding-bottom:40px;">
+        <div>
+          <div class="phone-frame">
+            <div class="m-statusbar"><span>9:41</span><div style="width:80px;height:10px;background:var(--bg3);border-radius:5px;"></div><div class="m-statusbar-icons"><svg width="17" height="12" viewBox="0 0 17 12" fill="white"><rect x="0" y="3" width="3" height="9" rx="1"/><rect x="4.5" y="2" width="3" height="10" rx="1"/><rect x="9" y="1" width="3" height="11" rx="1"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg><svg width="16" height="12" viewBox="0 0 16 12" fill="white"><path d="M8 2.4C5.8 2.4 3.8 3.3 2.4 4.8L0 2.4C2 .9 4.9 0 8 0s6 .9 8 2.4L13.6 4.8C12.2 3.3 10.2 2.4 8 2.4z"/><path d="M8 6.4c-1.3 0-2.5.5-3.4 1.3L2.2 5.3C3.8 3.9 5.8 3 8 3s4.2.9 5.8 2.3l-2.4 2.4A4.8 4.8 0 0 0 8 6.4z"/><circle cx="8" cy="11" r="1.5"/></svg><svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0" y="1" width="21" height="10" rx="3" stroke="white" stroke-width="1" opacity=".35"/><rect x="1.5" y="2.5" width="16" height="7" rx="2" fill="white"/><path d="M22 4v4a2 2 0 000-4z" fill="white" opacity=".4"/></svg></div></div>
+            <div class="m-header">
+              <div class="m-header-back"><span class="m-header-back-icon">‹</span><span class="m-header-back-label">Voltar</span></div>
+              <div class="m-header-title">Confirmar Pix</div>
+              <div class="m-header-ghost"></div>
+            </div>
+            <div class="m-amount-hero">
+              <div class="m-amount-label">Você aprovará</div>
+              <div class="m-amount-row">
+                <span class="m-amount-currency">R$</span>
+                <div><span class="m-amount-int">200</span><span class="m-amount-dec">,00</span></div>
+              </div>
+              <div class="m-amount-badge"><div class="m-amount-badge-dot">⚡</div>Pix instantâneo</div>
+            </div>
+            <div style="height:20px;"></div>
+            <div class="m-recipient-card">
+              <div class="m-recipient-section-label">DESTINATÁRIO</div>
+              <div class="m-recipient-row">
+                <div class="m-avatar">J</div>
+                <div class="m-recipient-info">
+                  <div class="m-recipient-name">João Silva</div>
+                  <div class="m-recipient-email">joao@pix.com</div>
+                </div>
+                <div class="m-valid-badge">✓ Válido</div>
+              </div>
+              <div class="m-data-rows">
+                <div class="m-data-row"><div class="m-data-row-label">Chave PIX</div><div class="m-data-row-value">joao@pix.com</div></div>
+                <div class="m-data-row"><div class="m-data-row-label">CPF</div><div class="m-data-row-value mono">•••.456.•••-78</div></div>
+              </div>
+            </div>
+            <div style="height:12px;"></div>
+            <div class="m-info-card">
+              <div class="m-info-icon-inner"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="12" height="9" rx="2" stroke="#909090" stroke-width="1.3"/><path d="M14 7l4 3-4 3V7z" stroke="#909090" stroke-width="1.3" stroke-linejoin="round"/></svg></div>
+              <div class="m-info-body">
+                <div class="m-info-label">Comando do Agente</div>
+                <div class="m-info-text">"paga o João pelo almoço de hoje"</div>
+                <div class="m-info-source">Claude Desktop</div>
+              </div>
+            </div>
+            <div style="height:12px;"></div>
+            <div class="m-info-card">
+              <div class="m-info-icon-inner"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="#909090" stroke-width="1.3"/><path d="M10 6v4.5l3 1.5" stroke="#909090" stroke-width="1.3" stroke-linecap="round"/></svg></div>
+              <div class="m-info-body" style="font-size:13px;color:var(--c-t4);">Expira em <strong style="color:var(--c-t3);">4:32</strong> — após isso, cancelado automaticamente.</div>
+            </div>
+            <div class="m-button-dock">
+              <button class="m-btn m-btn-ghost">Recusar</button>
+              <button class="m-btn m-btn-primary">Aprovar Pix</button>
+            </div>
+            <div class="m-home-indicator"><div class="m-home-indicator-bar"></div></div>
+          </div>
+          <div style="text-align:center;margin-top:16px;font-family:var(--mono);font-size:11px;color:var(--t3);">Figma node 128:6247 · 390×852px</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     03. WEB DESIGN SYSTEM
+══════════════════════════════════ -->
+<section id="web-ds">
+<div class="wrap" style="padding-bottom:0;">
+  <div class="sec-label sec-label-orange">Web Design System</div>
+  <h2 class="sec-title">Web & Dashboard</h2>
+  <p class="sec-sub">Dark editorial · 1160px max · 12 col · Space Grotesk + Philosopher + Space Mono</p>
+</div>
+
+<!-- Web sub-nav -->
+<div class="w-subnav-wrapper">
+  <div class="wrap">
+    <div class="w-subnav">
+      <a class="w-subnav-tab active" href="#w-tokens">01 Tokens</a>
+      <a class="w-subnav-tab" href="#w-buttons">02 Botões</a>
+      <a class="w-subnav-tab" href="#w-forms">03 Forms</a>
+      <a class="w-subnav-tab" href="#w-cards">04 Cards</a>
+      <a class="w-subnav-tab" href="#w-alerts">05 Alertas</a>
+      <a class="w-subnav-tab" href="#w-table">06 Tabela</a>
+      <a class="w-subnav-tab" href="#w-modal">07 Modal</a>
+      <a class="w-subnav-tab" href="#w-nav">08 Navegação</a>
+      <a class="w-subnav-tab" href="#w-feed">09 Feed</a>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- ─────────────────────────────────────────
+     01 — TOKENS & GRID
+───────────────────────────────────────── -->
+<div id="w-tokens" class="w-sub-section" style="scroll-margin-top:120px;">
+  <div class="w-section-num">01</div>
+  <div class="w-section-header">
+    <h3>Tokens & Grid</h3>
+    <p>Variáveis semânticas mapeadas da paleta base — seguem a convenção shadcn/ui adaptada à identidade AgentisPay.</p>
+  </div>
+
+  <!-- Semantic token map -->
+  <div class="comp-block mb-40">
+    <div class="comp-block-title">Tokens semânticos web</div>
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:14px;overflow:hidden;">
+      <table class="w-token-table">
+        <thead><tr><th>Token</th><th>Valor</th><th>Uso</th></tr></thead>
+        <tbody>
+          <tr><td class="w-token-name">--background</td><td class="w-token-value"><span class="w-token-swatch" style="background:#0D1117;"></span>#0D1117</td><td style="font-size:12px;color:var(--t3);">Page background</td></tr>
+          <tr><td class="w-token-name">--card</td><td class="w-token-value"><span class="w-token-swatch" style="background:#111D27;"></span>#111D27</td><td style="font-size:12px;color:var(--t3);">Card surface</td></tr>
+          <tr><td class="w-token-name">--popover</td><td class="w-token-value"><span class="w-token-swatch" style="background:#161F2A;"></span>#161F2A</td><td style="font-size:12px;color:var(--t3);">Dropdown, tooltip bg</td></tr>
+          <tr><td class="w-token-name">--primary</td><td class="w-token-value"><span class="w-token-swatch" style="background:#FF5500;"></span>#FF5500</td><td style="font-size:12px;color:var(--t3);">Brand orange — CTA principal</td></tr>
+          <tr><td class="w-token-name">--primary-foreground</td><td class="w-token-value"><span class="w-token-swatch" style="background:#FFFFFF;"></span>#FFFFFF</td><td style="font-size:12px;color:var(--t3);">Texto sobre primary</td></tr>
+          <tr><td class="w-token-name">--secondary</td><td class="w-token-value"><span class="w-token-swatch" style="background:#1C2733;"></span>#1C2733</td><td style="font-size:12px;color:var(--t3);">Botão secundário, bg4</td></tr>
+          <tr><td class="w-token-name">--muted</td><td class="w-token-value"><span class="w-token-swatch" style="background:#161F2A;"></span>#161F2A</td><td style="font-size:12px;color:var(--t3);">Fundo muted, bg3</td></tr>
+          <tr><td class="w-token-name">--muted-foreground</td><td class="w-token-value"><span class="w-token-swatch" style="background:#8A9BB0;"></span>#8A9BB0</td><td style="font-size:12px;color:var(--t3);">Texto secundário, t2</td></tr>
+          <tr><td class="w-token-name">--accent</td><td class="w-token-value"><span class="w-token-swatch" style="background:#1A7A8A;"></span>#1A7A8A</td><td style="font-size:12px;color:var(--t3);">Teal — ação secundária</td></tr>
+          <tr><td class="w-token-name">--destructive</td><td class="w-token-value"><span class="w-token-swatch" style="background:#C03A2B;"></span>#C03A2B</td><td style="font-size:12px;color:var(--t3);">Danger, erro, recusa</td></tr>
+          <tr><td class="w-token-name">--border</td><td class="w-token-value"><span class="w-token-swatch" style="background:#1E2D3D;"></span>#1E2D3D</td><td style="font-size:12px;color:var(--t3);">Bordas de containers</td></tr>
+          <tr><td class="w-token-name">--input</td><td class="w-token-value"><span class="w-token-swatch" style="background:#263545;"></span>#263545</td><td style="font-size:12px;color:var(--t3);">Borda de input em foco</td></tr>
+          <tr><td class="w-token-name">--ring</td><td class="w-token-value"><span class="w-token-swatch" style="background:rgba(255,85,0,0.22);"></span>rgba(255,85,0,.22)</td><td style="font-size:12px;color:var(--t3);">Focus ring — orange-border</td></tr>
+          <tr><td class="w-token-name">--radius</td><td class="w-token-value">14px</td><td style="font-size:12px;color:var(--t3);">Border-radius base (card)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Grid -->
+  <div class="comp-block mb-40">
+    <div class="comp-block-title">Grid & Breakpoints</div>
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:14px;overflow:hidden;">
+      <table class="w-token-table">
+        <thead><tr><th>Breakpoint</th><th>Largura</th><th>Colunas</th><th>Gutter</th><th>Uso</th></tr></thead>
+        <tbody>
+          <tr><td class="w-token-name">sm</td><td class="w-token-value">&lt; 640px</td><td>4</td><td>16px</td><td style="font-size:12px;color:var(--t3);">Mobile</td></tr>
+          <tr><td class="w-token-name">md</td><td class="w-token-value">640–1024px</td><td>8</td><td>24px</td><td style="font-size:12px;color:var(--t3);">Tablet</td></tr>
+          <tr><td class="w-token-name">lg</td><td class="w-token-value">1024–1280px</td><td>12</td><td>32px</td><td style="font-size:12px;color:var(--t3);">Desktop</td></tr>
+          <tr><td class="w-token-name">xl</td><td class="w-token-value">&gt; 1280px</td><td>12</td><td>48px</td><td style="font-size:12px;color:var(--t3);">Dashboard wide</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Type scale -->
+  <div class="comp-block">
+    <div class="comp-block-title">Escala tipográfica</div>
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:32px;display:flex;flex-direction:column;gap:20px;">
+      <div style="display:flex;align-items:baseline;gap:20px;">
+        <div style="font-family:var(--serif);font-size:48px;font-weight:700;line-height:1.1;color:var(--t);">Herói</div>
+        <div style="font-size:12px;color:var(--t3);font-family:var(--mono);">Philosopher 48px/700 · hero, landing</div>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:20px;">
+        <div style="font-size:32px;font-weight:700;line-height:1.2;color:var(--t);">Título de página</div>
+        <div style="font-size:12px;color:var(--t3);font-family:var(--mono);">Space Grotesk 32px/700</div>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:20px;">
+        <div style="font-size:22px;font-weight:700;line-height:1.3;color:var(--t);">Seção & Card header</div>
+        <div style="font-size:12px;color:var(--t3);font-family:var(--mono);">Space Grotesk 22px/700</div>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:20px;">
+        <div style="font-size:16px;font-weight:500;line-height:1.5;color:var(--t2);">Corpo de texto padrão, descrições e labels longos com mais contexto.</div>
+        <div style="font-size:12px;color:var(--t3);font-family:var(--mono);">16px/500</div>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:20px;">
+        <div style="font-size:13px;line-height:1.5;color:var(--t2);">Texto de suporte, meta, helpers</div>
+        <div style="font-size:12px;color:var(--t3);font-family:var(--mono);">13px/400</div>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:20px;">
+        <div style="font-family:var(--mono);font-size:28px;font-weight:700;letter-spacing:-.02em;color:var(--t);">R$ 12.450,00</div>
+        <div style="font-size:12px;color:var(--t3);font-family:var(--mono);">Space Mono 28px/700 · valores monetários</div>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:20px;">
+        <div style="font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);">LABEL DE TABELA</div>
+        <div style="font-size:12px;color:var(--t3);font-family:var(--mono);">Space Mono 11px/700 uppercase · table headers</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─────────────────────────────────────────
+     02 — BOTÕES
+───────────────────────────────────────── -->
+<div id="w-buttons" class="w-sub-section" style="scroll-margin-top:120px;">
+  <div class="w-section-num">02</div>
+  <div class="w-section-header">
+    <h3>Botões</h3>
+    <p>8 variantes · 3 tamanhos · icon buttons · estados interativos com micro-animação.</p>
+  </div>
+
+  <div class="comp-block mb-24">
+    <div class="comp-block-title">Variantes</div>
+    <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;padding:24px;background:var(--bg2);border-radius:12px;border:1px solid var(--border);">
+      <button class="w-btn w-btn-primary">Aprovar</button>
+      <button class="w-btn w-btn-secondary">Secundário</button>
+      <button class="w-btn w-btn-outline">Outline</button>
+      <button class="w-btn w-btn-ghost">Ghost</button>
+      <button class="w-btn w-btn-teal">Teal</button>
+      <button class="w-btn w-btn-danger">Recusar</button>
+      <button class="w-btn w-btn-success">Aprovado</button>
+      <button class="w-btn w-btn-muted">Muted</button>
+    </div>
+  </div>
+
+  <div class="comp-grid mb-24">
+    <div class="comp-block">
+      <div class="comp-block-title">Tamanhos</div>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:20px;background:var(--bg2);border-radius:12px;border:1px solid var(--border);">
+        <button class="w-btn w-btn-primary w-btn-sm">Small</button>
+        <button class="w-btn w-btn-primary">Default</button>
+        <button class="w-btn w-btn-primary w-btn-lg">Large</button>
+      </div>
+    </div>
+    <div class="comp-block">
+      <div class="comp-block-title">Icon buttons</div>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:20px;background:var(--bg2);border-radius:12px;border:1px solid var(--border);">
+        <button class="w-btn w-btn-primary w-btn-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-8" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="w-btn w-btn-secondary w-btn-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4L4 12" stroke="var(--t2)" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+        <button class="w-btn w-btn-ghost w-btn-icon w-btn-sm">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5" stroke="var(--t3)" stroke-width="1.4"/><path d="M7 4v3M7 8.5v.5" stroke="var(--t3)" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </button>
+        <button class="w-btn w-btn-danger w-btn-icon w-btn-sm">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 3l8 8M11 3L3 11" stroke="#E05040" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+        <button class="w-btn w-btn-ghost w-btn-icon" style="gap:0;">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="4" r="1.2" fill="var(--t3)"/><circle cx="8" cy="8" r="1.2" fill="var(--t3)"/><circle cx="8" cy="12" r="1.2" fill="var(--t3)"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="comp-block">
+    <div class="comp-block-title">Tokens</div>
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden;">
+      <table class="w-token-table">
+        <thead><tr><th>Variante</th><th>Background</th><th>Color</th><th>Border</th></tr></thead>
+        <tbody>
+          <tr><td style="font-size:13px;font-weight:600;">Primary</td><td class="w-token-value">--orange (#FF5500)</td><td class="w-token-value">#fff</td><td class="w-token-value">none · shadow orange</td></tr>
+          <tr><td style="font-size:13px;font-weight:600;">Secondary</td><td class="w-token-value">--bg4 (#1C2733)</td><td class="w-token-value">--t (#fff)</td><td class="w-token-value">--border2</td></tr>
+          <tr><td style="font-size:13px;font-weight:600;">Outline</td><td class="w-token-value">transparent</td><td class="w-token-value">--orange</td><td class="w-token-value">--orange-border</td></tr>
+          <tr><td style="font-size:13px;font-weight:600;">Ghost</td><td class="w-token-value">transparent</td><td class="w-token-value">--t2</td><td class="w-token-value">--border</td></tr>
+          <tr><td style="font-size:13px;font-weight:600;">Danger</td><td class="w-token-value">--danger-bg</td><td class="w-token-value">#E05040</td><td class="w-token-value">--danger-border</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ─────────────────────────────────────────
+     03 — FORMS
+───────────────────────────────────────── -->
+<div id="w-forms" class="w-sub-section" style="scroll-margin-top:120px;">
+  <div class="w-section-num">03</div>
+  <div class="w-section-header">
+    <h3>Formulários & Inputs</h3>
+    <p>Inputs, selects, textareas — estados de foco, erro, sucesso e disabled com transições.</p>
+  </div>
+
+  <div class="comp-grid mb-32">
+    <div class="comp-block">
+      <div class="comp-block-title">Estados</div>
+      <div style="display:flex;flex-direction:column;gap:20px;">
+        <div class="w-form-group">
+          <label class="w-label">Nome do destinatário <span class="w-label-hint">opcional</span></label>
+          <input class="w-input" type="text" placeholder="João Silva">
+          <span class="w-helper">Exibido na confirmação da proposta</span>
+        </div>
+        <div class="w-form-group">
+          <label class="w-label">Chave PIX <span style="color:var(--danger);">*</span></label>
+          <input class="w-input error" type="text" value="chave-invalida-123">
+          <span class="w-helper error">Chave PIX inválida. Verifique o formato.</span>
+        </div>
+        <div class="w-form-group">
+          <label class="w-label">E-mail verificado</label>
+          <input class="w-input success" type="text" value="joao@empresa.com">
+          <span class="w-helper success">E-mail verificado com sucesso.</span>
+        </div>
+        <div class="w-form-group">
+          <label class="w-label" style="color:var(--t3);">Campo bloqueado</label>
+          <input class="w-input" type="text" value="Somente leitura" disabled>
+        </div>
+      </div>
+    </div>
+    <div class="comp-block">
+      <div class="comp-block-title">Input monetário & Select</div>
+      <div style="display:flex;flex-direction:column;gap:20px;">
+        <div class="w-form-group">
+          <label class="w-label">Valor do PIX</label>
+          <div class="w-input-wrap">
+            <span class="w-input-prefix">R$</span>
+            <input class="w-input has-prefix" type="text" placeholder="0,00" style="font-family:var(--mono);font-size:20px;font-weight:700;">
+          </div>
+        </div>
+        <div class="w-form-group">
+          <label class="w-label">Agente</label>
+          <select class="w-input w-select">
+            <option>claude-opus-4</option>
+            <option>gpt-4o</option>
+            <option>gemini-1.5-pro</option>
+          </select>
+        </div>
+        <div class="w-form-group">
+          <label class="w-label">Observações</label>
+          <textarea class="w-input w-textarea" placeholder="Contexto adicional para a proposta..."></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="comp-block">
+    <div class="comp-block-title">Campo de busca</div>
+    <div class="w-table-search" style="max-width:100%;">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="6" cy="6" r="4" stroke="var(--t3)" stroke-width="1.4"/><path d="M9.5 9.5l2.5 2.5" stroke="var(--t3)" stroke-width="1.4" stroke-linecap="round"/></svg>
+      <input type="text" placeholder="Buscar transações, agentes, destinatários...">
+      <span class="w-kbd">⌘K</span>
+    </div>
+  </div>
+</div>
+
+<!-- ─────────────────────────────────────────
+     04 — CARDS & LAYOUT
+───────────────────────────────────────── -->
+<div id="w-cards" class="w-sub-section" style="scroll-margin-top:120px;">
+  <div class="w-section-num">04</div>
+  <div class="w-section-header">
+    <h3>Cards & Layout</h3>
+    <p>Metric cards, content cards com gradiente sutil, bento grid assimétrico — estética dark editorial.</p>
+  </div>
+
+  <!-- Stat cards -->
+  <div class="comp-block-title" style="margin-bottom:16px;">Metric cards (dashboard KPI)</div>
+  <div class="w-stat-grid mb-40">
+    <div class="w-stat-card">
+      <div class="w-stat-label">Saldo disponível</div>
+      <div class="w-stat-value">R$ 24.500</div>
+      <div class="w-stat-delta up">↑ 12% hoje</div>
+    </div>
+    <div class="w-stat-card">
+      <div class="w-stat-label">Pendentes</div>
+      <div class="w-stat-value" style="color:var(--orange);">3</div>
+      <div class="w-stat-sub">R$ 4.820,00 · aguardando aprovação</div>
+    </div>
+    <div class="w-stat-card">
+      <div class="w-stat-label">Liquidadas hoje</div>
+      <div class="w-stat-value" style="color:var(--success);">R$ 8.200</div>
+      <div class="w-stat-delta up">↑ 5 transações</div>
+    </div>
+    <div class="w-stat-card">
+      <div class="w-stat-label">Recusadas</div>
+      <div class="w-stat-value" style="color:#E05040;">1</div>
+      <div class="w-stat-delta down">↑ acima do normal</div>
+    </div>
+  </div>
+
+  <!-- Bento grid -->
+  <div class="comp-block-title" style="margin-bottom:16px;">Bento grid (layout assimétrico)</div>
+  <div class="w-bento mb-40">
+    <div class="w-card w-card-orange w-bento-wide" style="padding:28px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--orange);margin-bottom:12px;">Agente ativo</div>
+      <div style="font-size:20px;font-weight:700;margin-bottom:6px;">claude-opus-4</div>
+      <div style="font-size:13px;color:var(--t2);margin-bottom:20px;">3 propostas pendentes · limite R$ 2.000/dia</div>
+      <div style="display:flex;gap:8px;">
+        <button class="w-btn w-btn-primary w-btn-sm">Revisar propostas</button>
+        <button class="w-btn w-btn-ghost w-btn-sm">Configurar</button>
+      </div>
+    </div>
+    <div class="w-card w-card-elevated" style="padding:28px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);margin-bottom:12px;">Segurança</div>
+      <div style="font-size:16px;font-weight:700;margin-bottom:4px;">Biometria ativa</div>
+      <div style="font-size:13px;color:var(--success);">● Última verificação há 2 min</div>
+    </div>
+    <div class="w-card" style="padding:28px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);margin-bottom:12px;">Política PIX</div>
+      <div style="font-family:var(--mono);font-size:24px;font-weight:700;margin-bottom:4px;">R$ 5.000</div>
+      <div style="font-size:12px;color:var(--t3);">Limite diário · 2 de 5 mil usados</div>
+    </div>
+    <div class="w-card w-card-teal" style="padding:28px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-bottom:12px;">Próximo vencimento</div>
+      <div style="font-size:16px;font-weight:700;margin-bottom:4px;">API token expira</div>
+      <div style="font-size:13px;color:var(--t2);">em 7 dias · claude-opus-4</div>
+    </div>
+    <div class="w-card w-bento-wide" style="padding:28px;display:flex;align-items:center;gap:24px;">
+      <img src="./assets/illustrations/symbol-orange.png" alt="" style="width:80px;height:80px;object-fit:contain;border-radius:12px;">
+      <div>
+        <div style="font-size:18px;font-weight:700;margin-bottom:4px;">Agentis Pay</div>
+        <div style="font-size:13px;color:var(--t2);">Pagamentos PIX controlados por agentes de IA, com aprovação humana em cada transação.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card variants -->
+  <div class="comp-block-title" style="margin-bottom:16px;">Variantes de card</div>
+  <div class="comp-grid">
+    <div class="comp-block">
+      <div class="w-card w-card-sm" style="margin-bottom:12px;">
+        <div style="font-size:13px;font-weight:600;margin-bottom:4px;">Card padrão</div>
+        <div style="font-size:12px;color:var(--t3);">bg2 · border #1E2D3D · radius 16px</div>
+      </div>
+      <div class="w-card w-card-sm w-card-orange" style="margin-bottom:12px;">
+        <div style="font-size:13px;font-weight:600;color:var(--orange);margin-bottom:4px;">Card orange</div>
+        <div style="font-size:12px;color:var(--t3);">gradient sutil + border orange-border</div>
+      </div>
+      <div class="w-card w-card-sm w-card-teal">
+        <div style="font-size:13px;font-weight:600;color:var(--teal);margin-bottom:4px;">Card teal</div>
+        <div style="font-size:12px;color:var(--t3);">gradient sutil + border teal-border</div>
+      </div>
+    </div>
+    <div class="comp-block">
+      <div class="w-card w-card-sm w-card-elevated" style="margin-bottom:12px;">
+        <div style="font-size:13px;font-weight:600;margin-bottom:4px;">Card elevated</div>
+        <div style="font-size:12px;color:var(--t3);">bg3 · border2 · shadow 0 8px 32px</div>
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:20px;overflow:hidden;position:relative;">
+        <div style="position:absolute;top:0;right:0;width:120px;height:120px;background:radial-gradient(circle at top right, rgba(255,85,0,.06) 0%, transparent 70%);pointer-events:none;"></div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--orange);margin-bottom:10px;">Card com aura</div>
+        <div style="font-size:13px;color:var(--t2);">Gradiente radial sutil para destacar conteúdo importante.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─────────────────────────────────────────
+     05 — ALERTAS
+───────────────────────────────────────── -->
+<div id="w-alerts" class="w-sub-section" style="scroll-margin-top:120px;">
+  <div class="w-section-num">05</div>
+  <div class="w-section-header">
+    <h3>Alertas & Notificações</h3>
+    <p>Alertas inline, toasts com contexto, chips de filtro — comunicação de estado semântica.</p>
+  </div>
+
+  <div class="comp-block-title" style="margin-bottom:16px;">Alertas inline</div>
+  <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:40px;">
+    <div class="w-alert w-alert-orange">
+      <div class="w-alert-icon" style="background:rgba(255,85,0,.15);">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="#FF5500" stroke-width="1.4"/><path d="M8 5v3M8 10v.5" stroke="#FF5500" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </div>
+      <div class="w-alert-body">
+        <div class="w-alert-title">claude-opus-4 propôs 3 transações</div>
+        <div class="w-alert-sub" style="color:rgba(255,85,0,.75);">Consentimento biométrico pendente · Janela expira em 8 min</div>
+      </div>
+      <button class="w-btn w-btn-outline w-btn-sm" style="flex-shrink:0;">Ver agora</button>
+    </div>
+    <div class="w-alert w-alert-success">
+      <div class="w-alert-icon" style="background:rgba(52,211,153,.1);">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-8" stroke="#34D399" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="w-alert-body">
+        <div class="w-alert-title">Proposta liquidada com sucesso</div>
+        <div class="w-alert-sub" style="color:rgba(52,211,153,.7);">R$ 200,00 · João Silva · PIX · 14:23</div>
+      </div>
+    </div>
+    <div class="w-alert w-alert-danger">
+      <div class="w-alert-icon" style="background:rgba(192,58,43,.1);">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4L4 12" stroke="#E05040" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </div>
+      <div class="w-alert-body">
+        <div class="w-alert-title">Fronteira de política atingida</div>
+        <div class="w-alert-sub" style="color:rgba(224,80,64,.7);">Limite diário de R$ 5.000,00 esgotado · Propostas bloqueadas</div>
+      </div>
+      <button class="w-btn w-btn-danger w-btn-sm" style="flex-shrink:0;">Revisar política</button>
+    </div>
+    <div class="w-alert w-alert-muted">
+      <div class="w-alert-icon" style="background:var(--bg4);">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="var(--t3)" stroke-width="1.4"/><path d="M8 5v3M8 10v.5" stroke="var(--t3)" stroke-width="1.4" stroke-linecap="round"/></svg>
+      </div>
+      <div class="w-alert-body">
+        <div class="w-alert-title">Proposta expirada automaticamente</div>
+        <div class="w-alert-sub">Janela de aprovação encerrada · #TXN-0037 arquivada</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="comp-grid mb-40">
+    <div class="comp-block">
+      <div class="comp-block-title">Toasts</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="w-toast">
+          <div class="w-toast-dot" style="background:var(--success);"></div>
+          <div class="w-toast-body">
+            <div class="w-toast-title">PIX enviado</div>
+            <div class="w-toast-sub">R$ 200,00 para João Silva · 14:23</div>
+          </div>
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="flex-shrink:0;opacity:.4;"><path d="M1 1l10 10M11 1L1 11" stroke="var(--t2)" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </div>
+        <div class="w-toast">
+          <div class="w-toast-dot" style="background:var(--orange);"></div>
+          <div class="w-toast-body">
+            <div class="w-toast-title">Aprovação pendente</div>
+            <div class="w-toast-sub">claude-opus-4 aguarda biometria</div>
+          </div>
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="flex-shrink:0;opacity:.4;"><path d="M1 1l10 10M11 1L1 11" stroke="var(--t2)" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </div>
+      </div>
+    </div>
+    <div class="comp-block">
+      <div class="comp-block-title">Chips de filtro</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <span class="w-chip w-chip-active">Todos</span>
+        <span class="w-chip w-chip-default">Pendentes</span>
+        <span class="w-chip w-chip-success">Aprovados</span>
+        <span class="w-chip w-chip-danger">Recusados</span>
+        <span class="w-chip w-chip-default">Expirados</span>
+        <span class="w-chip w-chip-default">claude-opus-4</span>
+        <span class="w-chip w-chip-default">gpt-4o</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─────────────────────────────────────────
+     06 — TABELA
+───────────────────────────────────────── -->
+<div id="w-table" class="w-sub-section" style="scroll-margin-top:120px;">
+  <div class="w-section-num">06</div>
+  <div class="w-section-header">
+    <h3>Tabela de dados</h3>
+    <p>Layout padrão para listagem de transações — toolbar com busca e filtro, hover states, badges de status.</p>
+  </div>
+
+  <div class="w-table-wrap mb-48">
+    <div class="w-table-toolbar">
+      <div class="w-table-title">Transações</div>
+      <div class="w-table-search">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="5.5" cy="5.5" r="3.5" stroke="var(--t3)" stroke-width="1.3"/><path d="M9 9l2 2" stroke="var(--t3)" stroke-width="1.3" stroke-linecap="round"/></svg>
+        <input type="text" placeholder="Buscar...">
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button class="w-btn w-btn-ghost w-btn-sm">Exportar</button>
+        <button class="w-btn w-btn-primary w-btn-sm">Nova proposta</button>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;padding:12px 20px;border-bottom:1px solid var(--border);">
+      <span class="w-chip w-chip-active" style="font-size:11px;padding:3px 10px;">Todos</span>
+      <span class="w-chip w-chip-default" style="font-size:11px;padding:3px 10px;">Pendentes <span style="background:var(--orange);color:#fff;font-size:10px;font-weight:700;padding:0 5px;border-radius:100px;margin-left:4px;">3</span></span>
+      <span class="w-chip w-chip-default" style="font-size:11px;padding:3px 10px;">Aprovados</span>
+      <span class="w-chip w-chip-default" style="font-size:11px;padding:3px 10px;">Recusados</span>
+    </div>
+    <table class="w-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Destinatário</th>
+          <th>Agente</th>
+          <th>Valor</th>
+          <th>Status</th>
+          <th>Data</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-family:var(--mono);font-size:11px;color:var(--t3);">#TXN-0041</td>
+          <td><div style="font-weight:600;font-size:13px;">João Silva</div><div style="font-size:11px;color:var(--t3);">joao@email.com</div></td>
+          <td style="font-size:12px;color:var(--t2);">claude-opus-4</td>
+          <td style="font-family:var(--mono);font-weight:700;">R$ 200,00</td>
+          <td><span class="m-badge m-badge-success" style="font-size:11px;"><span class="m-badge-dot"></span>Aprovado</span></td>
+          <td style="font-size:12px;color:var(--t3);">11 mar · 14:23</td>
+          <td><button class="w-btn w-btn-ghost w-btn-sm">Ver</button></td>
+        </tr>
+        <tr>
+          <td style="font-family:var(--mono);font-size:11px;color:var(--t3);">#TXN-0040</td>
+          <td><div style="font-weight:600;font-size:13px;">Fornecedor XYZ</div><div style="font-size:11px;color:var(--t3);">cnpj:12.345.678</div></td>
+          <td style="font-size:12px;color:var(--t2);">gpt-4o</td>
+          <td style="font-family:var(--mono);font-weight:700;">R$ 1.420,00</td>
+          <td><span class="m-badge m-badge-pending" style="font-size:11px;"><span class="m-badge-dot"></span>Pendente</span></td>
+          <td style="font-size:12px;color:var(--t3);">11 mar · 11:05</td>
+          <td><button class="w-btn w-btn-primary w-btn-sm">Aprovar</button></td>
+        </tr>
+        <tr>
+          <td style="font-family:var(--mono);font-size:11px;color:var(--t3);">#TXN-0039</td>
+          <td><div style="font-weight:600;font-size:13px;">Maria Fernanda</div><div style="font-size:11px;color:var(--t3);">+55 11 99999-0000</div></td>
+          <td style="font-size:12px;color:var(--t2);">claude-opus-4</td>
+          <td style="font-family:var(--mono);font-weight:700;color:#E05040;">R$ 3.000,00</td>
+          <td><span class="m-badge m-badge-danger" style="font-size:11px;"><span class="m-badge-dot"></span>Recusado</span></td>
+          <td style="font-size:12px;color:var(--t3);">11 mar · 09:30</td>
+          <td><button class="w-btn w-btn-ghost w-btn-sm">Ver</button></td>
+        </tr>
+        <tr>
+          <td style="font-family:var(--mono);font-size:11px;color:var(--t3);">#TXN-0038</td>
+          <td><div style="font-weight:600;font-size:13px;">Coworking Beta</div><div style="font-size:11px;color:var(--t3);">cowork@beta.io</div></td>
+          <td style="font-size:12px;color:var(--t2);">gemini-1.5</td>
+          <td style="font-family:var(--mono);font-weight:700;color:var(--t3);">R$ 800,00</td>
+          <td><span class="m-badge" style="font-size:11px;background:var(--bg4);border:1px solid var(--border2);color:var(--t3);"><span class="m-badge-dot" style="background:var(--t3);"></span>Expirado</span></td>
+          <td style="font-size:12px;color:var(--t3);">10 mar · 18:00</td>
+          <td><button class="w-btn w-btn-ghost w-btn-sm">Ver</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-top:1px solid var(--border);">
+      <div style="font-size:12px;color:var(--t3);">Exibindo 4 de 41 transações</div>
+      <div class="w-pagination">
+        <button class="w-page-btn disabled">←</button>
+        <button class="w-page-btn active">1</button>
+        <button class="w-page-btn">2</button>
+        <button class="w-page-btn">3</button>
+        <span style="color:var(--t3);font-size:13px;padding:0 4px;">...</span>
+        <button class="w-page-btn">9</button>
+        <button class="w-page-btn">→</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─────────────────────────────────────────
+     07 — MODAL
+───────────────────────────────────────── -->
+<div id="w-modal" class="w-sub-section" style="scroll-margin-top:120px;">
+  <div class="w-section-num">07</div>
+  <div class="w-section-header">
+    <h3>Modal & Dialog</h3>
+    <p>Dialogs de confirmação, formulários inline, alertas críticos — estrutura consistente com header + body + footer.</p>
+  </div>
+
+  <div class="comp-grid mb-40">
+    <!-- Modal padrão -->
+    <div style="background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:36px;position:relative;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+        <div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);margin-bottom:6px;">Política de gastos</div>
+          <h3 style="font-size:20px;font-weight:700;">Ajustar fronteira de agente</h3>
+        </div>
+        <button class="w-btn w-btn-ghost w-btn-icon w-btn-sm">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 1l10 10M11 1L1 11" stroke="var(--t3)" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <div style="font-size:14px;color:var(--t2);line-height:1.6;margin-bottom:20px;">
+        Ajustando fronteira de <strong style="color:var(--t);">claude-opus-4</strong>. Propostas acima exigem revisão humana antes da execução.
+      </div>
+      <div class="w-form-group mb-20">
+        <label class="w-label">Limite diário de proposta</label>
+        <div class="w-input-wrap">
+          <span class="w-input-prefix" style="font-size:14px;">R$</span>
+          <input class="w-input has-prefix" type="text" value="2.000,00" style="font-family:var(--mono);font-size:18px;font-weight:700;">
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;">
+        <button class="w-btn w-btn-ghost" style="flex:1;">Cancelar</button>
+        <button class="w-btn w-btn-primary" style="flex:2;">Salvar limite</button>
+      </div>
+    </div>
+
+    <!-- Modal de confirmação crítica -->
+    <div style="background:var(--bg);border:1px solid var(--danger-border);border-radius:20px;padding:36px;position:relative;">
+      <div style="display:flex;flex-direction:column;align-items:center;text-align:center;margin-bottom:24px;">
+        <div style="width:52px;height:52px;border-radius:14px;background:var(--danger-bg);border:1px solid var(--danger-border);display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 8v5M11 15v.5" stroke="#E05040" stroke-width="2" stroke-linecap="round"/><path d="M9.26 3.5l-7 12.12A2 2 0 004 18.5h14a2 2 0 001.74-2.88l-7-12.12a2 2 0 00-3.48 0z" stroke="#E05040" stroke-width="1.6"/></svg>
+        </div>
+        <h3 style="font-size:18px;font-weight:700;margin-bottom:8px;">Revogar acesso do agente</h3>
+        <div style="font-size:14px;color:var(--t2);line-height:1.6;">Esta ação desconecta <strong style="color:var(--t);">claude-opus-4</strong> imediatamente. Propostas pendentes serão arquivadas.</div>
+      </div>
+      <div class="w-alert w-alert-danger" style="margin-bottom:20px;">
+        <div class="w-alert-icon" style="background:rgba(192,58,43,.1);">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 3l8 8M11 3L3 11" stroke="#E05040" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <div class="w-alert-body">
+          <div style="font-size:13px;color:var(--t2);">3 propostas pendentes serão descartadas</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;">
+        <button class="w-btn w-btn-ghost" style="flex:1;">Cancelar</button>
+        <button class="w-btn w-btn-danger" style="flex:1;">Revogar agente</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─────────────────────────────────────────
+     08 — NAVEGAÇÃO
+───────────────────────────────────────── -->
+<div id="w-nav" class="w-sub-section" style="scroll-margin-top:120px;">
+  <div class="w-section-num">08</div>
+  <div class="w-section-header">
+    <h3>Navegação</h3>
+    <p>Sidebar de dashboard, tabs horizontais, breadcrumb e paginação — padrão editorial dark.</p>
+  </div>
+
+  <div class="comp-grid mb-40">
+    <!-- Sidebar -->
+    <div class="comp-block">
+      <div class="comp-block-title">Sidebar</div>
+      <div class="w-sidebar">
+        <div class="w-sidebar-header">
+          <div class="w-sidebar-title">Dashboard</div>
+        </div>
+        <a class="w-sidebar-item active" href="#">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="5" height="5" rx="1.5" stroke="var(--orange)" stroke-width="1.4"/><rect x="9" y="2" width="5" height="5" rx="1.5" stroke="var(--orange)" stroke-width="1.4"/><rect x="2" y="9" width="5" height="5" rx="1.5" stroke="var(--orange)" stroke-width="1.4"/><rect x="9" y="9" width="5" height="5" rx="1.5" stroke="var(--orange)" stroke-width="1.4"/></svg>
+          Visão geral
+        </a>
+        <a class="w-sidebar-item" href="#">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v12M2 8h12" stroke="var(--t3)" stroke-width="1.4" stroke-linecap="round"/></svg>
+          Aprovações <span class="w-sidebar-badge">3</span>
+        </a>
+        <a class="w-sidebar-item" href="#">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="4" width="12" height="9" rx="2" stroke="var(--t3)" stroke-width="1.4"/><path d="M5 4V3a1 1 0 011-1h4a1 1 0 011 1v1" stroke="var(--t3)" stroke-width="1.4"/></svg>
+          Histórico
+        </a>
+        <a class="w-sidebar-item" href="#">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="6" r="3" stroke="var(--t3)" stroke-width="1.4"/><path d="M2 14c0-3.31 2.69-5 6-5s6 1.69 6 5" stroke="var(--t3)" stroke-width="1.4" stroke-linecap="round"/></svg>
+          Agentes
+        </a>
+        <a class="w-sidebar-item" href="#">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="var(--t3)" stroke-width="1.4"/><path d="M8 5v3M8 10v.5" stroke="var(--t3)" stroke-width="1.4" stroke-linecap="round"/></svg>
+          Configurações
+        </a>
+      </div>
+    </div>
+
+    <!-- Tabs + breadcrumb + pagination -->
+    <div class="comp-block" style="display:flex;flex-direction:column;gap:32px;">
+      <div>
+        <div class="comp-block-title" style="margin-bottom:12px;">Tabs horizontais</div>
+        <div class="w-tabs">
+          <div class="w-tab-item active">Pendentes <span style="background:var(--orange);color:#fff;font-size:10px;font-weight:700;padding:1px 5px;border-radius:100px;margin-left:4px;">3</span></div>
+          <div class="w-tab-item">Aprovados</div>
+          <div class="w-tab-item">Recusados</div>
+          <div class="w-tab-item">Expirados</div>
+        </div>
+        <div style="font-size:13px;color:var(--t3);">Tab content area</div>
+      </div>
+
+      <div>
+        <div class="comp-block-title" style="margin-bottom:12px;">Breadcrumb</div>
+        <div class="w-breadcrumb">
+          <a href="#">Dashboard</a>
+          <span class="sep">/</span>
+          <a href="#">Transações</a>
+          <span class="sep">/</span>
+          <span class="current">#TXN-0041</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="comp-block-title" style="margin-bottom:12px;">Paginação</div>
+        <div class="w-pagination">
+          <button class="w-page-btn disabled">←</button>
+          <button class="w-page-btn active">1</button>
+          <button class="w-page-btn">2</button>
+          <button class="w-page-btn">3</button>
+          <span style="color:var(--t3);font-size:13px;padding:0 2px;">...</span>
+          <button class="w-page-btn">9</button>
+          <button class="w-page-btn">→</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="comp-block-title" style="margin-bottom:12px;">Keyboard shortcuts</div>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;font-size:13px;color:var(--t2);">
+          <span><span class="w-kbd">⌘K</span> Busca global</span>
+          <span><span class="w-kbd">⌘A</span> Aprovar selecionados</span>
+          <span><span class="w-kbd">Esc</span> Fechar modal</span>
+          <span><span class="w-kbd">↑</span> <span class="w-kbd">↓</span> Navegar</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─────────────────────────────────────────
+     09 — FEED DE AGENTE
+───────────────────────────────────────── -->
+<div id="w-feed" class="w-sub-section" style="scroll-margin-top:120px;">
+  <div class="w-section-num">09</div>
+  <div class="w-section-header">
+    <h3>Feed de atividade do agente</h3>
+    <p>Timeline vertical de eventos — ações do agente, aprovações humanas, bloqueios de política.</p>
+  </div>
+
+  <div class="w-card mb-48">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;">
+      <div style="font-size:16px;font-weight:700;">Atividade recente</div>
+      <div style="display:flex;gap:8px;">
+        <span class="w-chip w-chip-active" style="font-size:11px;padding:3px 10px;">Todos</span>
+        <span class="w-chip w-chip-default" style="font-size:11px;padding:3px 10px;">Agente</span>
+        <span class="w-chip w-chip-default" style="font-size:11px;padding:3px 10px;">Humano</span>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:0;">
+
+      <!-- Event 1 -->
+      <div style="display:flex;gap:16px;padding-bottom:28px;">
+        <div style="width:36px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;">
+          <div style="width:36px;height:36px;border-radius:10px;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;z-index:1;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-8" stroke="#34D399" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div style="width:1px;flex:1;background:var(--border);margin-top:8px;"></div>
+        </div>
+        <div style="flex:1;padding-top:4px;">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:4px;">
+            <div style="font-size:14px;font-weight:600;">Proposta liquidada</div>
+            <div style="font-size:11px;color:var(--t3);font-family:var(--mono);white-space:nowrap;">14:23</div>
+          </div>
+          <div style="font-size:13px;color:var(--t2);margin-bottom:6px;">R$ 200,00 · João Silva · PIX · aprovado por <strong style="color:var(--t);">Thiago</strong></div>
+          <div style="display:flex;gap:6px;"><span class="m-badge m-badge-success" style="font-size:11px;"><span class="m-badge-dot"></span>Aprovado</span><span style="font-size:11px;color:var(--t3);">claude-opus-4 · #TXN-0041</span></div>
+        </div>
+      </div>
+
+      <!-- Event 2 -->
+      <div style="display:flex;gap:16px;padding-bottom:28px;">
+        <div style="width:36px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;">
+          <div style="width:36px;height:36px;border-radius:10px;background:rgba(255,85,0,.1);border:1px solid rgba(255,85,0,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;z-index:1;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="#FF5500" stroke-width="1.4"/><path d="M8 5v3M8 10v.5" stroke="#FF5500" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </div>
+          <div style="width:1px;flex:1;background:var(--border);margin-top:8px;"></div>
+        </div>
+        <div style="flex:1;padding-top:4px;">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:4px;">
+            <div style="font-size:14px;font-weight:600;">Aguardando aprovação biométrica</div>
+            <div style="font-size:11px;color:var(--t3);font-family:var(--mono);white-space:nowrap;">11:05</div>
+          </div>
+          <div style="font-size:13px;color:var(--t2);margin-bottom:6px;">gpt-4o propôs R$ 1.420,00 para Fornecedor XYZ · Notificação push enviada</div>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <button class="w-btn w-btn-primary w-btn-sm">Aprovar</button>
+            <button class="w-btn w-btn-danger w-btn-sm">Recusar</button>
+            <span style="font-size:11px;color:var(--orange);font-family:var(--mono);">⏱ 6:22 restantes</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Event 3 -->
+      <div style="display:flex;gap:16px;padding-bottom:28px;">
+        <div style="width:36px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;">
+          <div style="width:36px;height:36px;border-radius:10px;background:rgba(192,58,43,.1);border:1px solid rgba(192,58,43,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;z-index:1;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4L4 12" stroke="#E05040" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </div>
+          <div style="width:1px;flex:1;background:var(--border);margin-top:8px;"></div>
+        </div>
+        <div style="flex:1;padding-top:4px;">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:4px;">
+            <div style="font-size:14px;font-weight:600;">Proposta bloqueada pela política</div>
+            <div style="font-size:11px;color:var(--t3);font-family:var(--mono);white-space:nowrap;">09:30</div>
+          </div>
+          <div style="font-size:13px;color:var(--t2);margin-bottom:6px;">R$ 3.000,00 ultrapassa a fronteira de claude-opus-4 (R$ 2.000/dia). Escalonado para revisão.</div>
+          <div style="display:flex;gap:6px;"><span class="m-badge m-badge-danger" style="font-size:11px;"><span class="m-badge-dot"></span>Bloqueado</span><span style="font-size:11px;color:var(--t3);">#TXN-0039 · arquivado</span></div>
+        </div>
+      </div>
+
+      <!-- Event 4 -->
+      <div style="display:flex;gap:16px;">
+        <div style="width:36px;flex-shrink:0;display:flex;align-items:flex-start;">
+          <div style="width:36px;height:36px;border-radius:10px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="5" width="12" height="8" rx="1.5" stroke="var(--t3)" stroke-width="1.4"/><path d="M5 5V4a3 3 0 016 0v1" stroke="var(--t3)" stroke-width="1.4"/></svg>
+          </div>
+        </div>
+        <div style="flex:1;padding-top:4px;">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:4px;">
+            <div style="font-size:14px;font-weight:600;">Agente conectado</div>
+            <div style="font-size:11px;color:var(--t3);font-family:var(--mono);white-space:nowrap;">08:00</div>
+          </div>
+          <div style="font-size:13px;color:var(--t2);">claude-opus-4 autenticado via API key · Pronto para propostas</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <img src="./assets/logo/logo-dark-orange.png" alt="AgentisPay" style="height:22px;width:auto;opacity:.5;">
+      <div class="footer-copy">Design System v1.0 · AgentisPay · Março 2026 · Confidencial</div>
+      <div class="footer-links">
+        <a href="#brand">Brand</a>
+        <a href="#mobile-ds">Mobile</a>
+        <a href="#web-ds">Web</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Active nav tab on scroll
+const sections = [
+  { id: 'brand', tab: 0 },
+  { id: 'mobile-ds', tab: 1 },
+  { id: 'web-ds', tab: 2 }
+];
+const tabs = document.querySelectorAll('.nav-tab');
+
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const match = sections.find(s => s.id === e.target.id);
+      if (match) {
+        tabs.forEach(t => t.classList.remove('active'));
+        tabs[match.tab].classList.add('active');
+      }
+    }
+  });
+}, { threshold: 0.3 });
+
+sections.forEach(s => {
+  const el = document.getElementById(s.id);
+  if (el) obs.observe(el);
+});
+
+// Mobile sub-nav active state
+const mSections = ['m-fundacao','m-nav','m-amount','m-cards','m-buttons','m-badges','m-inputs','m-transactions','m-screen'];
+const mTabs = document.querySelectorAll('.m-subnav-tab');
+const mObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      mTabs.forEach(t => t.classList.remove('active'));
+      const idx = mSections.indexOf(e.target.id);
+      if (idx >= 0 && mTabs[idx]) mTabs[idx].classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -60% 0px' });
+mSections.forEach(id => { const el = document.getElementById(id); if (el) mObs.observe(el); });
+
+// Web sub-nav active state
+const wSections = ['w-tokens','w-buttons','w-forms','w-cards','w-alerts','w-table','w-modal','w-nav','w-feed'];
+const wTabs = document.querySelectorAll('.w-subnav-tab');
+const wObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      wTabs.forEach(t => t.classList.remove('active'));
+      const idx = wSections.indexOf(e.target.id);
+      if (idx >= 0 && wTabs[idx]) wTabs[idx].classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -60% 0px' });
+wSections.forEach(id => { const el = document.getElementById(id); if (el) wObs.observe(el); });
+</script>
+</body>
+</html>
