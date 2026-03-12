@@ -92,4 +92,52 @@ body {
   color: var(--color-text-primary);
   font-family: var(--font-sans);
   margin: 0;
+  transition: background 200ms ease, color 200ms ease;
+}
+
+/* ─── Light theme overrides ──────────────────────────────────────────────── */
+[data-theme="light"] {
+  /* Backgrounds */
+  --color-bg-base:     #F5F7FA;
+  --color-bg-surface:  #FFFFFF;
+  --color-bg-elevated: #EEF2F7;
+  --color-bg-hover:    #E4EBF2;
+
+  /* Borders */
+  --color-border-default: #D0DAE4;
+  --color-border-strong:  #B8C7D4;
+  --color-border-sub:     rgba(208, 218, 228, 0.6);
+
+  /* Text */
+  --color-text-primary:             #0D1117;
+  --color-text-secondary:           #4A6070;
+  --color-text-tertiary:            #8A9BB0;
+  --color-text-tertiary-accessible: #3D5368;
+  --color-text-subtle:              #C4D2DC;
+
+  /* Semantic */
+  --color-semantic-success:        #059669;
+  --color-semantic-success-bg:     rgba(5, 150, 105, 0.08);
+  --color-semantic-success-border: rgba(5, 150, 105, 0.22);
+  --color-semantic-danger:         #DC2626;
+  --color-semantic-danger-fg:      #DC2626;
+  --color-semantic-danger-bg:      rgba(220, 38, 38, 0.08);
+  --color-semantic-danger-border:  rgba(220, 38, 38, 0.22);
+  --color-semantic-info:           #2563EB;
+
+  /* Shadows — lighter on white */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.10);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.16);
+
+  /* Shadcn aliases */
+  --background:       var(--color-bg-base);
+  --foreground:       var(--color-text-primary);
+  --card:             var(--color-bg-surface);
+  --muted:            var(--color-bg-elevated);
+  --muted-foreground: var(--color-text-secondary);
+  --border-color:     var(--color-border-default);
+  --input-border:     var(--color-border-strong);
 }

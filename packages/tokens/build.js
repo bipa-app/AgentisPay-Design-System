@@ -138,18 +138,52 @@ function buildJSON(tokens) {
   return JSON.stringify(out, null, 2) + '\n';
 }
 
+// ─── Light theme CSS output ──────────────────────────────────────────────────
+
+function buildLightThemeCSS(lightTokens) {
+  const flat = flattenTokens(lightTokens);
+  let vars = '';
+  for (const [key, { value, comment }] of Object.entries(flat)) {
+    const cssVar = `--${key}`;
+    const padding = Math.max(1, 34 - cssVar.length);
+    const note = comment ? `   /* ${comment} */` : '';
+    vars += `  ${cssVar}:${' '.repeat(padding)}${value};${note}\n`;
+  }
+  // Shadcn aliases for light mode
+  const shadcn = {
+    '--background':           'var(--color-bg-base)',
+    '--foreground':           'var(--color-text-primary)',
+    '--card':                 'var(--color-bg-surface)',
+    '--card-foreground':      'var(--color-text-primary)',
+    '--popover':              'var(--color-bg-elevated)',
+    '--popover-foreground':   'var(--color-text-primary)',
+    '--muted':                'var(--color-bg-elevated)',
+    '--muted-foreground':     'var(--color-text-secondary)',
+    '--border-color':         'var(--color-border-default)',
+    '--input-border':         'var(--color-border-strong)',
+  };
+  for (const [k, v] of Object.entries(shadcn)) {
+    const padding = Math.max(1, 34 - k.length);
+    vars += `  ${k}:${' '.repeat(padding)}${v};\n`;
+  }
+  return `\n[data-theme="light"] {\n${vars}}\n`;
+}
+
 // ─── Write files ────────────────────────────────────────────────────────────
 
 import { writeFileSync, mkdirSync } from 'fs';
 
 mkdirSync('./dist', { recursive: true });
 
-writeFileSync('./dist/tokens.css',  buildCSS(flat));
+// Build dark (base) + light theme CSS
+const lightTokens = raw.themes?.light ?? {};
+const lightCSS = Object.keys(lightTokens).length ? buildLightThemeCSS(lightTokens) : '';
+writeFileSync('./dist/tokens.css',  buildCSS(flat) + lightCSS);
 writeFileSync('./dist/tokens.scss', buildSCSS(flat));
 writeFileSync('./dist/tokens.js',   buildJS(flat));
 writeFileSync('./dist/tokens.json', buildJSON(flat));
 
-console.log('✓ tokens.css');
+console.log('✓ tokens.css  (dark :root + [data-theme="light"])');
 console.log('✓ tokens.scss');
 console.log('✓ tokens.js');
 console.log('✓ tokens.json');
