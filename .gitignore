@@ -11,3 +11,11 @@
 
 # Assets not for distribution
 assets/_archive/
+
+# Monorepo
+node_modules/
+packages/*/node_modules/
+
+# Generated — rebuild from source with pnpm build:tokens
+packages/tokens/dist/
+.pnpmfile.cjs
