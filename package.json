@@ -1,0 +1,11 @@
+{
+  "name": "agentispay-design-system",
+  "private": true,
+  "version": "1.1.0",
+  "description": "AgentisPay Design System — monorepo root",
+  "scripts": {
+    "build": "pnpm --filter './packages/*' build",
+    "build:tokens": "pnpm --filter @bipa/tokens build"
+  },
+  "packageManager": "pnpm@10.32.1"
+}
