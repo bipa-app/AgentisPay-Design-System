@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+  /* Brand */
+  --color-brand-orange:        #FF5500;
+  --color-brand-orange-dark:   #CC4400;
+  --color-brand-orange-light:  #FF9000;
+  --color-brand-orange-bg:     rgba(255,85,0,0.08);
+  --color-brand-orange-border: rgba(255,85,0,0.22);
+  --color-brand-teal:          #1A7A8A;
+  --color-brand-teal-dark:     #0E6070;
+  --color-brand-teal-bg:       rgba(26,122,138,0.08);
+  --color-brand-teal-border:   rgba(26,122,138,0.22);
+
+  /* Backgrounds */
+  --color-bg-base:     #0D1117;
+  --color-bg-surface:  #111D27;
+  --color-bg-elevated: #161F2A;
+  --color-bg-hover:    #1C2733;
+
+  /* Borders */
+  --color-border-default: #1E2D3D;
+  --color-border-strong:  #263545;
+
+  /* Text */
+  --color-text-primary:            #FFFFFF;
+  --color-text-secondary:          #8A9BB0;
+  --color-text-tertiary:           #4A6070;
+  --color-text-tertiary-accessible:#6B8FA8;
+  --color-text-subtle:             #2A3D4F;
+
+  /* Semantic */
+  --color-semantic-success:        #34D399;
+  --color-semantic-success-bg:     rgba(52,211,153,0.08);
+  --color-semantic-success-border: rgba(52,211,153,0.20);
+  --color-semantic-danger:         #C03A2B;
+  --color-semantic-danger-fg:      #E05040;
+  --color-semantic-danger-bg:      rgba(192,58,43,0.08);
+  --color-semantic-danger-border:  rgba(192,58,43,0.22);
+  --color-semantic-info:           #60A5FA;
+
+  /* Typography */
+  --font-sans:  'Space Grotesk', system-ui, sans-serif;
+  --font-serif: 'Philosopher', Georgia, serif;
+  --font-mono:  'Space Mono', monospace;
+
+  /* Radius */
+  --radius-screen:  40px;
+  --radius-card-lg: 20px;
+  --radius-card:    14px;
+  --radius-btn:     12px;
+  --radius-input:   10px;
+  --radius-inner:   8px;
+  --radius-pill:    100px;
+
+  /* Spacing */
+  --spacing-1: 4px;   --spacing-2: 8px;   --spacing-3: 12px;
+  --spacing-4: 16px;  --spacing-6: 24px;  --spacing-8: 32px;
+  --spacing-12: 48px; --spacing-16: 64px;
+
+  /* Shadow */
+  --shadow-xs: 0 1px 2px rgba(0,0,0,0.4);
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.5);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.6);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.7);
+  --shadow-xl: 0 16px 48px rgba(0,0,0,0.8);
+
+  /* Motion */
+  --motion-duration-instant: 80ms;
+  --motion-duration-fast:    150ms;
+  --motion-duration-base:    250ms;
+  --motion-duration-slow:    400ms;
+  --motion-easing-out:    cubic-bezier(0.0, 0.0, 0.2, 1);
+  --motion-easing-in:     cubic-bezier(0.4, 0.0, 1, 1);
+  --motion-easing-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Z-index */
+  --z-index-modal:   200;
+  --z-index-toast:   300;
+  --z-index-tooltip: 400;
+
+  /* Shadcn aliases */
+  --background:          var(--color-bg-base);
+  --foreground:          var(--color-text-primary);
+  --primary:             var(--color-brand-orange);
+  --primary-foreground:  #ffffff;
+  --radius:              var(--radius-card);
+}
+
+body {
+  background: var(--color-bg-base);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  margin: 0;
+}
