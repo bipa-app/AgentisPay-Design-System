@@ -33,7 +33,8 @@
   /* ── Text ────────────────────────────── */
   --t:  #FFFFFF;
   --t2: #8A9BB0;
-  --t3: #4A6070;
+  --t3: #4A6070;           /* uso decorativo/muted apenas — ratio 2.88:1 não passa AA */
+  --t3-accessible: #6B8FA8; /* t3 acessível — ratio 5.51:1, passa AA em bg */
 
   /* ── Semantic ────────────────────────── */
   --success:     #34D399;
@@ -979,8 +980,9 @@ footer {
     <a class="nav-tab active" href="#brand">Brand Guidelines</a>
     <a class="nav-tab" href="#mobile-ds">Mobile DS</a>
     <a class="nav-tab" href="#web-ds">Web DS</a>
+    <a class="nav-tab" href="#accessibility">Acessibilidade</a>
   </div>
-  <span class="nav-version">v1.0 · 2026</span>
+  <span class="nav-version">v1.2 · 2026</span>
 </nav>
 
 <!-- ══════════════════════════════════
@@ -2865,16 +2867,276 @@ footer {
 </div>
 </section>
 
+<!-- ══════════════════════════════════
+     04. ACESSIBILIDADE (WCAG 2.1)
+══════════════════════════════════ -->
+<section id="accessibility">
+  <div class="wrap">
+
+    <div class="section-header">
+      <div class="section-tag">04</div>
+      <h2 class="section-title">Acessibilidade</h2>
+      <p class="section-desc">Ratios de contraste de todas as combinações de cor/texto, calculados segundo WCAG 2.1. Use esta tabela para garantir que componentes atendam os níveis mínimos exigidos.</p>
+    </div>
+
+    <!-- Legenda -->
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px;">
+      <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--t2);">
+        <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#34D399;"></span> AAA — &gt; 7:1 (texto normal) · &gt; 4.5:1 (texto grande)
+      </span>
+      <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--t2);">
+        <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#FF9000;"></span> AA — ≥ 4.5:1 (texto normal) · ≥ 3:1 (texto grande / UI)
+      </span>
+      <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--t2);">
+        <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#8A9BB0;opacity:.5"></span> AA Large — ≥ 3:1 (apenas texto ≥ 18px ou bold ≥ 14px)
+      </span>
+      <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--t2);">
+        <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#C03A2B;"></span> Fail — não atende nenhum nível
+      </span>
+    </div>
+
+    <!-- Tabela de contraste -->
+    <div style="overflow-x:auto;margin-bottom:48px;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="border-bottom:1px solid var(--border2);">
+            <th style="text-align:left;padding:10px 12px;color:var(--t2);font-weight:500;white-space:nowrap;">Combinação</th>
+            <th style="text-align:center;padding:10px 12px;color:var(--t2);font-weight:500;">Amostra</th>
+            <th style="text-align:center;padding:10px 12px;color:var(--t2);font-weight:500;">Ratio</th>
+            <th style="text-align:center;padding:10px 12px;color:var(--t2);font-weight:500;">Texto Normal</th>
+            <th style="text-align:center;padding:10px 12px;color:var(--t2);font-weight:500;">Texto Grande / UI</th>
+            <th style="text-align:left;padding:10px 12px;color:var(--t2);font-weight:500;">Observação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- AAA rows -->
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 12px;color:var(--t);"><code style="font-family:var(--mono);font-size:11px;color:var(--t2);">--t</code> em <code style="font-family:var(--mono);font-size:11px;color:var(--t2);">--bg</code></td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 10px;background:#0D1117;color:#FFFFFF;border-radius:4px;font-size:12px;">Texto</span></td>
+            <td style="padding:10px 12px;text-align:center;color:var(--t);font-family:var(--mono);font-size:12px;">18.92:1</td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(52,211,153,0.12);color:#34D399;">AAA</span></td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(52,211,153,0.12);color:#34D399;">AAA</span></td>
+            <td style="padding:10px 12px;color:var(--t2);font-size:12px;">Uso geral de texto na página</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 12px;color:var(--t);"><code style="font-family:var(--mono);font-size:11px;color:var(--t2);">--t</code> em <code style="font-family:var(--mono);font-size:11px;color:var(--t2);">--bg2</code></td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 10px;background:#111D27;color:#FFFFFF;border-radius:4px;font-size:12px;">Texto</span></td>
+            <td style="padding:10px 12px;text-align:center;color:var(--t);font-family:var(--mono);font-size:12px;">17.09:1</td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(52,211,153,0.12);color:#34D399;">AAA</span></td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(52,211,153,0.12);color:#34D399;">AAA</span></td>
+            <td style="padding:10px 12px;color:var(--t2);font-size:12px;">Texto em cards</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 12px;color:var(--t);"><code style="font-family:var(--mono);font-size:11px;color:var(--t2);">--t</code> em <code style="font-family:var(--mono);font-size:11px;color:var(--t2);">--bg3</code></td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 10px;background:#161F2A;color:#FFFFFF;border-radius:4px;font-size:12px;">Texto</span></td>
+            <td style="padding:10px 12px;text-align:center;color:var(--t);font-family:var(--mono);font-size:12px;">16.62:1</td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(52,211,153,0.12);color:#34D399;">AAA</span></td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(52,211,153,0.12);color:#34D399;">AAA</span></td>
+            <td style="padding:10px 12px;color:var(--t2);font-size:12px;">Texto em inputs / elevated</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 12px;color:var(--t);"><code style="font-family:var(--mono);font-size:11px;color:var(--t2);">--t</code> em <code style="font-family:var(--mono);font-size:11px;color:var(--t2);">--bg4</code></td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 10px;background:#1C2733;color:#FFFFFF;border-radius:4px;font-size:12px;">Texto</span></td>
+            <td style="padding:10px 12px;text-align:center;color:var(--t);font-family:var(--mono);font-size:12px;">15.14:1</td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(52,211,153,0.12);color:#34D399;">AAA</span></td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(52,211,153,0.12);color:#34D399;">AAA</span></td>
+            <td style="padding:10px 12px;color:var(--t2);font-size:12px;">Texto em hover / secundário</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 12px;color:var(--t);"><code style="font-family:var(--mono);font-size:11px;color:var(--t2);">--t2</code> em <code style="font-family:var(--mono);font-size:11px;color:var(--t2);">--bg</code></td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 10px;background:#0D1117;color:#8A9BB0;border-radius:4px;font-size:12px;">Texto</span></td>
+            <td style="padding:10px 12px;text-align:center;color:var(--t);font-family:var(--mono);font-size:12px;">6.67:1</td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(52,211,153,0.12);color:#34D399;">AA</span></td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(52,211,153,0.12);color:#34D399;">AAA</span></td>
+            <td style="padding:10px 12px;color:var(--t2);font-size:12px;">Labels, metadados secundários</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 12px;color:var(--t);"><code style="font-family:var(--mono);font-size:11px;color:var(--t2);">--t2</code> em <code style="font-family:var(--mono);font-size:11px;color:var(--t2);">--bg2</code></td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 10px;background:#111D27;color:#8A9BB0;border-radius:4px;font-size:12px;">Texto</span></td>
+            <td style="padding:10px 12px;text-align:center;color:var(--t);font-family:var(--mono);font-size:12px;">6.02:1</td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(52,211,153,0.12);color:#34D399;">AA</span></td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(52,211,153,0.12);color:#34D399;">AAA</span></td>
+            <td style="padding:10px 12px;color:var(--t2);font-size:12px;">Labels em cards</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 12px;color:var(--t);"><code style="font-family:var(--mono);font-size:11px;color:var(--t2);">--t2</code> em <code style="font-family:var(--mono);font-size:11px;color:var(--t2);">--bg3</code></td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 10px;background:#161F2A;color:#8A9BB0;border-radius:4px;font-size:12px;">Texto</span></td>
+            <td style="padding:10px 12px;text-align:center;color:var(--t);font-family:var(--mono);font-size:12px;">5.85:1</td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(52,211,153,0.12);color:#34D399;">AA</span></td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(52,211,153,0.12);color:#34D399;">AAA</span></td>
+            <td style="padding:10px 12px;color:var(--t2);font-size:12px;">Placeholder de input</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 12px;color:var(--t);"><code style="font-family:var(--mono);font-size:11px;color:var(--t2);">--success</code> em <code style="font-family:var(--mono);font-size:11px;color:var(--t2);">--bg</code></td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 10px;background:#0D1117;color:#34D399;border-radius:4px;font-size:12px;">Texto</span></td>
+            <td style="padding:10px 12px;text-align:center;color:var(--t);font-family:var(--mono);font-size:12px;">9.84:1</td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(52,211,153,0.12);color:#34D399;">AAA</span></td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(52,211,153,0.12);color:#34D399;">AAA</span></td>
+            <td style="padding:10px 12px;color:var(--t2);font-size:12px;">Badges e status de aprovação</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 12px;color:var(--t);"><code style="font-family:var(--mono);font-size:11px;color:var(--t2);">--info</code> em <code style="font-family:var(--mono);font-size:11px;color:var(--t2);">--bg</code></td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 10px;background:#0D1117;color:#60A5FA;border-radius:4px;font-size:12px;">Texto</span></td>
+            <td style="padding:10px 12px;text-align:center;color:var(--t);font-family:var(--mono);font-size:12px;">7.44:1</td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(52,211,153,0.12);color:#34D399;">AAA</span></td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(52,211,153,0.12);color:#34D399;">AAA</span></td>
+            <td style="padding:10px 12px;color:var(--t2);font-size:12px;">Informational alerts</td>
+          </tr>
+          <!-- AA rows -->
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 12px;color:var(--t);"><code style="font-family:var(--mono);font-size:11px;color:var(--t2);">--orange</code> em <code style="font-family:var(--mono);font-size:11px;color:var(--t2);">--bg</code></td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 10px;background:#0D1117;color:#FF5500;border-radius:4px;font-size:12px;">Texto</span></td>
+            <td style="padding:10px 12px;text-align:center;color:var(--t);font-family:var(--mono);font-size:12px;">5.90:1</td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(52,211,153,0.12);color:#34D399;">AA</span></td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(52,211,153,0.12);color:#34D399;">AAA</span></td>
+            <td style="padding:10px 12px;color:var(--t2);font-size:12px;">Links laranja em fundo escuro</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 12px;color:var(--t);">Branco em <code style="font-family:var(--mono);font-size:11px;color:var(--t2);">--teal</code></td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 10px;background:#1A7A8A;color:#FFFFFF;border-radius:4px;font-size:12px;">Texto</span></td>
+            <td style="padding:10px 12px;text-align:center;color:var(--t);font-family:var(--mono);font-size:12px;">5.01:1</td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(52,211,153,0.12);color:#34D399;">AA</span></td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(52,211,153,0.12);color:#34D399;">AAA</span></td>
+            <td style="padding:10px 12px;color:var(--t2);font-size:12px;">Label de botão teal</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px 12px;color:var(--t);"><code style="font-family:var(--mono);font-size:11px;color:var(--t2);">--danger-fg</code> em <code style="font-family:var(--mono);font-size:11px;color:var(--t2);">--bg</code></td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 10px;background:#0D1117;color:#E05040;border-radius:4px;font-size:12px;">Texto</span></td>
+            <td style="padding:10px 12px;text-align:center;color:var(--t);font-family:var(--mono);font-size:12px;">4.86:1</td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(52,211,153,0.12);color:#34D399;">AA</span></td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(52,211,153,0.12);color:#34D399;">AAA</span></td>
+            <td style="padding:10px 12px;color:var(--t2);font-size:12px;">Mensagem de erro legível</td>
+          </tr>
+          <!-- AA Large / Atenção -->
+          <tr style="border-bottom:1px solid var(--border);background:rgba(255,144,0,0.04);">
+            <td style="padding:10px 12px;color:var(--t);">Branco em <code style="font-family:var(--mono);font-size:11px;color:var(--t2);">--orange</code></td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 10px;background:#FF5500;color:#FFFFFF;border-radius:4px;font-size:12px;">Botão</span></td>
+            <td style="padding:10px 12px;text-align:center;color:var(--t);font-family:var(--mono);font-size:12px;">3.21:1</td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(255,144,0,0.12);color:#FF9000;">AA Large</span></td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(255,144,0,0.12);color:#FF9000;">AA</span></td>
+            <td style="padding:10px 12px;color:var(--t2);font-size:12px;">⚠ Só texto bold ≥ 14px. Use <code style="font-family:var(--mono);font-size:11px;">--orange-dark</code> (#CC4400, 4.78:1) para texto normal</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);background:rgba(255,144,0,0.04);">
+            <td style="padding:10px 12px;color:var(--t);"><code style="font-family:var(--mono);font-size:11px;color:var(--t2);">--teal</code> em <code style="font-family:var(--mono);font-size:11px;color:var(--t2);">--bg</code></td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 10px;background:#0D1117;color:#1A7A8A;border-radius:4px;font-size:12px;">Texto</span></td>
+            <td style="padding:10px 12px;text-align:center;color:var(--t);font-family:var(--mono);font-size:12px;">3.78:1</td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(255,144,0,0.12);color:#FF9000;">AA Large</span></td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(255,144,0,0.12);color:#FF9000;">AA</span></td>
+            <td style="padding:10px 12px;color:var(--t2);font-size:12px;">⚠ Não usar como texto ≤ 14px regular. OK para ícones / bordas</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);background:rgba(255,144,0,0.04);">
+            <td style="padding:10px 12px;color:var(--t);"><code style="font-family:var(--mono);font-size:11px;color:var(--t2);">--danger</code> em <code style="font-family:var(--mono);font-size:11px;color:var(--t2);">--bg</code></td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 10px;background:#0D1117;color:#C03A2B;border-radius:4px;font-size:12px;">Texto</span></td>
+            <td style="padding:10px 12px;text-align:center;color:var(--t);font-family:var(--mono);font-size:12px;">3.50:1</td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(255,144,0,0.12);color:#FF9000;">AA Large</span></td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(255,144,0,0.12);color:#FF9000;">AA</span></td>
+            <td style="padding:10px 12px;color:var(--t2);font-size:12px;">⚠ Não usar como texto normal. Use <code style="font-family:var(--mono);font-size:11px;">--danger-fg</code> (#E05040, 4.86:1) para texto</td>
+          </tr>
+          <!-- Fail rows -->
+          <tr style="border-bottom:1px solid var(--border);background:rgba(192,58,43,0.04);">
+            <td style="padding:10px 12px;color:var(--t);"><code style="font-family:var(--mono);font-size:11px;color:var(--t2);">--t3</code> em <code style="font-family:var(--mono);font-size:11px;color:var(--t2);">--bg</code></td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 10px;background:#0D1117;color:#4A6070;border-radius:4px;font-size:12px;">Texto</span></td>
+            <td style="padding:10px 12px;text-align:center;color:var(--t);font-family:var(--mono);font-size:12px;">2.88:1</td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(192,58,43,0.12);color:#E05040;">Fail</span></td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(192,58,43,0.12);color:#E05040;">Fail</span></td>
+            <td style="padding:10px 12px;color:var(--t2);font-size:12px;">✗ Somente decorativo (bordas, divisores). Para texto use <code style="font-family:var(--mono);font-size:11px;">--t3-accessible</code></td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);background:rgba(192,58,43,0.04);">
+            <td style="padding:10px 12px;color:var(--t);"><code style="font-family:var(--mono);font-size:11px;color:var(--t2);">--t3</code> em <code style="font-family:var(--mono);font-size:11px;color:var(--t2);">--bg2</code></td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 10px;background:#111D27;color:#4A6070;border-radius:4px;font-size:12px;">Texto</span></td>
+            <td style="padding:10px 12px;text-align:center;color:var(--t);font-family:var(--mono);font-size:12px;">2.60:1</td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(192,58,43,0.12);color:#E05040;">Fail</span></td>
+            <td style="padding:10px 12px;text-align:center;"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(192,58,43,0.12);color:#E05040;">Fail</span></td>
+            <td style="padding:10px 12px;color:var(--t2);font-size:12px;">✗ Somente decorativo. Para texto use <code style="font-family:var(--mono);font-size:11px;">--t3-accessible</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Token acessível recomendado -->
+    <div style="margin-bottom:48px;">
+      <h3 style="font-size:16px;font-weight:600;color:var(--t);margin:0 0 16px;">Tokens acessíveis recomendados</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;">
+
+        <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-card);padding:20px;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+            <div style="width:36px;height:36px;border-radius:8px;background:#6B8FA8;flex-shrink:0;"></div>
+            <div>
+              <div style="font-family:var(--mono);font-size:12px;color:var(--t);">--t3-accessible</div>
+              <div style="font-size:11px;color:var(--t2);">#6B8FA8</div>
+            </div>
+            <span style="margin-left:auto;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(52,211,153,0.12);color:#34D399;">5.51:1 AA</span>
+          </div>
+          <p style="font-size:12px;color:var(--t2);margin:0;">Substituto acessível de <code style="font-family:var(--mono);">--t3</code> para texto de interface (placeholders, labels terciários). Use sempre que o texto precisar ser lido pelo usuário.</p>
+        </div>
+
+        <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-card);padding:20px;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+            <div style="width:36px;height:36px;border-radius:8px;background:#CC4400;flex-shrink:0;"></div>
+            <div>
+              <div style="font-family:var(--mono);font-size:12px;color:var(--t);">--orange-dark</div>
+              <div style="font-size:11px;color:var(--t2);">#CC4400</div>
+            </div>
+            <span style="margin-left:auto;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(52,211,153,0.12);color:#34D399;">4.78:1 AA</span>
+          </div>
+          <p style="font-size:12px;color:var(--t2);margin:0;">Use no lugar de <code style="font-family:var(--mono);">--orange</code> quando o texto branco sobre fundo laranja precisar passar AA (ex: label de botão primário em texto ≤ 14px regular).</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Regras de uso -->
+    <div style="margin-bottom:48px;">
+      <h3 style="font-size:16px;font-weight:600;color:var(--t);margin:0 0 16px;">Regras de uso</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;">
+
+        <div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid #34D399;border-radius:var(--r-card);padding:16px;">
+          <div style="font-size:12px;font-weight:600;color:#34D399;margin-bottom:8px;">✓ Texto de interface</div>
+          <p style="font-size:12px;color:var(--t2);margin:0;">Use <code style="font-family:var(--mono);">--t</code>, <code style="font-family:var(--mono);">--t2</code> ou <code style="font-family:var(--mono);">--t3-accessible</code>. Nunca use <code style="font-family:var(--mono);">--t3</code> (#4A6070) para texto legível — ratio 2.88:1 falha WCAG.</p>
+        </div>
+
+        <div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid #34D399;border-radius:var(--r-card);padding:16px;">
+          <div style="font-size:12px;font-weight:600;color:#34D399;margin-bottom:8px;">✓ Botão primário (label)</div>
+          <p style="font-size:12px;color:var(--t2);margin:0;">Para texto bold ≥ 14px em fundo laranja: <code style="font-family:var(--mono);">--orange</code> é AA Large (ok). Para texto regular ou menor: use fundo <code style="font-family:var(--mono);">--orange-dark</code> (#CC4400).</p>
+        </div>
+
+        <div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid #34D399;border-radius:var(--r-card);padding:16px;">
+          <div style="font-size:12px;font-weight:600;color:#34D399;margin-bottom:8px;">✓ Mensagens de erro</div>
+          <p style="font-size:12px;color:var(--t2);margin:0;">Use <code style="font-family:var(--mono);">--danger-fg</code> (#E05040, 4.86:1) para texto de erro legível. Reserve <code style="font-family:var(--mono);">--danger</code> (#C03A2B) apenas para ícones, bordas e fundos.</p>
+        </div>
+
+        <div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid #FF9000;border-radius:var(--r-card);padding:16px;">
+          <div style="font-size:12px;font-weight:600;color:#FF9000;margin-bottom:8px;">⚠ Teal como texto</div>
+          <p style="font-size:12px;color:var(--t2);margin:0;"><code style="font-family:var(--mono);">--teal</code> tem ratio 3.78:1 em fundo escuro — não usar como texto normal. OK para ícones, bordas e elementos decorativos grandes.</p>
+        </div>
+
+        <div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid #34D399;border-radius:var(--r-card);padding:16px;">
+          <div style="font-size:12px;font-weight:600;color:#34D399;margin-bottom:8px;">✓ Focus ring</div>
+          <p style="font-size:12px;color:var(--t2);margin:0;">Use <code style="font-family:var(--mono);">outline: 2px solid var(--orange); outline-offset: 2px</code> em todos os elementos interativos. Orange sobre bg escuro tem 5.90:1 — passa AA.</p>
+        </div>
+
+        <div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid #34D399;border-radius:var(--r-card);padding:16px;">
+          <div style="font-size:12px;font-weight:600;color:#34D399;margin-bottom:8px;">✓ Tamanho mínimo de toque (mobile)</div>
+          <p style="font-size:12px;color:var(--t2);margin:0;">WCAG 2.5.5 recomenda área de toque mínima de 44×44px. Os botões mobile já usam altura 48px — manter esse padrão em todos os elementos clicáveis.</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- Footer -->
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <img src="./assets/logo/logo-dark-orange.png" alt="AgentisPay" style="height:22px;width:auto;opacity:.5;">
-      <div class="footer-copy">Design System v1.0 · AgentisPay · Março 2026 · Confidencial</div>
+      <div class="footer-copy">Design System v1.2 · AgentisPay · Março 2026 · Confidencial</div>
       <div class="footer-links">
         <a href="#brand">Brand</a>
         <a href="#mobile-ds">Mobile</a>
         <a href="#web-ds">Web</a>
+        <a href="#accessibility">Acessibilidade</a>
       </div>
     </div>
   </div>
@@ -2885,7 +3147,8 @@ footer {
 const sections = [
   { id: 'brand', tab: 0 },
   { id: 'mobile-ds', tab: 1 },
-  { id: 'web-ds', tab: 2 }
+  { id: 'web-ds', tab: 2 },
+  { id: 'accessibility', tab: 3 }
 ];
 const tabs = document.querySelectorAll('.nav-tab');
 
