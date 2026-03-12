@@ -1,0 +1,227 @@
+[
+  {
+    "name": "agents",
+    "pascal": "Agents",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "alert-circle",
+    "pascal": "AlertCircle",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "arrow-left",
+    "pascal": "ArrowLeft",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "arrow-right",
+    "pascal": "ArrowRight",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "bank",
+    "pascal": "Bank",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "bell",
+    "pascal": "Bell",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "card",
+    "pascal": "Card",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "check-circle",
+    "pascal": "CheckCircle",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "check",
+    "pascal": "Check",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "chevron-down",
+    "pascal": "ChevronDown",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "chevron-left",
+    "pascal": "ChevronLeft",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "chevron-right",
+    "pascal": "ChevronRight",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "chevron-up",
+    "pascal": "ChevronUp",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "clock",
+    "pascal": "Clock",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "close",
+    "pascal": "Close",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "copy",
+    "pascal": "Copy",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "download",
+    "pascal": "Download",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "external-link",
+    "pascal": "ExternalLink",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "eye-off",
+    "pascal": "EyeOff",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "eye",
+    "pascal": "Eye",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "filter",
+    "pascal": "Filter",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "history",
+    "pascal": "History",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "home",
+    "pascal": "Home",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "info",
+    "pascal": "Info",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "lock",
+    "pascal": "Lock",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "logout",
+    "pascal": "Logout",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "menu",
+    "pascal": "Menu",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "minus",
+    "pascal": "Minus",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "pending",
+    "pascal": "Pending",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "pix",
+    "pascal": "Pix",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "plus",
+    "pascal": "Plus",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "qr-code",
+    "pascal": "QrCode",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "receive",
+    "pascal": "Receive",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "refresh",
+    "pascal": "Refresh",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "search",
+    "pascal": "Search",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "send",
+    "pascal": "Send",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "settings",
+    "pascal": "Settings",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "shield-check",
+    "pascal": "ShieldCheck",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "shield-x",
+    "pascal": "ShieldX",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "transfer",
+    "pascal": "Transfer",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "trash",
+    "pascal": "Trash",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "unlock",
+    "pascal": "Unlock",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "user",
+    "pascal": "User",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "users",
+    "pascal": "Users",
+    "viewBox": "0 0 24 24"
+  },
+  {
+    "name": "wallet",
+    "pascal": "Wallet",
+    "viewBox": "0 0 24 24"
+  }
+]

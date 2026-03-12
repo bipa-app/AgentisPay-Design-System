@@ -1,0 +1,31 @@
+{
+  "name": "@bipa/icons",
+  "version": "0.1.0",
+  "description": "AgentisPay icon set — Svelte + React Native",
+  "type": "module",
+  "scripts": {
+    "build": "node build.js",
+    "dev": "node build.js --watch"
+  },
+  "exports": {
+    ".": {
+      "svelte": "./dist/svelte/index.js",
+      "import": "./dist/svelte/index.js"
+    },
+    "./native": {
+      "import": "./dist/native/index.js"
+    },
+    "./sprite": "./dist/sprite.svg",
+    "./meta": "./dist/meta.json"
+  },
+  "files": ["dist"],
+  "peerDependencies": {
+    "svelte": "^5.0.0"
+  },
+  "peerDependenciesMeta": {
+    "svelte": { "optional": true }
+  },
+  "devDependencies": {
+    "svgo": "^3.3.2"
+  }
+}
